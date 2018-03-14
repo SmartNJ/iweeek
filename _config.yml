@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: melody
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -81,3 +81,9 @@ deploy:
   type: git
   repo: git@github.com:iweeek/iweeek.github.io.git
   branch: master
+
+algolia:
+  applicationID: 'UNX152NR5L'
+  apiKey: '66844679e77daf4ca8f204c34330f80a'
+  indexName: 'dev_iweeeksblog'
+  adminApiKey: 'cc144a8e49acce41bc1897873c6b0894'
