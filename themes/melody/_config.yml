@@ -187,8 +187,8 @@ disqus:
 
 gitalk:
   enable: true
-  client_id: 48378a15e4a044cfa0c7
-  client_secret: 2dc6db232173e44d15af63265873927c7683eefd
+  client_id: 7525f2bd4dd4eb252486
+  client_secret: 773c0b291bbc32e1f131694133af6b4872f4084d
   repo: iweeek.github.io
   owner: iweeek
   admin: iweeek
