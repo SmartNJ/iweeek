@@ -3,17 +3,19 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: SMARTNIのBlog
-subtitle: Do what you love,Love what you do
+title: 毁于随
+subtitle: 命在于自造，运在于自改，福在于自求，境在于自选，友在于自择，习在于自改，悟在于自通，凡事在于自己。
+#Do what you love, Love what you do
 description: 写出来是为了更好的理解
-author: SmartNi
-language: en
-#language: zh-CN
+author: 毁于随
+# language: zh-Hans
+# language: en
+language: zh-cn
 timezone: Asia/Shanghai
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://www.iweeek.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -26,7 +28,7 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
-skip_render:
+skip_render: [resume/index.html, flex/index.html, 404.html]
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -43,7 +45,7 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-  
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -52,7 +54,7 @@ index_generator:
   path: ''
   per_page: 10
   order_by: -date
-  
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -67,13 +69,15 @@ time_format: HH:mm:ss
 
 # Pagination
 ## Set per_page to 0 to disable pagination
-per_page: 10
+per_page: 50
 pagination_dir: page
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: melody
+# theme: melody
+# theme: next
+theme: even
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -87,3 +91,10 @@ algolia:
   apiKey: '66844679e77daf4ca8f204c34330f80a'
   indexName: 'dev_iweeeksblog'
   adminApiKey: 'cc144a8e49acce41bc1897873c6b0894'
+
+leancloud_counter_security:
+  enable_sync: true
+  app_id: 2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz
+  app_key: emG4bvM4WSlRew7VB7p13lxw
+  username: nijun717@gmail.com # Will be asked while deploying if is left blank
+  password: uL76#wJArmYC=NdM # Recommmended to be left blank. Will be asked while deploying if is left blank

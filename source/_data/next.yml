@@ -1,0 +1,259 @@
+menu:
+  home: / || home
+  #about: /about/ || user
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+  #schedule: /schedule/ || calendar
+  #sitemap: /sitemap.xml || sitemap
+  #commonweal: /404/ || heartbeat
+
+# v5.1
+footer:
+  # Specify the date when the site was setup.
+  # If not defined, current year will be used.
+  #since: 2015
+
+  # Icon between year and copyright info.
+  icon: heartbeat
+
+  # If not defined, will be used `author` from Hexo main config.
+  copyright:
+  # -------------------------------------------------------------
+  # Hexo link (Powered by Hexo).
+  powered: false
+
+  theme:
+    # Theme & scheme info link (Theme - NexT.scheme).
+    enable: false
+    # Version info of NexT after scheme info (vX.X.X).
+    version: false
+  # -------------------------------------------------------------
+  # Any custom text can be defined here.
+  custom_text:  <div style="width:300px;margin:0 auto; padding:0px 0;"><img src="http://p748dqat4.bkt.clouddn.com/beian.png" style="display:inline-block;"/><span style="height:20px;line-height:20px;margin:0px 0px 0px 5px; color:#939393;">浙公网安备 33041102000247号</span></div>
+
+
+# v6.0
+# footer:
+#   # Icon between year and copyright info.
+#   icon: heart
+#     # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons
+#     # `heart` is recommended with animation in red (#ff0000).
+#     name: heart
+#     # If you want to animate the icon, set it to true.
+#     animated: false
+#     # Change the color of icon, using Hex Code.
+#     color: "#808080"
+
+#   # If not defined, will be used `author` from Hexo main config.
+#   copyright:
+#   # -------------------------------------------------------------
+#   # Hexo link (Powered by Hexo).
+#   powered: false
+
+#   theme:
+#     # Theme & scheme info link (Theme - NexT.scheme).
+#     enable: false
+#     # Version info of NexT after scheme info (vX.X.X).
+#     version: false
+
+seo: true
+
+keywords: "iweeek, smartni"
+
+social:
+  GitHub: https://github.com/iweeek || github
+  E-Mail: mailto:nijun717@gmail.com || envelope
+
+social_icons:
+  enable: true
+  icons_only: false
+  transition: true
+
+# Blog rolls
+links_icon: link
+links_title: 友情链接
+links_layout: inline
+
+# Sidebar Avatar
+# in theme directory(source/images): /images/avatar.gif
+# in site  directory(source/uploads): /uploads/avatar.gif
+avatar: /uploads/lovely.gif
+
+sidebar:
+  # Sidebar Position, available value: left | right (only for Pisces | Gemini).
+  position: right
+  #position: right
+
+  # display: post
+  #display: always
+  display: hide
+  #display: remove
+
+  # Sidebar offset from top menubar in pixels (only for Pisces | Gemini).
+  offset: 12
+
+  # Back to top in sidebar (only for Pisces | Gemini).
+  b2t: false
+
+  # Scroll percent label in b2t button.
+  scrollpercent: true
+
+  # Enable sidebar on narrow view (only for Muse | Mist).
+  onmobile: true
+
+save_scroll: true
+
+post_meta:
+  item_text: true
+  created_at: true
+  updated_at: true
+  categories: false
+
+post_wordcount:
+  item_text: true
+  wordcount: false
+  min2read: false
+  totalcount: false
+  separated_meta: true
+
+# Custom Logo.
+# !!Only available for Default Scheme currently.
+# Options:
+#   enabled: [true/false] - Replace with specific image
+#   image: url-of-image   - Images's url
+custom_logo:
+  enabled: true
+  image: 
+
+
+highlight_theme: night bright
+
+
+# Han Support docs: https://hanzi.pro/
+han: true
+
+google_analytics: UA-102765380-1
+
+
+# Local search
+# Dependencies: https://github.com/flashlab/hexo-generator-search
+local_search:
+  enable: false
+  # if auto, trigger search by changing input
+  # if manual, trigger search by pressing enter key or search button
+  trigger: auto
+  # show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+
+# Progress bar in the top during page loading.
+pace: true
+
+pace_theme: pace-theme-minimal
+
+# canvas_lines
+canvas_lines: true
+
+# Show number of visitors to each article.
+# You can visit https://leancloud.cn get AppID and AppKey.
+leancloud_visitors:
+  enable: true
+  app_id: 2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz
+  app_key: emG4bvM4WSlRew7VB7p13lxw
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  # If you don't care about security in lc counter and just want to use it directly
+  # (without hexo-leancloud-counter-security plugin), set the `security` to `false`.
+  security: true
+  betterPerformance: false
+
+
+note:
+  # Note tag style values:
+  #  - simple    bs-callout old alert style. Default.
+  #  - modern    bs-callout new (v2-v3) alert style.
+  #  - flat      flat callout style with background, like on Mozilla or StackOverflow.
+  #  - disabled  disable all CSS styles import of note tag.
+  style: modern
+  icons: true
+  border_radius: 3
+  # Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).
+  # Offset also applied to label tag variables. This option can work with disabled note tag.
+  light_bg_offset: 0
+
+
+post_copyright:
+  enable: true
+  license: CC BY-NC-SA 4.0
+  license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+#  v6.0
+# post_copyright:
+#   enable: false
+#   license: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a>
+
+
+font:
+  enable: enable
+
+  # Uri of fonts host. E.g. //fonts.googleapis.com (Default).
+  host: //fonts.cat.net
+
+  # Font options:
+  # `external: true` will load this font family from `host` above.
+  # `family: Times New Roman`. Without any quotes.
+  # `size: xx`. Use `px` as unit.
+
+  # Global font settings used on <body> element.
+  global:
+    external: true
+    family: Roboto Slab
+    size: 16px
+
+  # Font settings for Headlines (h1, h2, h3, h4, h5, h6).
+  # Fallback to `global` font settings.
+  headings:
+    external: true
+    family:
+    size:
+
+  # Font settings for posts.
+  # Fallback to `global` font settings.
+  posts:
+    external: true
+    family: Roboto Slab
+
+  # Font settings for Logo.
+  # Fallback to `global` font settings.
+  logo:
+    external: true
+    family: Lobster Two
+    size: 
+
+  # Font settings for <code> and code blocks.
+  codes:
+    external: true
+    family: PT Mono
+    size: 16px
+
+
+
+busuanzi_count:
+  # count values only if the other configs are false
+  enable: true
+  # custom uv span for the whole site
+  site_uv: false
+  site_uv_header: <i class="fa fa-user"></i>
+  site_uv_footer:
+  # custom pv span for the whole site
+  site_pv: true
+  site_pv_header: 已有
+  site_pv_footer: 次到访
+  # custom pv span for one page only
+  page_pv: true
+  page_pv_header: <i class="fa fa-file-o"></i>
+  page_pv_footer:
+
+
+
+
+
+

@@ -122,7 +122,7 @@ post_copyright:
   license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
 
 auto_excerpt:
-  enable: true
+  enable: false
   length: 550
 
 # slide
