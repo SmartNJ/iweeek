@@ -1,6 +1,6 @@
 ---
 title: Linux top总结
-date: 2018-05-12 15:20:23
+date: 2018-06-11 12:20:23
 tags: Linux
 ---
 
@@ -16,7 +16,7 @@ top命令可以实时动态地查看系统的整体运行情况，是一个综�
 
 top命令用来显示Linux的处理器活动和内核实时管理的任务。它会显示正在使用的处理器和内存以及运行进程等其他信息。
 
-## 命令参数
+## 命令选项
 
 - -b：以批处理模式操作。
 - -c：显示完整的命令。
@@ -33,48 +33,45 @@ top命令用来显示Linux的处理器活动和内核实时管理的任务。它
 
 在top命令执行过程中可以使用的一些交互命令。这些命令都是单字母的，如果在命令行中使用了-s选项， 其中一些命令可能会被屏蔽。
 
-```
-h：显示帮助画面，给出一些简短的命令总结说明；
-k：终止一个进程；
-i：忽略闲置和僵死进程，这是一个开关式命令；
-q：退出程序；
-r：重新安排一个进程的优先级别；
-S：切换到累计模式；
-s：改变两次刷新之间的延迟时间（单位为s），如果有小数，就换算成ms。输入0值则系统将不断刷新，默认值是5s；
-f或者F：从当前显示中添加或者删除项目；
-o或者O：改变显示项目的顺序；
-l：切换显示平均负载和启动时间信息；
-m：切换显示内存信息；
-t：切换显示进程和CPU状态信息；
-c：切换显示命令名称和完整命令行；
-M：根据驻留内存大小进行排序；
-P：根据CPU使用百分比大小进行排序；
-T：根据时间/累计时间进行排序；
-w：将当前设置写入~/.toprc文件中。
-```
+- h：显示帮助画面，给出一些简短的命令总结说明。
+- k：终止一个进程。
+- i：忽略闲置和僵死进程，这是一个开关式命令。
+- q：退出程序。
+- r：重新安排一个进程的优先级别。
+- S：切换到累计模式。
+- s：改变两次刷新之间的延迟时间（单位为s），如果有小数，就换算成ms。输入0值则系统将不断刷新，默认值是5s。
+- f或者F：从当前显示中添加或者删除项目。
+- o或者O：改变显示项目的顺序。
+- l：切换显示平均负载和启动时间信息。
+- m：切换显示内存信息。
+- t：切换显示进程和CPU状态信息。
+- c：显示进程启动时的完整路径和程序名。
+- M：根据驻留内存大小进行排序。
+- P：根据CPU使用百分比大小进行排序。
+- T：根据时间/累计时间进行排序。
+- w：将当前设置写入~/.toprc文件中。
 
 ## 界面解释
 
-![](http://p748dqat4.bkt.clouddn.com/top/top-field.png)
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-field.png)
 
 统计信息区前五行是系统整体的统计信息。
 **系统运行时间和平均负载**
 第一行是任务队列信息，同uptime命令的执行结果，可以使用l命令切换uptime的显示。其内容如下：
 
-08:42:05 # 当前时间。
-up 8 days, 11:56  # 系统运行时间。
-1 users # 当前登录用户数。
-load average: 0.10, 0.04, 0.05 # 系统负载，即任务队列平均长度。分别为1、5、15min前到现在平均值。
+- 08:42:05：当前时间。
+- up 8 days, 11:56：系统运行时间。
+- 1 users：当前登录用户数。
+- load average: 0.10, 0.04, 0.05：系统负载，即任务队列平均长度。分别为1、5、15min前到现在平均值。
 
-**任务**
+**进程**
 第二行为进程信息。内容如下：
 
-Tasks:
-62 total：进程总数[键入H可查看线程数]。
-2 running：正在运行的进程。
-60 sleeping：睡眠进程。
-0 stopped：停止的进程。
-0 zombie：僵尸进程数。
+- 62 total：进程总数[键入H可查看线程数]。
+- 2 running：正在运行的进程。
+- 60 sleeping：睡眠进程。
+- 0 stopped：停止的进程。
+- 0 zombie：僵尸进程数。
 
 **CPU状态**
 第三行为CPU状态信息，当有多个CPU时，这些内容可能会超过两行。内容如下：
@@ -90,17 +87,17 @@ Tasks:
 **内存使用**
 倒数第2、3行为内存相关信息，内存显示可以用m命令切换：
 
-KiB Mem: 1883724 total, 187736 free, # 分别是物理内存总量、空闲内存总量。
-120536 used, 1575452 buffers # 使用物理内存总量、用作内核缓存内存量。
-KiB Swap: 1044476 total, 713552 used, # 分别是交换分区量、使用交换分区总量。
-330924 free, 10052032 cached # 空闲交换区总量、缓存交换区总量。
+- KiB Mem: 1883724 total, 187736 free：分别是物理内存总量、空闲内存总量。
+- 120536 used, 1575452 buffers：使用物理内存总量、用作内核缓存内存量。
+- KiB Swap: 1044476 total, 713552 used：分别是交换分区量、使用交换分区总量。
+- 330924 free, 10052032 cached：空闲交换区总量、缓存交换区总量。
 
 **字段/列**
 最后一行则是进程相关的资源占用信息：
 
 - PID：进程的ID，进程的唯一标识符。
 - USER：进程所有者的实际用户名。
-- PR：进程的优先级别，范围0-99，越小越优先被执行。
+- PR：进程的优先级别，范围0-39，越小越优先被执行。
 - NI：nice值。范围-20-19，负值表示高优先级，正值表示低优先级。在top里，PR-NI=20，默认启动一个进程，nice是0。
 - VIRT：进程占用的虚拟内存。
 - RES：进程占用的物理内存。
@@ -117,20 +114,20 @@ KiB Swap: 1044476 total, 713552 used, # 分别是交换分区量、使用交换�
 - TIME+：该进程启动后占用的总的CPU时间，即占用CPU使用时间的累加值，精确到百分之一秒。
 - COMMAND：进程启动命令名称。
 
-## 交互命令
+## 交互命令实例
 
-**实例：1. h:帮助**
-描述：在top状态下，按h或者?显示交互命令的帮助菜单。
+**实例：1. h：帮助**
+描述：在top状态下，按h键或者?键显示交互命令的帮助菜单。
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/top/top-h.png)
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-h.png)
 
-**实例：1. 手动刷新**
+**实例：2. 手动刷新**
 描述：在top状态下，按空格或者回车进行手动刷新。top命令默认在一个特定间隔（3秒）后刷新显示。
 
-**实例：1. A:切换交替显示模式**
+**实例：3. A：切换交替显示模式**
 
-描述：在top状态下，按A，可以在全屏和交替模式间切换。在交替模式下会显示4个窗口。
+描述：在top状态下，按A键，可以在全屏和交替模式间切换。在交替模式下会显示4个窗口。
 
 - Def（默认字段组）
 - Job（任务字段组）
@@ -138,89 +135,147 @@ KiB Swap: 1044476 total, 713552 used, # 分别是交换分区量、使用交换�
 - Usr（用户字段组）
 
 这四组字段共有一个独立的可配置的概括区域和它自己的可配置任务区域。4个窗口中只有一个窗口是当前窗口。当前窗口的名称显示在左上方。只有当前窗口才会接受你键盘交互命令。
-![](http://p9xqnn501.bkt.clouddn.com/top/top-A.png)
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-A.png)
 可以用a和w在4个窗口间切换，a移到后一个窗口，w移到前一个窗口。用g命令可以输入一个数字来选择当前窗口。
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-switch.png)
 
-
-**实例：1. 按照内存使用大小排序**
-描述：在top状态下，按shift+m，可以按照内存使用大小排序进程。
+**实例：4. B：粗体显示**
+描述：在top状态下，按B键，会将一些重要信息会以加粗字体显示。
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/top/top-M.png)
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-B.png)
 
-**实例：1. 显示命令名称和完整命令行**
-描述：在top状态下，按c，显示命令名称和完整命令行。也可以使用如下命令行。
+**实例：5. d或s：设置显示的刷新间隔**
+描述：在top状态下，按d键或者s键，设置显示的刷新间隔为1秒。
+输出：
+
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-d-s.png)
+
+
+**实例：6. l、t、m：切换负载、任务、内存信息的显示**
+描述：相应地切换顶部的平均负载、任务/CPU状态和内存信息的概况显示。
+输出：
+不显示平均负载：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-l.png)
+不显示CPU概况：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-t.png)
+不显示内存和交换内存概况：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-m-noword.png)
+可以切换图形显示：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-m-graph.png)
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-m-graph-bold.png)
+均不显示：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-l-t-m-none.png)
+
+**实例：7. f：字段管理**
+描述：在top状态下，按f键进入字段管理界面。d键选择要显示的字段，用*标记的是已选择的。上下光标键在字段内导航，左光标键可以选择字段，右光标键进入排序状态，此时按上下光标键可以进行上下移动，回车确认。s键设置当前排序的字段，q或Esc键退出。
+输出：
+
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-f.png)
+
+**实例：8. R：反向排序**
+描述：在top状态下，按R键切换反向/常规排序。
+
+
+**实例：9. c：切换显示命令名称和完整命令行**
+描述：在top状态下，按c键，切换是否显示进程启动时的完整路径和程序名。也可以使用如下命令行。
 命令：`top -c`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/top/top-c.png)
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-c.png)
+
+**实例：10. i：空闲任务**
+描述：在top状态下，按i键，切换显示空闲任务。
+输出：
+不显示空闲任务：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-i.png)
 
 
+**实例：11. V：树视图**
+描述：在top状态下，按V键，切换树视图。
+输出：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-V.png)
 
-# 1、top 命令显示
+**实例：12. z：切换彩色显示**
+描述：在top状态下，按z键，切换彩色，即打开或关闭彩色显示。
+输出：
 
-```shell
-# top
-```
-
-# 2、用 `O` 排序
-按（`Shift+O`）对字段进行排序。按回车返回 top 界面。
-
-![](http://p748dqat4.bkt.clouddn.com/Linux/top/top-sort.png)
-
-# 3、显示特定用户进程
-
-```shell
-# top -u root
-```
-
-# 4、突出显示 top 的运行过程
-
-在 top 界面按 `z`，将以高亮显示运行过程。
-
-![](http://p748dqat4.bkt.clouddn.com/Linux/top/top-z-highlight.png)
-
-# 5、显示进程的绝对路径
-
-在 top 界面按 `c`，将显示正在运行的进程的绝对路径。
-
-![](http://p748dqat4.bkt.clouddn.com/Linux/top/top-show-process-path.png)
-
-# 6、更改延迟（屏幕刷新间隔）
-
-默认情况下，屏幕刷新间隔为 3.0 秒，按 `d` 可以更改。
-
-![](http://p748dqat4.bkt.clouddn.com/Linux/top/top-change-delay.png)
-
-# 7、按 `k` 杀死正在运行的进程
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-z-normal.png)
 
 
-![](http://p748dqat4.bkt.clouddn.com/Linux/top/top-to-kill-process.png)
-
-# 8、按 `Shift + P` 为CPU 利用率排序
-
-# 9、按 `r` 来 Renice 进程的优先级
-
-![](http://p748dqat4.bkt.clouddn.com/Linux/top/top-to-renice-process-priority.png)
-
-# 10、保存 top 命令结果
-保存在 `/root/` 目录下
-
-```shell
-# top -n 1 -b> top-output.txt
-```
-
-# 11、按 `h` 获得 top 命令帮助
-
-# 12、特定重复次数后退出 top
-top 输出保持刷新，直到按 `q`。下面的命令将在 10 次重复之后自动退出。
-
-```shell
-#top -n 10
-```
+**实例：13. Z：改变配色**
+描述：在top状态下，按Z键，显示一个改变top命令的输出颜色的屏幕。可以为8个任务区域选择8种颜色。
+输出：
+设置修改：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-Z.png)
+显示效果：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-Z-show.png)
 
 
+**实例：14. 按照内存使用大小排序**
+描述：在top状态下，按shift+m，可以按照内存使用大小排序进程。
+输出：
 
-参考：
-https://www.tecmint.com/12-top-command-examples-in-linux/
-https://www.tecmint.com/find-processes-by-memory-usage-top-batch-mode/
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-M.png)
+
+
+**实例：15. x、y：切换高亮信息**
+描述：在top状态下，按x键将排序字段高亮显示（纵列）；按y键将运行进程高亮显示（横行）。
+输出：
+
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-x-y.png)
+
+**实例：16. u：特定用户的进程**
+描述：在top状态下，按u键将会提示输入用户名，输入首显示特定用户的进程。空白将会显示全部用户。
+输出：
+
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-u.png)
+
+
+**实例：17. n或#：任务的数量**
+描述：在top状态下，按n键或者#键可以设置最大显示的任务数量。
+输出：
+
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-n-#.png)
+
+**实例：18. k：结束任务**
+描述：在top状态下，按k键输入PID后，发送信号给任务（通常是结束任务）。
+输出：
+
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-k.png)
+
+**实例：19. r：重新设置优先级**
+描述：在top状态下，按r键输入-20~19范围中的数字后，重新设置一个任务的调度优先级（nice值）。
+输出：
+
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-k.png)
+
+## 命令行实例
+
+**实例：1. -b：批处理模式**
+描述：-b选项以批处理模式启动top命令，在文件中保存输出时是很有用的。
+
+
+**实例：2. -c：命令/程序名 触发:**
+描述：显示进程启动时的完整路径和程序名。
+
+**实例：3. -d：设置延迟间隔**
+描述：设置top的显示间隔(以秒计)。
+命令：`top -d 1`
+
+**实例：4. -i：切换显示空闲进程**
+命令：`top -i`
+
+**实例：5. -n：特定重复次数后退出**
+描述：top输出保持刷新，直到按q键或者到达指定次数。下面的命令将在10次重复之后自动退出。
+命令：`top -n 10`
+
+**实例：6. -p：监控特定的PID**
+描述：-p选项监控指定的PID。PID的值为0将被作为top命令自身的PID。
+命令：`top -p 0`
+
+**实例：7. -u或-U: 用户名或者UID**
+描述：可以用这些选项浏览特定用户的进程。用户名或者UID可以在选项中指定。-p、-u和-U选项是互斥的，同时只可以使用这其中一个选项。试图组合使用这些选项时，会得到一个错误:
+命令：`top -p 1248 -u root`
+输出：
+![](http://pabfn7ecx.bkt.clouddn.com/top/top-U-p-u-error.png)

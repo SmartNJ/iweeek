@@ -6,6 +6,7 @@ tags: Linux
 
 awk是一种小巧的编程语言及命令行工具。（其名称得自于它的创始人Alfred Aho、Peter Weinberger 和 Brian Kernighan姓氏的首个字母）。它非常适合服务器上的日志处理，主要是因为awk可以对文件进行操作，通常以可读文本构建行。
 
+<!-- more -->
 ## 命令功能
 
 在文件或字符串中基于指定规则浏览和抽取信息。awk抽取信息后，才能进行其他文本操作，awk脚本通常用来格式化文本文件中的信息。
@@ -126,27 +127,27 @@ return val+1;
 描述：新建一个device文件，其中(1)为序号，(2)为Android版本，(3)为访问时间，(4)为IP，(5)为访问次数。本文大部分实例根据这一文件进行说明。
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-origin.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-origin.png)
 
 **实例：1. 抽取域**
 描述：打印第1个（序号）域和第2个（Android版本）域的内容。print用来输出其后跟着的内容，用大括号把print语句括起来，表示一个打印动作。
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-partion-domain.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-partion-domain.png)
 
 **实例：2. 打印所有记录**
 描述：打印所有记录。$0代表所有域。
 命令：`awk '{print $0}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-$0.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-$0.png)
 
 **实例：3. 打印报告头**
 描述：在序号和IP地址之间用一些空格使之更容易划分，也可以在域间使用tab键加以划分。本例中加入NO和IP两个信息头以及中划线，\n启动新行，并在\n下一行启动打印文本操作。打印信息头放置在BEGIN模式部分，因为打印信息头被界定为一个动作，必须用大括号括起来。在awk查看第一条记录前，信息头被打印。
 命令：`awk 'BEGIN {print "NO        IP\n------------------------"} {print $1"\t"$4}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-Begin.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-Begin.png)
 
 
 **实例：4. 打印信息尾**
@@ -154,14 +155,14 @@ return val+1;
 命令：`awk 'BEGIN {print "Version\n-------"} {print $2} END {print "end-of-report"}' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-End.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-End.png)
 
 **实例：5. 错误信息提示**
 描述：如果将在awk命令中缺少一个双引号，awk将返回错误提示信息。
 命令：`awk 'BEGIN {print "Version\n-------"} {print $2} END {print "end-of-report}' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-error.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-error.png)
 
 注意：在碰到awk错误时，应从以下几点进行排查：
 
@@ -174,7 +175,7 @@ return val+1;
 命令：`awk 'END {print NR}' device.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-file-not-found.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-file-not-found.png)
 
 ### 条件操作符
 
@@ -183,10 +184,10 @@ return val+1;
 命令：`awk '{ if ($4 ~ /^4/) print $0}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-if.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-if.png)
 
 等同于：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-same-if.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-same-if.png)
 
 **实例：2. 精确匹配**
 描述：精确匹配访问次数为1次的记录，确保不匹配访问次数为15次的记录。使用等号==，并用单引号括起条件，也可以使用if语句。
@@ -194,7 +195,7 @@ return val+1;
 或者：`awk '{if($5==/1/) print $0}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-==.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-==.png)
 
 **实例：3. 不匹配**
 描述：不匹配IP地址以4开头的记录。使用!~表示不匹配。
@@ -202,7 +203,7 @@ return val+1;
 或者：`awk '{ if ($4 !~ /^4/) print $0}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-!~.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-!~.png)
 
 注意这里不能用!=，因为用引号或者/括起了^4，将只匹配4而不匹配49.65.119.165等。如果查询非49.65.119.165的记录，可做如下操作：
 `awk '$4 != "49.65.119.165"' device`
@@ -213,28 +214,28 @@ return val+1;
 或者：`awk '{ if ($4 !~ /^4/) print $0}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-less-than.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-less-than.png)
 
 **实例：5. 设置大小写**
 描述：匹配含有前面是i或I，后面是OS的记录。[]符号可匹配[]内任意字符或单词。
 命令：`awk '/[iI]OS/' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-i.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-i.png)
 
 **实例：6. 任意字符**
 描述：匹配Android版本，第八个字符是7，打印它。表达式/^.......7/表示行首前7个字符任务，第八个是7。
 命令：`awk '$2 ~ /^.......7/' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-dot.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-dot.png)
 
 **实例：7. 或关系匹配**
 描述：匹配IP地址以4或者3开头的记录。竖线符|意为两边模式之一。可以得到与[]表达式相同的结果。
 命令：`awk '$4 ~ /^(4|3)/' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-or.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-or.png)
 
 注意，在使用竖线符时，语句必须用圆括号括起来。另外，除了字符重复出现外，其他的正则表达式在awk中都是合法的。
 
@@ -245,15 +246,15 @@ return val+1;
 等同于：`awk '{ if ($2 ~ /^.......7/ && $4 ~ /^4/) print $0} ' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-&&.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-&&.png)
 
 ### awk内置变量
 
 awk内置变量如下：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-builtin-variable-table-1.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-builtin-variable-table-1.png)
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-builtin-variable-table-2.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-builtin-variable-table-2.png)
 
 ```
 BEGIN { # Can be modified by the user
@@ -279,7 +280,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk '{print NF,NR,$0} END {print FILENAME}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-builtin-variable.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-builtin-variable.png)
 
 **实例：2. 判断文件至少有一个记录**
 
@@ -287,7 +288,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk 'NR > 0 && $4 ~ /^4/' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-NR.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-NR.png)
 
 
 **实例：3. 与echo结合使用**
@@ -296,25 +297,25 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`echo $PWD | awk -F / '{print $NF}'`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-echo.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-echo.png)
 
 
 描述：显示文件名。
 命令：`echo "/etc/vimrc" | awk -F / '{print $NF}'`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-show-filename.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-show-filename.png)
 
 ### awk操作符
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-operator.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-operator.png)
 
 **实例：1. 设置输入域到域变量名**
 描述：赋值IP地址域为ip，版本域为version，查询版本大于7的记录，并打印IP地址和版本信息。
 命令：`awk '{ip=$4;version=$2; if (version ~ /*7*/) print ip""version}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-set-variable.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-set-variable.png)
 
 **实例：2. 域值比较操作**
 有两种方式测试数值域是否小于另一数值域。
@@ -326,7 +327,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk '{if ($5 > 10) print $0}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-comparable.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-comparable.png)
 
 
 **实例：3. 修改数值域的值**
@@ -337,7 +338,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk '{if ($1==6) $5=$5-1; print $1, $2, $5 }' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-modify-copy-number-domain.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-modify-copy-number-domain.png)
 
 
 **实例：4. 修改文本域**
@@ -346,7 +347,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk '{if ($1==6) ($2="iOS11.2.3"); print $1, $2, $5 }' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-modify-text-copy-domain.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-modify-text-copy-domain.png)
 
 **实例：5. 只显示修改记录**
 
@@ -354,7 +355,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk '{if ($1==6) {$2="iOS11.2.3"; print $2}; }' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-modify-and-only-show-modified.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-modify-and-only-show-modified.png)
 
 **实例：6. 创建新的输出域**
 
@@ -362,7 +363,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk 'BEGIN {print "IP\t Difference"} {if ($5 > $1) {$6=$5-$1; print $1 "\t" $6}}' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-add-new-domain.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-add-new-domain.png)
 
 **实例：7. 增加列值**
 
@@ -370,7 +371,7 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`awk '(total+=$5); END {print "total visits : " total}' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-add-column-value.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-add-column-value.png)
 
 **实例：8. 文件长度相加**
 
@@ -378,12 +379,12 @@ FILENAME：告知系统目前正在浏览的实际文件，因为awk可以同时
 命令：`ls -l | awk '/^[^d]/ {print $9"\t"$5} {total+=$5} END {print "total KB: " total}'` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-acc-file-size.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-acc-file-size.png)
 
 
 ### 内置字符串函数
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-string-function.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-string-function.png)
 
 gsub类似于sed查找和替换。它允许替换一个字符串或字符为另一个字符串或字符，并以正则表达式的形式执行，第一个函数作用于记录$0，第二个gsub函数允许指定目标，如果未指定，默认是$0。
 index(s, t)函数返回目标字符串s中查询字符串t的首位置。
@@ -402,7 +403,7 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 命令：`awk 'gsub(/11:35/, "11:40") {print $0}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-gsub.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-gsub.png)
 
 
 **实例：2. index**
@@ -410,7 +411,7 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 命令：`awk 'BEGIN {print index("Honey", "ney")}'`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-index.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-index.png)
 
 **实例：3. length**
 
@@ -418,7 +419,7 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 命令：`awk '$1==6 {print length($2) "---" $2}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-length.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-length.png)
 
 
 **实例：4. match**
@@ -433,7 +434,7 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 `awk '$1==6 {print match($2, "7")}' device`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-match.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-match.png)
 
 
 **实例：5. split**
@@ -442,7 +443,7 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 命令：`awk 'BEGIN {print split("123#456#789", myarray, "#")}'`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-split.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-split.png)
 
 
 **实例：6. sub**
@@ -451,7 +452,7 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 命令：`awk 'sub(/Android/, "android")' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-sub.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-sub.png)
 
 
 **实例：7. substr**
@@ -460,7 +461,7 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 命令：`awk '$1==5 {print substr($2,1,7)}' device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-substr.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-substr.png)
 
 
 **实例：8. 从shell向awk传入字符串**
@@ -474,13 +475,13 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-shell.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-shell.png)
 
 
 ### 字符转义
 
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-escape.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-escape.png)
 
 ### printf修饰符
 
@@ -488,10 +489,10 @@ substr(s, p, n)函数返回字符串s在位置p后长度为n的后缀部分。
 格式控制符通常在引号里。
 
 awkprintf修饰符：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-printf-table.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-printf-table.png)
 
 awk printf格式：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-printf-format-table.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-printf-format-table.png)
 
 **实例：1. 字符转换**
 描述：通过管道输出65到awk中，printf进行ASCII码字符转换。
@@ -501,7 +502,7 @@ awk printf格式：
 `awk 'BEGIN {printf "%c\n", 65}'`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-char-convert.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-char-convert.png)
 
 描述：数字1024转换为浮点数之后，被加入了六个小数点。
 命令：
@@ -509,7 +510,7 @@ awk printf格式：
 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-number-convert.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-number-convert.png)
 
 **实例：2. 格式化输出**
 
@@ -519,7 +520,7 @@ awk printf格式：
 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-printf-format.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-printf-format.png)
 
 **实例：3. 向一行awk命令传值**
 
@@ -527,27 +528,27 @@ awk printf格式：
 命令：`awk '{if($5 > VISITS) print $0} ' VISITS=10 device` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-command-line-pass-to-awk.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-command-line-pass-to-awk.png)
 
 描述：用管道将df -k传入awk，然后抽出第四列，即剩余可利用空间容量。使用$4 ~ /^[0-9]/取得容量数值，最后对命令行if($4 < TRIGGER)上变量TRIGGER的值进行查询。
 查看文件系统空间容量，观察其是否达到一定水平。因为要监视的已使用空间容量不断在变化，所以需要再命令行指定一个触发值。
 命令：`df -k | awk '($4 ~ /^[0-9]/) {if ($4 < TRIGGER) printf "%-15s %s\n",$6,$4}' TRIGGER=930000` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-df.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-df.png)
 
 
 描述：打印当前注册用户，并加入一定信息。
 命令：`who | awk '{print $1 " is logged on"}'` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-who.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-who.png)
 
 描述：传入环境变量LOGNAME，显示当前用户名。
 命令：`who | awk '{if ($1 == user) print $1" you are connected to " $2}' user=$LOGNAME"}'` 
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-env-variable.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-env-variable.png)
 
 
 **实例：4. awk脚本文件**
@@ -555,20 +556,20 @@ awk printf格式：
 描述：第一行#! /usr/bin/awk -f告知脚本系统awk命令的位置。在脚本文件后键入文件名之前，需要先对脚本文件加入可执行权限。
 命令：`chmod u+x user_tot.awk`
 user_tot.awk脚本文件：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-user-tot.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-user-tot.png)
 
 描述：执行user_tot.awk脚本文件。
 命令：`./user_tot.awk device` 
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-run-user-tot.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-run-user-tot.png)
 
 **实例：5. 在awk中使用FS变量**
 
 描述：从/etc/passwd文件中抽取第1和第5域，通过FS变量，指定冒号:分隔passwd文件域。第1域时账号名，第5域是账号所有者。
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-passwd-file.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-passwd-file.png)
 命令：`chmod u+x passwd.awk | ./passwd.awk /etc/passwd` 
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-run-passwd.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-run-passwd.png)
 
 
 **实例：6. 向awk脚本传值**
@@ -577,27 +578,27 @@ user_tot.awk脚本文件：
 `awk script_file var=value input_file`
 
 描述：对比检查文件中域号和指定数字。注意不要忘了增加脚本的可执行权限。
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-fieldcheck-file.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-fieldcheck-file.png)
 命令：`chmod u+x fieldcheck.awk | ./fieldcheck.awk MAX=7 FS=":" /etc/passwd` 
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-run-fieldcheck.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-run-fieldcheck.png)
 
 
 
 描述：从du命令获得输入，并输出块和字节数。
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-duawk-file.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-duawk-file.png)
 命令：`chmod u+x duawk.awk | du /root | ./duawk.awk` 
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-run-duawk.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-run-duawk.png)
 
 
 **实例：9. awk数组**
 
 描述：用split将123#456#789划分开，并存入myarray数组，再使用循环打印各数组元素。
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-array-file.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-array-file.png)
 命令：`chmod u+x duawk.awk | du /root | ./duawk.awk` 
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-script-run-array.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-script-run-array.png)
 
 
 **实例：10. 处理由通配符指定的多个文件名**
@@ -607,7 +608,7 @@ user_tot.awk脚本文件：
 `awk '{ print FILENAME; nextfile } ' *.txt` 
 `awk 'BEGIN{ print "Starting..."} { print FILENAME; nextfile }END{ print "....DONE"} ' *.txt`
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/awk/awk-multiple-filename.png)
+![](http://pabfn7ecx.bkt.clouddn.com/awk/awk-multiple-filename.png)
 
 
 

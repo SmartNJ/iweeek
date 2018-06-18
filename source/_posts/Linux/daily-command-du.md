@@ -39,20 +39,20 @@ du [选项] [文件]
 命令：du /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/du/du-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/du/du-path.png)
 
 
 **实例：2. 以人类可读格式也就是 kb、mb 等显示文件/目录大小**
 命令：du -h /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/du/du-h-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/du/du-h-path.png)
 
 **实例：3. 目录的总磁盘使用大小摘要**
 命令：du -s /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/du/du-s-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/du/du-s-path.png)
 
 
 
@@ -60,7 +60,7 @@ du [选项] [文件]
 命令：du -a /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/du/du-a-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/du/du-a-path.png)
 
 
 **实例：5. 总的使用磁盘空间**
@@ -68,7 +68,7 @@ du [选项] [文件]
 命令：du -c /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/du/du-c-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/du/du-c-path.png)
 
 
 **实例：6. 排除给定模式的文件或目录**
@@ -76,13 +76,13 @@ du [选项] [文件]
 命令：du -h --exclude=".ssh" /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/du/du-h-exclude-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/du/du-h-exclude-path.png)
 
 **实例：7. 根据修改时间显示磁盘使用情况**
 描述：在计算/root的总大小时排除.ssh文件。
 命令：du -h --exclude=".ssh" /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/du/du-time.png)
+![](http://pabfn7ecx.bkt.clouddn.com/du/du-time.png)
 
 

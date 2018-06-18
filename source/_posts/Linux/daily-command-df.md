@@ -40,7 +40,7 @@ df [选项] [文件]
 命令：df
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df.png)
 
 
 **实例：2. 以人类可读的格式显示磁盘使用情况**
@@ -48,14 +48,14 @@ df [选项] [文件]
 命令：df -h
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df-h.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df-h.png)
 
 **实例：3. 检查所有文件系统磁盘使用空间信息**
 描述：与上述相同，但它也显示虚拟文件系统的信息以及所有文件系统磁盘使用情况和内存使用情况。
 命令：df -a
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df-a.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df-a.png)
 
 
 **实例：4. 显示文件系统的类型**
@@ -63,7 +63,7 @@ df [选项] [文件]
 命令：df -hT
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df-hT.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df-hT.png)
 
 
 
@@ -72,21 +72,21 @@ df [选项] [文件]
 命令：df -hT /root
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df-hT-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df-hT-path.png)
 
 **实例：6. 筛选指定的文件系统类型**
 描述：筛选文件系统类型为ext4的磁盘使用情况。
 命令：df -t ext4 -hT
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df-t.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df-t.png)
 
 **实例：7. 排除指定的文件系统类型**
 描述：排除文件系统类型为ext4的磁盘，显示剩下的磁盘类型使用情况。
 命令：df -x ext4 -hT
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df-x.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df-x.png)
 
 
 **实例：8. 显示文件系统的inodes信息**
@@ -94,5 +94,5 @@ df [选项] [文件]
 命令：df -i
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/df/df-i.png)
+![](http://pabfn7ecx.bkt.clouddn.com/df/df-i.png)
 

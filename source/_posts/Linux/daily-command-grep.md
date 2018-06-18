@@ -101,7 +101,7 @@ POSIX字符类
 命令：`find . -name "*.txt" | grep -i find`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-i.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-i.png)
 
 
 **实例：2. 搜索并过滤文件**
@@ -109,32 +109,32 @@ POSIX字符类
 命令：`find . -name "*.txt" | grep -v find`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-v.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-v.png)
 
 **实例：3. 只查找特定的文件**
 描述：以下命令表示搜索以.txt结尾的文件，然后通过重定向到grep，筛选文件名中含有字符串find的结果，再次重定向到grep，筛选结果中不存在users的结果。
 命令：`find . -name "*.txt" | grep -i find | grep -vi users`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-grep.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-grep.png)
 
 **实例：4. 显示指定字符串位置向前或者向后的行**
 描述：显示匹配到eth0的行以及后面的10行。-A和-B，显示匹配的行和行数，显示匹配的字符串行之前或之后。-A=after，-B=before。
 命令：`ifconfig | grep -A 10 eth0`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-A.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-A.png)
 
 描述：显示匹配到lo的行以及前面的10行。-b将显示该行第一个字符的编号。
 命令：`ifconfig | grep -b -B 10 lo`
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-B.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-B.png)
 
 **实例：5. 只显示匹配到的部分**
 描述：从ifconfig的输出中搜索net，显示每行的第一个字符的编号，并且只显示文件中匹配的部分。-o选项只输出文件中匹配到的部分。
 命令：`ifconfig | grep -b -o net`
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-o.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-o.png)
 
 
 **实例：6. 打印匹配周围的行**
@@ -142,14 +142,14 @@ POSIX字符类
 命令：`ifconfig | grep -C 1 lo`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-C.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-C.png)
 
 **实例：7. 为匹配的字符串计数**
 描述：统计匹配到的字符串数量。-c与wc命令一样可以统计字符数。
 命令：`ifconfig | grep -c lo`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-cc.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-cc.png)
 
 
 **实例：8. 按给定的字符串搜索文件并显示行号**
@@ -157,14 +157,14 @@ POSIX字符类
 命令：`grep -n -i "hello" find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-n.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-n.png)
 
 **实例：9. 匹配多个模式**
 描述：在find.txt中搜索匹配Hello或者as的行。-e选项指定字符串作为查找文件的模式，可以使用多个。
 命令：`grep find.txt -e Hello -e as`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-e.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-e.png)
 
 
 **实例：10. 在所有目录中递归搜索字符串**
@@ -172,47 +172,47 @@ POSIX字符类
 命令：`grep -r -i "hello"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-r.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-r.png)
 
 描述：-h参数将不显示该行所属的文件名称，默认-H是显示的。
 命令：`grep -r -h -i "hello"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-r-h.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-r-h.png)
 
 **实例：11. 搜索整个模式**
 描述：从ifconfig的输出中搜索RUNNING字符串出现的行。
 命令：`ifconfig | grep -w "RUNNING"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex.png)
 
 **实例：12. 在gzip压缩文件中搜索**
 描述：从find.tar.gz压缩包里查找hello字符串。
 命令：`zgrep -i hello find.tar.gz`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-zgrep.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-zgrep.png)
 
 **实例：13. 搜索目录并列出内容含有指定字符串的文件名称**
 描述：从/root目录下列出文件内容中含有Hello字样的文件名称，忽略大小写。-l列出的是符合指定字符串的文件名称，-L列出的是不符合指定字符串的文件名称。
 命令：`grep -i -l Hello /root/*`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-l.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-l.png)
 
 **实例：14. 只列出包含或者不包含的文件内容**
 描述：在当前目录下所有以.txt结尾的文件中，列出文件内容中含有Hello字样的文件名称，忽略大小写。--include只搜索匹配正则表达式的文件。
 命令：`grep -i -r hello . --include "*.txt"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-include.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-include.png)
 
 描述：在当前目录下所有不以.txt结尾的文件中，列出文件内容中含有Hello字样的文件名称，忽略大小写。--exclude搜索不匹配正则表达式的文件。
 命令：`grep -i -r hello . --exclude "*.txt"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-exclude.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-exclude.png)
 
 ## 正则表达式用法
 
@@ -222,7 +222,7 @@ POSIX字符类
 命令：`grep -i 'hello' f*`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-*.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-*.png)
 
 
 **实例：16. 显示在多个文件中匹配hello的行**
@@ -230,7 +230,7 @@ POSIX字符类
 命令：`grep -i 'hello' find.txt xy12.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-multiple.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-multiple.png)
 
 
 **实例：17. 模式出现几率**
@@ -238,64 +238,64 @@ POSIX字符类
 命令：`grep "a\{2\}" find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-probability.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-probability.png)
 
 **实例：18. 模式出现几率**
 描述：在当前目录下所有文件中，搜索所有超过9个字母的单词的行。
 命令：`grep -i '[a-z]\{9\}' find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-number.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-number.png)
 
 描述：-b选项将锁定为单词。
 命令：`grep -i '\b[a-z]\{9\}\b' find.txt`
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-number-b.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-number-b.png)
 
 描述：搜索超过9个字母的单词的行。
 命令：`grep -i '\b[a-z]\{9,\}\b' find.txt`
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-number-to-more.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-number-to-more.png)
 
 描述：搜索9-11个字母的单词的行。
 命令：`grep -i '\b[a-z]\{9,11\}\b' find.txt`
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-number-to-number.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-number-to-number.png)
 
 **实例：19. 使用grep匹配「与」或者「或」模式**
 描述：搜索see或者in字符串所在的行。-E选项使用扩展模式匹配。|表示两边之一或者全部，可以使用任意多的|。
 命令：`grep -E 'see|in' find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-or.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-or.png)
 
 **实例：20. 空行**
 描述：搜索文件中所有的空行。结合^和`$`可查询空行。
 命令：`grep -n '^$' find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-blank-lines.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-blank-lines.png)
 
 **实例：21. 匹配特殊字符**
 描述：搜索含有特殊含义的字符，诸如`$.'"*[]^|\+?`，必须在特定字符前加\。
 命令：`grep "\^" find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-punct.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-punct.png)
 
 **实例：22. 分组**
 描述：如果Hello被匹配，则ell就被存储到内存中，并标记为1，然后搜索任意个字符（.\*），这些字符后面紧跟着另外一个ell（\1），找到就显示该行。如果用egrep或grep -E，就不用"\"号进行转义，直接写成'H(ell)o.\*\1'就可以了。
 命令：`grep -i 'H\(ell\)o.*\1' find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-group.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-group.png)
 
 **实例：23. 复杂情况**
 描述：搜索以tion，tions，come，comes结尾的单词。
 命令：`egrep "([a-z]*tion|come)(s)?" find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-regex-complication.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-regex-complication.png)
 
 <!-- 使用 -f 用文件指定待查找的模式 https://linux.cn/article-5453-1.html -->
 ## POSIX用法
@@ -305,14 +305,14 @@ POSIX字符类
 命令：`grep "^[[:alnum:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-alphanumeric.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-alphanumeric.png)
 
 **实例：25. 搜索以字母（Alpha）开头的行**
 描述：起始于[A-Z]，[a-z]。
 命令：`grep "^[[:alpha:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-alpha.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-alpha.png)
 
 
 **实例：26. 搜索以空白（Blank）字符串开头的行**
@@ -320,28 +320,28 @@ POSIX字符类
 命令：`grep "^[[:blank:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-blank.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-blank.png)
 
 **实例：27. 搜索以数字（Digit）字符串开头的行**
 描述：起始于[0-9]。
 命令：`grep "^[[:digit:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-digit.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-digit.png)
 
 **实例：28. 搜索以小写字母（Lower）字符串开头的行**
 描述：起始于[a-z]。
 命令：`grep "^[[:lower:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-lowercase.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-lowercase.png)
 
 **实例：29. 搜索以大写字母（Uppercase）字符串开头的行**
 描述：起始于[A-Z]。
 命令：`grep "^[[:upper:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-uppercase.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-uppercase.png)
 
 
 **实例：30. 搜索以标点符号（Punctuation）字符串开头的行**
@@ -349,7 +349,7 @@ POSIX字符类
 命令：`grep "^[[:puct:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-punctuation.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-punctuation.png)
 
 
 **实例：31. 搜索图形符号**
@@ -357,21 +357,21 @@ POSIX字符类
 命令：`grep "^[[:graph:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-graphical.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-graphical.png)
 
 **实例：32. 搜索可打印的字符（Printable Characters）**
 描述：可打印的字符包括：字母数字，标点符号和空格字符。
 命令：`grep "^[[:print:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-printable.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-printable.png)
 
 **实例：33. 搜索空格字符（Space Characters）**
 描述：类似于[tab, newline, vertical tab, form feed, carriage return, and space]。
 命令：`grep "^[[:space:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-space.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-space.png)
 
 
 
@@ -380,6 +380,6 @@ POSIX字符类
 命令：`grep "^[[:xdigit:]]" iweeek`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/grep/grep-hexadecimal.png)
+![](http://pabfn7ecx.bkt.clouddn.com/grep/grep-hexadecimal.png)
 
 

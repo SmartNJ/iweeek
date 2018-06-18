@@ -37,14 +37,14 @@ command <&-：关闭标准输入。
 命令：`ls -lR > dir-tree.list`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/redirection/redirection->.png)
+![](http://pabfn7ecx.bkt.clouddn.com/redirection/redirection->.png)
 
 描述：清空文件。>将会把文件dir-tree.list变为一个空文件（size为0）。如果文件不存在，那会创建一个0长度的文件（与touch的效果相同）。:是一个占位符，不产生任何输出。也可以省略:占位符。
 命令：`: > dir-tree.list`
 或者：`> dir-tree.list`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/redirection/redirection-clear.png)
+![](http://pabfn7ecx.bkt.clouddn.com/redirection/redirection-clear.png)
 
 **实例：1. >> file**
 描述：将stdout重定向到一个文件。如果文件不存在，那么就创建它，如果存在，那么就追加到文件后边。
@@ -66,5 +66,5 @@ script.sh 2 >> filename
 输出：
 
 
-![](http://p9xqnn501.bkt.clouddn.com/redirection/redirection-clear.png)
+![](http://pabfn7ecx.bkt.clouddn.com/redirection/redirection-clear.png)
 

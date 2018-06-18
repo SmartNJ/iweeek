@@ -33,37 +33,37 @@ read命令从键盘或文件的某一行文本中读入信息，并将其赋给�
 描述：从标准输入读取输入并赋值给变量name。
 命令：`read name` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-var.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-var.png)
 
 **实例：2. 读入并赋给多个变量**
 描述：从标准输入读取输入到第一个空格或者回车，将输入的第一个单词放到变量one中，并将该行其他的输入放在变量two中。
 命令：`read one two` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-mul-var.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-mul-var.png)
 
 **实例：3. 未指定变量**
 描述：从标准输入读取一行并赋值给特定变量REPLY。
 命令：`read` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read.png)
 
 **实例：4. 读入并赋给数组**
 描述：把单词清单读入myarray的数组里。
 命令：`read -a myarray` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-a.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-a.png)
 
 **实例：5. 打印提示**
 描述：打印提示（text），等待输入，并将输入存储在REPLY中。
 命令：`read -p "text"` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-a.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-a.png)
 
 **实例：6. 允许输入包含反斜杠**
 描述：允许输入包含反斜杠。
 命令：`read -r line` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-r.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-r.png)
 
 **实例：7. 等待读取**
 描述：指定读取等待时间为3秒。
@@ -74,19 +74,19 @@ read命令从键盘或文件的某一行文本中读入信息，并将其赋给�
 描述：从输入中读取两个字符并存入变量var，不需要按回车读取。
 命令：`read -n 2 var` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-n.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-n.png)
 
 **实例：9. 指定结束符**
 描述：用定界符“:”结束输入行。
 命令：`read -d ":" var` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-d.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-d.png)
 
 **实例：10. 终端输入密码不显示密码**
 描述：终端输入密码不显示密码。
 命令：`read -p "输入密码：" -s pwd` 
 
-![](http://p9xqnn501.bkt.clouddn.com/read/read-s.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-s.png)
 
 第二种方式
 脚本：
@@ -99,5 +99,5 @@ stty echo
 echo
 echo 输入完毕。
 ```
-![](http://p9xqnn501.bkt.clouddn.com/read/read-no-echo.png)
+![](http://pabfn7ecx.bkt.clouddn.com/read/read-no-echo.png)
 

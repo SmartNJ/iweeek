@@ -28,14 +28,14 @@ tee命令从标准输入中复制到每一个文件，并输出到标准输出�
 命令：`ping yahoo.com | tee output.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/tee/tee.png)
+![](http://pabfn7ecx.bkt.clouddn.com/tee/tee.png)
 
 **实例：2. 向输出文件追加内容**
 描述：将ping的内容输出到标准输出，同时也以追加的方式输出到output.txt文件中。
 命令：`ping baidu.com | tee -a output.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/tee/tee-a.png)
+![](http://pabfn7ecx.bkt.clouddn.com/tee/tee-a.png)
 
 
 **实例：3. 输出到标准输出两次**
@@ -43,21 +43,21 @@ tee命令从标准输入中复制到每一个文件，并输出到标准输出�
 命令：`ls | tee -`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/tee/tee--.png)
+![](http://pabfn7ecx.bkt.clouddn.com/tee/tee--.png)
 
 **实例：4. 同时写入多个文件**
 描述：将ping的内容输出到标准输出两次，同时也以追加的方式输出到output.txt文件中。
 命令：`ping yahoo.com | tee output.txt log.txt -`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/tee/tee-multiple--.png)
+![](http://pabfn7ecx.bkt.clouddn.com/tee/tee-multiple--.png)
 
 **实例：5. tee命令的输出内容直接作为另一个命令的输入内容**
 描述：列出当前目录下的文件，同时写入到output.txt文件中，然后再将内容通过管道重定向给wc命令统计行数。
 命令：`ls -ilh | tee output.txt | wc -l`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/tee/tee-other.png)
+![](http://pabfn7ecx.bkt.clouddn.com/tee/tee-other.png)
 
 **实例：6. 提升文件写入权限**
 描述：使用Vim编辑器打开文件，并且做了跟多更改，然后当尝试保存修改会得到一个报错，那是一个root所拥有的文件，意味着你需要使用sudo权限保存修改。在Vim内使用tee命令来提高权限。
@@ -69,11 +69,11 @@ tee命令从标准输入中复制到每一个文件，并输出到标准输出�
 命令：`ping yahoo.com | tee -i output.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/tee/tee-i.png)
+![](http://pabfn7ecx.bkt.clouddn.com/tee/tee-i.png)
 
 **实例：8. 把标准错误输出也保存到文件**
 描述：使用tee命令把标准错误输出也保存到文件。
 命令：`ls "*" 2>&1 | tee ls.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/tee/tee-error.png)
+![](http://pabfn7ecx.bkt.clouddn.com/tee/tee-error.png)

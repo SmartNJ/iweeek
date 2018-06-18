@@ -33,14 +33,14 @@ tags: Linux
 命令：`grep -n 'Hello' < find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/pipe/redirect-grep.png)
+![](http://pabfn7ecx.bkt.clouddn.com/pipe/redirect-grep.png)
 
 **实例：1. 管道**
 描述：管道两边都必须是shell命令。
 命令：`cat find.txt | grep -n 'Hello'`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/pipe/pipe-grep.png)
+![](http://pabfn7ecx.bkt.clouddn.com/pipe/pipe-grep.png)
 
 
 

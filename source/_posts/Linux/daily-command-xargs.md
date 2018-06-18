@@ -42,16 +42,16 @@ xargs是给其他命令传递参数的一个过滤器，也是组合多个命令
 命令：`cat alpha.txt | xargs`
 输出：
 alpha.txt内容：
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-multiple-file.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-multiple-file.png)
 经过xargs处理之后：
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-multiple-to-single.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-multiple-to-single.png)
 
 **实例：2. 传递字符串给xargs**
 描述：执行cat命令。echo命令将"--help"字符串作为输出重定向给xargs作为输入，并将"--help"做成一个命令参数来运行cat命令。
 命令：`echo '--help' | xargs cat`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-echo.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-echo.png)
 
 
 **实例：3. 显示执行的命令**
@@ -59,7 +59,7 @@ alpha.txt内容：
 命令：`echo '--help' | xargs -t cat`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-t.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-t.png)
 
 
 **实例：4. 指定分隔符**
@@ -67,7 +67,7 @@ alpha.txt内容：
 命令：`echo '12#34#56#78' | xargs -d '#' echo`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-d.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-d.png)
 
 下面多出的一行空白，是因为xargs默认是以空白作为分隔符，换行符也是默认空白符的一种，所以每一条字符串后面实际上是加了换行符。
 
@@ -76,21 +76,21 @@ alpha.txt内容：
 命令：`echo '12#34#56#78' | xargs -n2 -d '#' echo`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-n.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-n.png)
 
 **实例：6. 执行命令前先提示**
 描述：-p选项使xargs在执行其后面的命令之前先输出即将要执行的完整的命令（包括命令的命令行参数），询问是否执行，输入y才继续执行，否则不执行。
 命令：`echo '12#34#56#78' | xargs -n2 -d '#' -p echo`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-p.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-p.png)
 
 **实例：7. 指定终止字符串**
 描述：将字符串"56"作为终止字符串。注意-E只有在xargs不指定-d的时候有效。
 命令：`echo '12 34 56 78' | xargs -E '56' echo`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-E.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-E.png)
 
 **实例：8. 结合find使用**
 描述：find的结果是使用'\0'来分隔的。-0选项使用'\0'来分隔。当尝试用rm删除太多的文件的时候，可能会得到/bin/rm Argument list too long的错误，将下面命令中的echo替换为rm -f即可避免这个问题。
@@ -98,14 +98,14 @@ alpha.txt内容：
 或者：`find . -name '*.txt' -print0 | xargs -0 echo`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-d-0.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-d-0.png)
 
 **实例：9. 结合wc使用**
 描述：统计当前目录下所有txt文件的行数。
 命令：`find . -type f -name "*.txt" -print0 | xargs -0 wc -l`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-wc.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-wc.png)
 
 
 **实例：10. 测试属于哪类文件**
@@ -113,7 +113,7 @@ alpha.txt内容：
 命令：`find . -type f -print | xargs file`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-file.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-file.png)
 
 
 **实例：11. 结合IO重定向使用**
@@ -126,7 +126,7 @@ alpha.txt内容：
 命令：`find . -perm -7 -print | xargs chmod o-w`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-chmod.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-chmod.png)
 
 
 **实例：13. 结合grep使用**
@@ -134,7 +134,7 @@ alpha.txt内容：
 命令：`find . -type f -print | xargs grep "hello"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-grep.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-grep.png)
 
 **实例：14. 结合wget使用**
 描述：一次性下载文件中的所有URL链接资源，每行一个URL链接。
@@ -146,7 +146,7 @@ alpha.txt内容：
 命令：`find . -name "*.jpg" | xargs tar -czvf images.tar.gz`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-tar.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-tar.png)
 
 
 **实例：16. 结合cp使用**
@@ -154,7 +154,7 @@ alpha.txt内容：
 命令：`ls *.jpg | xargs -n1 -i cp {} move/`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-cp.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-cp.png)
 
 
 
@@ -164,9 +164,9 @@ alpha.txt内容：
 输出：
 
 xyz.txt文件内容：
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-s-file.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-s-file.png)
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-s.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-s.png)
 
 
 **实例：18. 替换{}指定其他代替字符**
@@ -174,7 +174,7 @@ xyz.txt文件内容：
 命令：`find . -name "*.jpg" | xargs -I [] mv [] move/`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/xargs/xargs-I.png)
+![](http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-I.png)
 
 
 

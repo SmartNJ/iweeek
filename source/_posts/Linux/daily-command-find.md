@@ -9,7 +9,7 @@ find命令根据指定的条件查找文件和目录。查找可用于多种条�
 <!-- more -->
 
 ## 命令格式
-`find pathname -options [-print -exec -ok]`
+`find pathname [options] [-print -exec -ok]`
 
 参数解释：
 pathname：find命令所查找的目录路径。例如用.来表示当前目录，用/来表示系统根目录。
@@ -18,9 +18,10 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 -ok：和-exec的作用相同，但会以一种更加安全的模式来执行该参数所给出的shell命令，在执行每一个命令之前，都会给出提示，让用户来确定是否执行。
 
 ## 命令功能
+
 在指定目录下查找文件。任何位于参数之前的字符串都将被视为欲查找的目录名。如果使用该命令时，不设置任何参数，则find命令将在当前目录下查找子目录与文件。并且将查找到的子目录和文件全部进行显示。
 
-## 命令参数
+## 命令选项
 
 ```
 - -amin<分钟>：查找在指定时间曾被存取过的文件或目录，单位以分钟计算；
@@ -103,7 +104,7 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . 等同于 find . -name "*"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-all.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-all.png)
 
 
 **实例：2. 指定目录下使用名称查找文件**
@@ -111,14 +112,14 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -name find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-name.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-name.png)
 
 **实例：3. 使用名称查找文件并忽略大小写**
 描述：在当前目录找到名称为find.txt的文件，忽略大小写(iname)。
 命令：`find . -iname find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-iname.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-iname.png)
 
 
 **实例：4. 根据文件类型查找**
@@ -139,13 +140,13 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find / -type f -name find`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-type-f.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-type-f.png)
 
 描述：在指定目录中找到名称为findd（name findd）的目录（type d）。
 命令：`find / -type d -name findd`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-type-d.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-type-d.png)
 
 
 **实例：5. 根据目录深度搜索**
@@ -153,19 +154,19 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 描述：从文件系统的根目录开始，查找一个名为xyz.txt的文件，find将首先匹配所有的文件然后再进入子目录中查找。
 命令：`find / -depth -name "xyz.txt"`
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/find/find-depth.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-depth.png)
 
 
 描述：搜索出深度距离当前目录最多3个子目录的所有文件。
 命令：`find /home/nijun -maxdepth 3 -type f`
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/find/find-maxdepth.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-maxdepth.png)
 
 
 描述：搜索出深度距离当前目录至少2个子目录的所有文件。
 命令：`find /home/nijun -mindepth 2 -type f`
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/find/find-mindepth.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-mindepth.png)
 
 
 **实例：5. 使用通配符查找文件**
@@ -173,14 +174,14 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -type f -name "*.txt" -o -name "*.mp3"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-name-or.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-name-or.png)
 
 
 描述：在当前目录查找文件名以两个小写字母开头，跟着是两个数字，最后是*.txt的文件。-print选项会输出到标准输出中。
 命令：`find . -name "[a-z][a-z][0-9][0-9].txt" -print`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-name-wildcard.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-name-wildcard.png)
 
 
 ## 第二部分：根据权限查找文件
@@ -191,14 +192,14 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -type f -perm 777 -print`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-perm.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-perm.png)
 
 **实例：7. 查找不符合指定的权限数值的文件或目录**
 描述：查找权限不为777的文件。
 命令：`find . -type f ! -perm 777`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-!-perm.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-!-perm.png)
 
 
 **实例：8. 查找所有权限为644的SGID文件**
@@ -247,7 +248,7 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -type f -name ".*"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-dotfile.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-dotfile.png)
 
 
 **实例：20. 忽略某个目录**
@@ -255,7 +256,7 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -name "best" -prune -o -print`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-prune.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-prune.png)
 
 ## 第三部分：根据所有者和组查找文件
 
@@ -264,13 +265,13 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -user root -name find.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-user-name.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-user-name.png)
 
 **实例：22. 查找所有用户文件**
 命令：`find . -user root`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-user.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-user.png)
 
 **实例：22. 查找没有有效账户的文件**
 描述：-nouser选项查找那些属主在/etc/passwd文件中没有有效账户的文件。
@@ -280,7 +281,7 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -group root`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-group.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-group.png)
 
 **实例：22. 查找没有有效用户组的文件**
 描述：-nogroup选项查找没有有效所属用户组的所有文件。
@@ -291,7 +292,7 @@ pathname：find命令所查找的目录路径。例如用.来表示当前目录�
 命令：`find . -user root -iname "*.txt"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-user-wildcard.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-user-wildcard.png)
 
 
 ## 第四部分：根据日期和时间查找
@@ -307,39 +308,39 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 除非你确切地知道你想要的时间，否则可能需要在 + （大于）或 - （小于）的后面加上数字。
 
 /home/nijun/images目录中文件:
-![](http://p9xqnn501.bkt.clouddn.com/find/find-ls.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-ls.png)
 
 **实例：25. 查找3天以前被修改过的所有文件**
 命令：`find . -mtime +3`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-mtime-after.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-mtime-after.png)
 
 **实例：26. 查找5天以内被访问过的所有文件**
 命令：`find . -atime -5`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-atime-before.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-atime-before.png)
 
 **实例：26. 查找恰好4天前访问过的文件**
 命令：`find . -atime 4`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-atime.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-atime.png)
 
 **实例：27. 查找2-7天前访问过的文件**
 描述：在当前目录中查找两天以前，七天以内的文件。
 命令：`find . -mtime +2 -mtime -7`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-mtime-between.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-mtime-between.png)
 
 **实例：28. 查找在1小时之内改变过（Changed）的文件或目录**
 描述：在当前目录查找在1小时之内改变过的文件或目录，mmin和amin同理。
 命令：`find . -cmin -60`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-c.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-c.png)
 
 
 **实例：30. 查找比某个文件新或旧的文件**
@@ -348,25 +349,25 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 命令：`find . -type f -newer brooke-lark-275181.jpg ! -newer abc.txt`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-newer.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-newer.png)
 
 **实例：30. 新建指定时间戳文件查找时间范围内的文件**
 描述：使用touch -t命令新建一个自定义时间戳（6月6日8点30分）的文件，用来满足时间范围查找的要求。然后查找比这个文件更新的文件或目录。
 命令：`touch -t 06060830 dstamp`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-touch.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-touch.png)
 
 命令：`find . -newer det/dstamp  -print`
 输出：
-![](http://p9xqnn501.bkt.clouddn.com/find/find-newfile-newer.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-newfile-newer.png)
 
 **实例：30. 筛选出上周拍的照片**
 描述：在/home/nijun目录下，忽略大小写地查找以.jpeg和.jpg为后缀的，修改时间在七天以内的所有文件。
 命令：`find /home/nijun -iname '*.jpeg' -o -iname '*.jpg' -type f -mtime -7`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-images.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-images.png)
 
 
 ## 第五部分：根据大小查找文件和目录
@@ -387,28 +388,28 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 命令：`find . -size 31M`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-size.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-size.png)
 
 **实例：31. 查找文件大小小于10MB的文件**
 描述：在当前目录下查找文件大小小于10MB的所有文件。
 命令：`find . -size 10M`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-size-smaller.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-size-smaller.png)
 
 **实例：31. 查找文件大小大于5MB的文件**
 描述：在当前目录下查找文件大小大于5MB的所有文件。
 命令：`find . -size +5M`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-size-bigger.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-size-bigger.png)
 
 **实例：32. 查找所有大小在5MB-10MB之间的文件**
 描述：在当前目录下查找文件大小在5MB到10MB的所有文件。
 命令：`find . -size +5M -size -10M`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-size-between.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-size-between.png)
 
 **实例：33. 查找并删除巨大的（假设大于1G）文件**
 描述：-delete选项可以代替rm命令删除查找到的文件。
@@ -426,14 +427,14 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 命令：`find . -type f -name "*" | xargs grep "hello"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-type-f-xargs-grep.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-type-f-xargs-grep.png)
 
 **实例：36. 匹配文件路径或者文件**
 描述：查找/usr目录下所有路径中带有local字样的文件或目录。
 命令：`find /usr/ -path "*local*"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-path.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-path.png)
 
 
 **实例：37. 基于正则表达式匹配文件路径**
@@ -441,7 +442,7 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 命令：`find . -regex ".*\(\.txt\|\.mp3\)$"`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-regex.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-regex.png)
 
 
 **实例：38. 使用mount选项**
@@ -449,7 +450,7 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 命令：`find . -mount -name "*.txt"  -print`
 输出：
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-mount.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-mount.png)
 
 
 ## 第七部分：借助exec或ok选项来执行shell命令
@@ -464,7 +465,7 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 描述：找出当前目录下最近一天内修改的所有文件并删除它们。-ok 和 -exec 行为一样，不过它会给出提示，是否执行相应的操作。按y键删除文件，按n键不删除。
 命令：`find . -mtime -1 -ok rm {} \;`
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-ok-rm.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-ok-rm.png)
 
 
 **实例：40. 与cat命令结合使用**
@@ -479,7 +480,7 @@ UNIX/Linux文件系统每个文件都有三种时间戳：
 描述：查找/etc目录下名字带有passwd的文件中，含有nijun字样的内容。
 命令：`find /etc -name "passwd*" -exec grep "nijun" {} \;`
 
-![](http://p9xqnn501.bkt.clouddn.com/find/find-grep.png)
+![](http://pabfn7ecx.bkt.clouddn.com/find/find-grep.png)
 
 **实例：42. 与printf结合使用**
 描述：找出当前目录下所有.txt文件并以“File:文件名”的形式打印出来。
