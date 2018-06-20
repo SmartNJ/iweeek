@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="android 进程和线程记录"/>
+
+
+
+
+  <meta name="keywords" content="Android, 毁于随" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毁于随">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.iweeek.com/2018/05/04/android/android-processes-and-threads/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102765380-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz",
+      appKey: "emG4bvM4WSlRew7VB7p13lxw"
+    });
+  </script>
+
+
+
+
+
+    <title> android 进程和线程记录 - 毁于随 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">毁于随</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/photos/">
+        <li class="mobile-menu-item">
+          
+          
+            相册
+          
+        </li>
+      </a>
+    
+      <a href="/resume/index.html">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">毁于随</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/photos/">
+            
+            
+              相册
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/resume/index.html">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          android 进程和线程记录
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-05-04
+        </span>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/05/04/android/android-processes-and-threads/"
+             data-title="android 进程和线程记录">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程-Processes"><span class="toc-text">进程 (Processes)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程-Threads"><span class="toc-text">线程 (Threads)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工作线程-Work-threads"><span class="toc-text">工作线程 (Work threads)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程安全的方法"><span class="toc-text">线程安全的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通信"><span class="toc-text">进程间通信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AsyncTask"><span class="toc-text">AsyncTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4个步骤的意义："><span class="toc-text">4个步骤的意义：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取消异步任务"><span class="toc-text">取消异步任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程规则"><span class="toc-text">线程规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内存可观测"><span class="toc-text">内存可观测</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="进程-Processes"><a href="#进程-Processes" class="headerlink" title="进程 (Processes)"></a>进程 (Processes)</h3><ol>
+<li>manifest文件中有四大组件activity、service、receiver、provider, application 的范围是所有组件。</li>
+<li>Android:process可以指定当前组件运行在哪个处理器核心上。</li>
+<li>Android系统会在内存低或者继续大量内存提供给其他应用的时候关闭一个进程。在决定哪个进程需要被关闭的时候，系统会权衡应用对于用户来说的相对重要性，比如前台和可见进程一般是不会被关闭的，只有不可见的服务和缓存进程可能被关闭。</li>
+</ol>
+<a id="more"></a>
+<h3 id="线程-Threads"><a href="#线程-Threads" class="headerlink" title="线程 (Threads)"></a>线程 (Threads)</h3><ol>
+<li>一般而言，一个应用启动，系统会创建一个线程来执行这个程序，叫做main线程，也叫做UI线程（与android.widget和android.view包下的组件）。但这不是绝对的，主线程可能不是UI线程。</li>
+<li><p>系统所有的组件都运行在同一个进程中。比如，当用户触摸一个按钮的时候，UI线程为这个按钮轮流地（因为onTouch事件会持续进行）dispatch触摸事件，当手指离开按钮的时候为按钮设置pressed状态，并且发送一个invalidate的请求到事件队列中，然后UI线程出列这个请求并且通知这个widget，需要它进行重绘。</p>
+</li>
+<li><p>如果UI线程因阻塞而超过5秒，就会出现“application not responding”（ANR）对话框。<br>Android单线程模型有两个简单的规则：</p>
+<ol>
+<li>不要阻塞UI线程</li>
+<li>不要在UI线程以外访问UI toolkit。</li>
+</ol>
+</li>
+</ol>
+<h3 id="工作线程-Work-threads"><a href="#工作线程-Work-threads" class="headerlink" title="工作线程 (Work threads)"></a>工作线程 (Work threads)</h3><p>因为上述两个规则，Android也提供了几个帮助方法，这几个实现是线程安全的。同时也提供了两个帮助类。</p>
+<ol>
+<li>Activity.runOnUiThread(Runnable)</li>
+<li>View.post(Runnable)</li>
+<li>View.postDelayed(Runnable, long)<br>帮助类</li>
+<li>Handler （处理来自UI线程的message）</li>
+<li>AsyncTask （继承它）</li>
+</ol>
+<h3 id="线程安全的方法"><a href="#线程安全的方法" class="headerlink" title="线程安全的方法"></a>线程安全的方法</h3><p>方法可能会被多于一个的线程调用。所以必须是线程安全的方法。</p>
+<ol>
+<li>例如，一个绑定服务，它可能在主线程中运行，方法将在调用者所在的线程执行。也有可能从其他线程运行（这些线程来自线程池），这些RPC方法就可能在其他线程中被调用。</li>
+<li>尽管ContentProvider和ContentResolver隐藏了进程间通信是如何管理的细节，但是ContentProvider的那些query(), insert(), delete(), update(), and getType()方法将会在ContentProvider的进程中执行，不是在UI线程。</li>
+</ol>
+<h3 id="进程间通信"><a href="#进程间通信" class="headerlink" title="进程间通信"></a>进程间通信</h3><p>Android提供了两种通信机制，分别是interprocesses communication(IPC)和remote procedure calls(RPCs)。</p>
+<p>具体来说，一个方法在activity或者android的其他组件中被调用，但是却在另一个进程中被执行，然后将结果返回给调用者所在的进程。这需要分解这个方法调用，并且数据是在操作系统能理解的等级，把这些信息从本地进程和地址空间传输到远程的进程和地址空间，然后在远程重新组装和调用，返回的结果按相反的方向传输回去。</p>
+<h3 id="AsyncTask"><a href="#AsyncTask" class="headerlink" title="AsyncTask"></a>AsyncTask</h3><ol>
+<li><p>它是一个介于Thread和Handler之间的帮助类，它不是通用的线程框架。</p>
+</li>
+<li><p>一个异步任务中定义了computation任务，它跑在一个后台线程，并且将允许结果公布在UI线程上。它<br>它有3个generic类型，Params、Progress、Result，并且有4个步骤，onPreExecute、doInBackground、onProgressUpdate、onPostExecute。</p>
+</li>
+<li><p>AsyncTask最好是用来处理一些短时间的操作（几秒钟），如果是要长时间操作，强烈建议使用java.util.concurrent包下的 Executor, ThreadPoolExecutor 和 FutureTask。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">DownloadFilesTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">URL</span>, <span class="title">Integer</span>, <span class="title">Long</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> Long <span class="title">doInBackground</span><span class="params">(URL... urls)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count = urls.length;</span><br><span class="line">        <span class="keyword">long</span> totalSize = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">            totalSize += Downloader.downloadFile(urls[i]);</span><br><span class="line">            publishProgress((<span class="keyword">int</span>) ((i / (<span class="keyword">float</span>) count) * <span class="number">100</span>));</span><br><span class="line">            <span class="comment">// Escape early if cancel() is called</span></span><br><span class="line">            <span class="keyword">if</span> (isCancelled()) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> totalSize;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onProgressUpdate</span><span class="params">(Integer... progress)</span> </span>&#123;</span><br><span class="line">        setProgressPercent(progress[<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Long result)</span> </span>&#123;</span><br><span class="line">        showDialog(<span class="string">"Downloaded "</span> + result + <span class="string">" bytes"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> DownloadFilesTask().execute(url1, url2, url3);</span><br></pre></td></tr></table></figure>
+<p>3个泛型参数的意义：</p>
+<ol>
+<li>params，在执行前发送到 doInBackground 的参数，对应上面的url1, url2和url3。</li>
+<li>Progress，任务执行的进度，对应上面的指定为Interger。</li>
+<li>Result，doInBackground执行的结果。</li>
+</ol>
+<p>大部分情况下，执行没有任何类型的异步任务，如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">MyTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span>&lt;<span class="title">Void</span>, <span class="title">Void</span>, <span class="title">Void</span>&gt; </span>&#123; ... &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="4个步骤的意义："><a href="#4个步骤的意义：" class="headerlink" title="4个步骤的意义："></a>4个步骤的意义：</h3><ol>
+<li>onPreExecute，执行在UI线程，一般是前置设置，比如显示一个进度条。</li>
+<li>doInBackground，在 onPreExecute 执行完立即被调用在后台线程，参数将传到这个方法，这一步必须返回执行结果，它将被传递到最后一步。在这一步中可以调用publishProgress(Progress)，每一次调用都会回调onProgressUpdate(Progress…)，除非它被取消执行了。</li>
+<li>onProgressUpdate，当在 doInBackground 中调用 publishProgress 的时候被回调，但是回调的时刻是未知的，</li>
+<li>onPostExecute，安全的访问UI线程，它将收到来自 doInBackground 递送(deliver)的结果。</li>
+</ol>
+<h3 id="取消异步任务"><a href="#取消异步任务" class="headerlink" title="取消异步任务"></a>取消异步任务</h3><p>cancel，直接调用后会导致 isCancelled 返回 true，onCancelled 将会代替onPostExecute 的调用。为了确保异步任务是否被取消，应该在 doInBackground中周期性地检查 isCancelled，如果可以，使用循环。</p>
+<h3 id="线程规则"><a href="#线程规则" class="headerlink" title="线程规则"></a>线程规则</h3><ol>
+<li>AsyncTask 必须在UI线程中加载(load)，这由JELLY_BEAN自动完成。</li>
+<li>task 的实例必须在UI线程中创建。</li>
+<li>execute(Params…) 必须在UI线程中调用。</li>
+<li>不要手动调用上述4个步骤的方法。</li>
+<li>这个 task 只能被执行一次，第二次执行会抛出异常。</li>
+</ol>
+<h3 id="内存可观测"><a href="#内存可观测" class="headerlink" title="内存可观测"></a>内存可观测</h3><p>AsyncTask 担保所有的回调都是同步的，以下2种情况在没有明确同步的情况下，是安全的。</p>
+<ol>
+<li>在 onPreExecute 或者构造器中设置成员，然后在 doInBackground 中使用它们。</li>
+<li>在 doInBackground 中设置成员，在 onProgressUpdate 和 onPostExecute 中使用它们。</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.iweeek.com">毁于随</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.iweeek.com/2018/05/04/android/android-processes-and-threads/">http://www.iweeek.com/2018/05/04/android/android-processes-and-threads/</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年05月04日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Android/">Android</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/05/05/algorithm/print-list-from-tail-to-head/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">从尾到头打印链表</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/2018/05/04/android/service-is-a-context/">
+        下一篇：
+        <span class="next-text nav-default">android 服务记录</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+
+      <footer id="footer" class="footer">
+<!--
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:nijun717@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/iweeek" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">毁于随</span>
+  </span>
+ 
+  <script src="https://s19.cnzz.com/z_stat.php?id=1273965476&web_id=1273965476" language="JavaScript"></script>
+</div>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+  
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/src/nijun/nijun.js"></script>
+  
+
+
+<script src="/js/src/fold.js"></script>
+<script src="/js/src/post-detail.js"></script>
+<script src="/js/src/tags.js"></script>
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  </body>
+</html>

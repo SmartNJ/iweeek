@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Linux ps总结"/>
+
+
+
+
+  <meta name="keywords" content="Linux, 毁于随" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毁于随">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.iweeek.com/2018/06/04/linux/daily-command-ps/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102765380-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz",
+      appKey: "emG4bvM4WSlRew7VB7p13lxw"
+    });
+  </script>
+
+
+
+
+
+    <title> Linux ps总结 - 毁于随 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">毁于随</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/photos/">
+        <li class="mobile-menu-item">
+          
+          
+            相册
+          
+        </li>
+      </a>
+    
+      <a href="/resume/index.html">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">毁于随</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/photos/">
+            
+            
+              相册
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/resume/index.html">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Linux ps总结
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-06-04
+        </span>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/06/04/linux/daily-command-ps/"
+             data-title="Linux ps总结">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        <p>为了查阅系统上面正在运行当中的程序，可以利用静态的ps或者是动态的top，本文就来介绍ps的相关用法。</p>
+<p>Linux中的ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。</p>
+<a id="more"></a>
+<p>要对进程进行监测和控制，首先必须要了解当前进程的情况，也就是需要查看当前进程，而 ps 命令就是最基本同时也是非常强大的进程查看命令。使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等。总之大部分信息都是可以通过执行该命令得到的。</p>
+<p>ps 为我们提供了进程的一次性的查看，它所提供的查看结果并不动态连续的；如果想对进程时间监控，应该用 top 工具。</p>
+<p>kill 命令用于杀死进程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ps aux &lt;== 观察系统所有的程序数据</span><br><span class="line"># ps -lA &lt;== 观察系统所有的程序数据</span><br><span class="line"># ps axjf &lt;== 连同部分程序树</span><br></pre></td></tr></table></figure>
+<p>选项与参数：<br>-A：所有的不同process均显示出来，与-e具有同样的效果。<br>-a：不与terminal有关的所有process。<br>-u：有效使用者（effective user）相关的process。<br>-e：列出所有程序，与-A效果相同。<br>x：通常与a这个参数一起使用，可列出完整的信息。<br>l：较长、较详细的输出该该PID的信息。<br>j：工作的格式(jobs format)。<br>-f：做一个更为完整的输出。</p>
+<p>实例：仅观察自己的bash相关程序：ps -l<br>描述：ps默认只显示属于当前用户这次登录的PID与相关信息，-l参数显示更详细的信息。<br>命令：ps -l<br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ps -l</span><br><span class="line">F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span><br><span class="line">4 S     0 16215 16213  0  80   0 - 28845 wait   pts/1    00:00:00 bash</span><br><span class="line">0 R     0 16308 16215  0  80   0 - 37232 -      pts/1    00:00:00 ps</span><br></pre></td></tr></table></figure>
+<p>每个字段具体的含义如下：</p>
+<ul>
+<li>F：代表这个程序的旗标（process flags），说明这个程序的总结权限，常见的有：<ul>
+<li>若为4表示此程序的权限为root。</li>
+<li>若为1表示此子程序仅进行复制（fork）而没有实际执行（exec）。</li>
+</ul>
+</li>
+<li>S：代表这个程序的状态（STAT)，主要的状态有：<ul>
+<li>R（Running)：该程序正在运行中。</li>
+<li>S（Sleep）：该程序目前正在睡眠状态（idle），但可以被唤醒（signal）。</li>
+<li>D：不可被唤醒的睡眠状态，例如，程序可能在等待I/O的情况。</li>
+<li>T：停止状态（stop），可能是在工作控制（背景暂停）或出错（traced）状态。</li>
+<li>Z：僵尸（Zombie）状态，程序已经终止但却无法被移除到内存外。</li>
+</ul>
+</li>
+<li>UID/PID/PPID：代表程序被该UID所拥有/程序的PID号码/程序的父程序PID号码。</li>
+<li>C：代表CPU使用率，单位为百分比。</li>
+<li>PRI/NI：Priority/Nice的缩写，代表程序被CPU所执行的优先顺序，数值越小代表程序越快被CPU执行。</li>
+<li>ADDR/SZ/WCHAN：都与内存有关，ADDR是kernel function，指出该程序在内存的哪个部分，如果是个running的程序，一般就会显示“-”，SZ代表程序用掉多少内存，WCHAN表示目前程序是否运行中，同样的，若为-表示正在运行中。</li>
+<li>TTY：登陆者的终端机位置，若为远端登陆则使用动态终端接口（pts/n）。</li>
+<li>TIME：使用掉的CPU时间，此程序实际花费CPU运行的时间，而不是系统时间。</li>
+<li>CMD：command的缩写，造成此程序的出发程序是什么。</li>
+</ul>
+<p>实例：显示指定用户信息<br>描述：列出指定用户的进程信息。<br>命令：ps -u root<br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># ps -u root</span><br><span class="line">  PID TTY          TIME CMD</span><br><span class="line">    1 ?        00:00:01 systemd</span><br><span class="line">    2 ?        00:00:00 kthreadd</span><br><span class="line">    3 ?        00:00:00 ksoftirqd/0</span><br></pre></td></tr></table></figure></p>
+<p>实例：显示所有进程信息，连同命令行<br>描述：-e参数与-A参数一样显示所有进程信息，-a将不显示命令行。<br>命令：ps -ef<br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># ps -ef</span><br><span class="line">OR</span><br><span class="line"># ps -Af</span><br><span class="line">	UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">	root         1     0  0 Jun02 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 21</span><br><span class="line">	root         2     0  0 Jun02 ?        00:00:00 [kthreadd]</span><br><span class="line">	...</span><br></pre></td></tr></table></figure></p>
+<p>实例：观察系统所有程序<br>描述：列出目前所有的正在内存当中的程序，ps aux会依照PID的顺序来排序显示。<br>命令：ps aux<br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ps aux</span><br><span class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root         1  0.0  0.1  43212  3532 ?        Ss   Jun02   0:01 /usr/lib/system</span><br><span class="line">root         2  0.0  0.0      0     0 ?        S    Jun02   0:00 [kthreadd]</span><br></pre></td></tr></table></figure>
+<p>各个字段的意义：</p>
+<ul>
+<li>User：该process属于哪个使用者账号。</li>
+<li>PID：该process使用掉的CPU资源百分比。</li>
+<li>%CPU：该process所占用的实体内存百分比。</li>
+<li>%MEM：该process所占用的实体内存百分比。</li>
+<li>VSZ：该process使用掉的虚拟内存量（KBytes）。</li>
+<li>RSS：该process占用的固定的内存量（KBytes）。</li>
+<li>TTY：该process是在哪个终端机上面运行，若与终端机无关则显示？。另外，tty1-tty6是本机上面的登陆者程序，如果是pts/0等等的，则表示为网络连接的主机程序。</li>
+<li>STAT：该process目前的状态，状态显示与ps -l的S旗标相同（R/S/T/Z）。</li>
+<li>START：该process被触发启动的时间。</li>
+<li>TIME：该process实际使用CPU运行的时间。</li>
+<li>COMMAND：该process的实际指令是什么。</li>
+</ul>
+<p>实例：找出指定程序。<br>描述：通过ps打印出所有的process信息，再使用grep过滤结果信息，查找指定程序的PID。<br>命令：ps aux | egrep ‘(cron|syslog)’<br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># ps aux | egrep &apos;(cron|syslog)&apos;</span><br><span class="line">root       450  0.0  0.0 126220  1604 ?        Ss   Jun02   0:00 /usr/sbin/crond -n</span><br><span class="line">root       687  0.0  0.2 224044  5332 ?        Ssl  Jun02   0:00 /usr/sbin/rsyslogd -n</span><br><span class="line">root      1029  0.0  0.0 122032  1488 ?        Sl   Jun02   0:43 /usr/local/cloudmonitor/wrapper/bin/./wrapper /usr/local/cloudmonitor/wrapper/bin/../conf/wrapper.conf wrapper.syslog.ident=cloudmonitor wrapper.pidfile=/usr/local/cloudmonitor/wrapper/bin/./cloudmonitor.pid wrapper.daemonize=TRUE wrapper.name=cloudmonitor wrapper.displayname=cloudmonitor wrapper.statusfile=/usr/local/cloudmonitor/wrapper/bin/./cloudmonitor.status wrapper.java.statusfile=/usr/local/cloudmonitor/wrapper/bin/./cloudmonitor.java.status wrapper.lockfile=/var/lock/subsys/cloudmonitor wrapper.script.version=3.5.27</span><br><span class="line">root     16939  0.0  0.0 112644   980 pts/3    R+   12:32   0:00 grep -E --color=auto (cron|syslog)</span><br></pre></td></tr></table></figure>
+<p>实例：显示程序树<br>描述：显示类似程序树的进程信息。<br>命令：ps -axjf<br>输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ps -axjf</span><br><span class="line"> PPID   PID  PGID   SID TTY      TPGID STAT   UID   TIME COMMAND</span><br><span class="line">    0     2     0     0 ?           -1 S        0   0:00 [kthreadd]</span><br><span class="line">    2     3     0     0 ?           -1 S        0   0:00  \_ [ksoftirqd/0]</span><br><span class="line">...</span><br><span class="line">15920 15922 15922 15922 pts/2    15922 Ss+      0   0:00  |   \_ -bash</span><br><span class="line"> 2099 16451 16451 16451 ?           -1 Ss       0   0:00  \_ sshd: root@pts/3</span><br><span class="line">16451 16453 16453 16453 pts/3    16550 Ss       0   0:00      \_ -bash</span><br><span class="line">16453 16499 16499 16453 pts/3    16550 S        0   0:00          \_ bash</span><br><span class="line">16499 16511 16511 16453 pts/3    16550 S        0   0:00              \_ sudo su -</span><br><span class="line">16511 16512 16511 16453 pts/3    16550 S        0   0:00                  \_ su -</span><br><span class="line">16512 16513 16513 16453 pts/3    16550 S        0   0:00                      \_ -bash</span><br><span class="line">16513 16530 16530 16453 pts/3    16550 S        0   0:00                          \_ bash</span><br><span class="line">16530 16550 16550 16453 pts/3    16550 R+       0   0:00                              \_ ps -axjf</span><br></pre></td></tr></table></figure>
+<p>进阶：使用管道与其他命令</p>
+<p>实例：使用管道与其他命令<br>描述：列出目前所有的正在内存当中的程序，ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。<br>命令：ps -aux | head</p>
+<p>实例：列出目前所有的正在内存当中的程序，ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。<br>命令：ps -aux &gt; out.txt</p>
+<p>实例：指定显示的格式。<br>描述：-o显示指定的格式输出，–sort=-%mem指定以倒序显示程序。<br>命令：ps -eo pid,ppid,cmd,%mem,%cpu –sort=-%mem | head<br>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</span><br><span class="line">  PID  PPID CMD                         %MEM %CPU</span><br><span class="line"> 1248  1029 /usr/local/cloudmonitor/jre  3.6  0.4</span><br><span class="line">  690     1 /usr/bin/python -Es /usr/sb  0.8  0.0</span><br><span class="line">  976     1 /usr/local/aegis/aegis_clie  0.6  0.1</span><br><span class="line">  423     1 /usr/lib/polkit-1/polkitd -  0.6  0.0</span><br><span class="line">16409  2099 sshd: root@pts/0             0.3  0.0</span><br><span class="line">15920  2099 sshd: root@pts/2             0.3  0.0</span><br><span class="line">16213  2099 sshd: root@pts/1             0.3  0.0</span><br><span class="line">16451  2099 sshd: root@pts/3             0.3  0.0</span><br><span class="line">  687     1 /usr/sbin/rsyslogd -n        0.2  0.0</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<p><a href="https://www.tecmint.com/find-linux-processes-memory-ram-cpu-usage/" target="_blank" rel="noopener">https://www.tecmint.com/find-linux-processes-memory-ram-cpu-usage/</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.iweeek.com">毁于随</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.iweeek.com/2018/06/04/linux/daily-command-ps/">http://www.iweeek.com/2018/06/04/linux/daily-command-ps/</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年06月04日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/06/04/linux/daily-command-lsof/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Linux lsof总结</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/2018/06/03/linux/daily-command-echo/">
+        下一篇：
+        <span class="next-text nav-default">Linux echo总结</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+
+      <footer id="footer" class="footer">
+<!--
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:nijun717@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/iweeek" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">毁于随</span>
+  </span>
+ 
+  <script src="https://s19.cnzz.com/z_stat.php?id=1273965476&web_id=1273965476" language="JavaScript"></script>
+</div>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+  
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/src/nijun/nijun.js"></script>
+  
+
+
+<script src="/js/src/fold.js"></script>
+<script src="/js/src/post-detail.js"></script>
+<script src="/js/src/tags.js"></script>
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  </body>
+</html>

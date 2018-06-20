@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="背包，队列和栈问题"/>
+
+
+
+
+  <meta name="keywords" content="算法, 毁于随" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毁于随">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.iweeek.com/2018/05/10/algorithm/bag-queue-stack/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102765380-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz",
+      appKey: "emG4bvM4WSlRew7VB7p13lxw"
+    });
+  </script>
+
+
+
+
+
+    <title> 背包，队列和栈问题 - 毁于随 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">毁于随</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/photos/">
+        <li class="mobile-menu-item">
+          
+          
+            相册
+          
+        </li>
+      </a>
+    
+      <a href="/resume/index.html">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">毁于随</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/photos/">
+            
+            
+              相册
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/resume/index.html">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          背包，队列和栈问题
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-05-10
+        </span>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/05/10/algorithm/bag-queue-stack/"
+             data-title="背包，队列和栈问题">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问：早期的-Java-版本是不支持泛型的，也不是所有编程语言都支持泛型，有什么代替方案吗？"><span class="toc-text">问：早期的 Java 版本是不支持泛型的，也不是所有编程语言都支持泛型，有什么代替方案吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：为什么-Java-不允许泛型数组？"><span class="toc-text">问：为什么 Java 不允许泛型数组？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：什么是公变数组（convariant-array）和类型擦除（type-erasure）？"><span class="toc-text">问：什么是公变数组（convariant array）和类型擦除（type erasure）？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：List-lt-gt-和-List-的区别？"><span class="toc-text">问：List&lt;?&gt; 和 List 的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：-lt-extends-T-gt-和-lt-super-T-gt-的区别？"><span class="toc-text">问：&lt;? extends T&gt; 和 &lt;? super T&gt; 的区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：PECS（Producer-Extends-Consumer-Super）原则"><span class="toc-text">问：PECS（Producer Extends Consumer Super）原则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：为什么将-Node-设置为嵌套类？为什么使用private？"><span class="toc-text">问：为什么将 Node 设置为嵌套类？为什么使用private？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：当我输入-javac-Stack-java-编译-java-文件的时候，会生成-Stack-class-和-Stack-Node-class-，第二个文件是做什么用的？"><span class="toc-text">问：当我输入 javac Stack.java 编译 java 文件的时候，会生成 Stack.class 和 Stack$Node.class ，第二个文件是做什么用的？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：Java-标准库有栈和队列吗？"><span class="toc-text">问：Java 标准库有栈和队列吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：那么什么是宽接口呢？对应的是不是窄接口？"><span class="toc-text">问：那么什么是宽接口呢？对应的是不是窄接口？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：是否允许用例向栈或队列中添加空（null）元素？"><span class="toc-text">问：是否允许用例向栈或队列中添加空（null）元素？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：如果用例在迭代中调用-push-或者-pop-，Stack-的迭代器应该怎么办？"><span class="toc-text">问：如果用例在迭代中调用 push() 或者 pop() ，Stack 的迭代器应该怎么办？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：我们能够用-foreach-循环访问数组吗？"><span class="toc-text">问：我们能够用 foreach 循环访问数组吗？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：我们能够用-foreach-循环访问字符串吗？"><span class="toc-text">问：我们能够用 foreach 循环访问字符串吗？</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h3 id="问：早期的-Java-版本是不支持泛型的，也不是所有编程语言都支持泛型，有什么代替方案吗？"><a href="#问：早期的-Java-版本是不支持泛型的，也不是所有编程语言都支持泛型，有什么代替方案吗？" class="headerlink" title="问：早期的 Java 版本是不支持泛型的，也不是所有编程语言都支持泛型，有什么代替方案吗？"></a>问：早期的 Java 版本是不支持泛型的，也不是所有编程语言都支持泛型，有什么代替方案吗？</h3><p>一种方案是构造一个 Object 的数组，每次使用 pop 的时候将得到的对象转换为所需的数据类型，但这种方式的问题在于类型不匹配错误只能在运行时发现。另一种方案就是泛型，能够在编译时发现错误。</p>
+<a id="more"></a>
+<h3 id="问：为什么-Java-不允许泛型数组？"><a href="#问：为什么-Java-不允许泛型数组？" class="headerlink" title="问：为什么 Java 不允许泛型数组？"></a>问：为什么 Java 不允许泛型数组？</h3><hr>
+<h3 id="问：什么是公变数组（convariant-array）和类型擦除（type-erasure）？"><a href="#问：什么是公变数组（convariant-array）和类型擦除（type-erasure）？" class="headerlink" title="问：什么是公变数组（convariant array）和类型擦除（type erasure）？"></a>问：什么是公变数组（convariant array）和类型擦除（type erasure）？</h3><p>   <strong>数组的协变性</strong>，如果类 Base 是类 Sub 的基类，那么 Base[] 就是 Sub[] 的基类，也就是在要求 Base[] 的地方安全可以传递或者赋予 Sub[]。<br>   泛型是不可变的（invariant），List<base> 不会是 List<sub> 的基类，更不会是它的子类。</sub></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object[] array = <span class="keyword">new</span> String[<span class="number">10</span>]; </span><br><span class="line">array[<span class="number">0</span>] = <span class="number">10</span>;  <span class="comment">// 编译通过，运行时报 ArrayStoreException，在这步就不让赋值，免得后续取出值的时候再出错</span></span><br><span class="line"></span><br><span class="line">List&lt;Object&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();   </span><br><span class="line">list.add(<span class="number">10</span>);   <span class="comment">// 编译不通过</span></span><br></pre></td></tr></table></figure>
+<p>​    <strong>数组是具体化</strong>（reified）的，而泛型在运行时是被擦除的（erasure）。</p>
+<p>​    数组是在运行时才去判断数组元素的类型约束。</p>
+<p>​    而泛型刚好相反，在运行时泛型的类型信息是会被擦除的，只有编译的时候才会对类型进行强化。</p>
+<p>​    <strong>泛型不是协变的</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Integer&gt; li = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();  </span><br><span class="line">List&lt;Number&gt; ln = li; <span class="comment">// illegal  </span></span><br><span class="line">ln.add(<span class="keyword">new</span> Float(<span class="number">3.1415</span>));  <span class="comment">// 如果上面这步允许通过，那么给 List&lt;Number&gt; 赋值 float 类型是理所应当的</span></span><br></pre></td></tr></table></figure>
+<p>如果 Ln 是 List<number>类型，向其中添加 Float 类型安全合法，但是如果 List<integer>能赋值给 List<number> 的话，那么就破坏了定义在 li 中的类型安全承诺，因为它是一个整形列表。</number></integer></number></p>
+<hr>
+<h3 id="问：List-lt-gt-和-List-的区别？"><a href="#问：List-lt-gt-和-List-的区别？" class="headerlink" title="问：List&lt;?&gt; 和 List 的区别？"></a>问：List&lt;?&gt; 和 List<t> 的区别？</t></h3><p><t> 声明泛型类的类型参数。</t></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Fruit</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> List&lt;T&gt; item;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;T&gt; <span class="title">get</span><span class="params">()</span> </span>&#123;<span class="keyword">return</span> item;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(List&lt;T&gt; t)</span> </span>&#123;item = t;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Fruit 类里有三个地方出现了List<t>：</t></p>
+<ol>
+<li>成员字段item的类型</li>
+<li>get( )方法的返回值</li>
+<li>set( )方法的参数</li>
+</ol>
+<p><t> 声明泛型方法。</t></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">List&lt;T&gt; <span class="title">reduce</span><span class="params">(List&lt;T&gt; items)</span> </span>&#123;</span><br><span class="line">    ... ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&lt;?&gt; 使用泛型类或泛型方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;?&gt; set(List&lt;?&gt; items) &#123;</span><br><span class="line">    List&lt;?&gt; list = items;</span><br><span class="line">    <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>List&lt;?&gt; 的各种坑</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">List&lt;?&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"></span><br><span class="line">list.add(<span class="string">"hello"</span>);</span><br><span class="line">list.add(<span class="number">123</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// argument mismatch; String cannot be converted to CAP#1</span></span><br><span class="line"><span class="comment">// argument mismatch; int cannot be converted to CAP#1</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="问：-lt-extends-T-gt-和-lt-super-T-gt-的区别？"><a href="#问：-lt-extends-T-gt-和-lt-super-T-gt-的区别？" class="headerlink" title="问：&lt;? extends T&gt; 和 &lt;? super T&gt; 的区别？"></a>问：&lt;? extends T&gt; 和 &lt;? super T&gt; 的区别？</h3><p>&lt;? extends T&gt; 是指“上界通配符（Upper Bounds Wildcards）”</p>
+<p>&lt;? super T&gt; 是指“下界通配符（Lower Bounds Wildcards）”</p>
+<p><strong>上界&lt;? extends T&gt;不能往里存，只能往外取</strong>，因为不知道具体的子类类型是什么，所以不能往里存，但可以往外指定基类类型进行取。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Plate&lt;Fruit&gt; p=<span class="keyword">new</span> Plate&lt;Apple&gt;(<span class="keyword">new</span> Apple()); <span class="comment">// ”装苹果的盘子“无法转换成”装水果的盘子“。</span></span><br><span class="line">Plate&lt;? extends Fruit&gt; p = <span class="keyword">new</span> Plate&lt;Apple&gt;(<span class="keyword">new</span> Apple()); <span class="comment">// 看到Plate&lt;Apple&gt;，标上了一个占位符： CAP#1，来表示捕获一个 Fruit 或 Fruit 的子类，具体是什么不知道，代号 CAP#1。编译器不知道往里面插入的 Apple 或者 Fruit 能不能和这个 CAP#1 匹配，所以都不允许。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 不能存入任何元素</span></span><br><span class="line">p.set(<span class="keyword">new</span> Fruit());</span><br><span class="line">p.set(<span class="keyword">new</span> Apple());</span><br><span class="line"></span><br><span class="line">Fruit newFruit1 = p.get();</span><br><span class="line">Object newFruit2 = p.get();</span><br><span class="line">Apple newFruit3 = p.get(); <span class="comment">// Error</span></span><br></pre></td></tr></table></figure>
+<p><strong>下界&lt;? super T&gt;不影响往里存，但往外取只能放在 Object 对象里</strong>，因为类型是向上的基类，所以不影响具体子类往里存，但会因具体的子类的信息在存为基类类型的时候被擦除，所以取出来的时候只能是 Object 类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Plate&lt;? <span class="keyword">super</span> Fruit&gt; p = <span class="keyword">new</span> Plate&lt;Fruit&gt;(<span class="keyword">new</span> Fruit()); <span class="comment">// 下界实际上是放松了类型控制，既然元素是 Fruit 的基类，那么往里存粒度比 Fruit 小的都可以。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 正常存入元素</span></span><br><span class="line">p.set(<span class="keyword">new</span> Fruit());</span><br><span class="line">p.set(<span class="keyword">new</span> Apple());</span><br><span class="line"></span><br><span class="line">Fruit newFruit1 = p.get(); <span class="comment">// Error</span></span><br><span class="line">Apple newFruit3 = p.get(); <span class="comment">// Error</span></span><br><span class="line">Object newFruit2 = p.get(); <span class="comment">// 只能放在 Object 里</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="问：PECS（Producer-Extends-Consumer-Super）原则"><a href="#问：PECS（Producer-Extends-Consumer-Super）原则" class="headerlink" title="问：PECS（Producer Extends Consumer Super）原则"></a>问：<strong>PECS（Producer Extends Consumer Super）</strong>原则</h3><ol>
+<li><strong>频繁往外读取内容的，适合用上界Extends。</strong></li>
+<li><strong>经常往里插入的，适合用下界Super。</strong></li>
+</ol>
+<h3 id="问：为什么将-Node-设置为嵌套类？为什么使用private？"><a href="#问：为什么将-Node-设置为嵌套类？为什么使用private？" class="headerlink" title="问：为什么将 Node 设置为嵌套类？为什么使用private？"></a>问：为什么将 Node 设置为嵌套类？为什么使用private？</h3><p>  私有嵌套类的是只有包含它的类能够直接访问它的实例变量。另外，非静态的嵌套类也被称为内部类，因此从技术上来说 Node 类也是内部类。</p>
+<h3 id="问：当我输入-javac-Stack-java-编译-java-文件的时候，会生成-Stack-class-和-Stack-Node-class-，第二个文件是做什么用的？"><a href="#问：当我输入-javac-Stack-java-编译-java-文件的时候，会生成-Stack-class-和-Stack-Node-class-，第二个文件是做什么用的？" class="headerlink" title="问：当我输入 javac Stack.java 编译 java 文件的时候，会生成 Stack.class 和 Stack$Node.class ，第二个文件是做什么用的？"></a>问：当我输入 javac Stack.java 编译 java 文件的时候，会生成 Stack.class 和 Stack$Node.class ，第二个文件是做什么用的？</h3><p>  第二个文件是内部类 Node 创建的，Java 的命名规则会使用 $ 分隔外部类和内部类。</p>
+<h3 id="问：Java-标准库有栈和队列吗？"><a href="#问：Java-标准库有栈和队列吗？" class="headerlink" title="问：Java 标准库有栈和队列吗？"></a>问：Java 标准库有栈和队列吗？</h3><p>  有，但是不推荐使用，因为内置的库 java.util.Stack 新增了几个一般不属于栈的方法，是典型的<strong>宽接口</strong>例子。</p>
+<h3 id="问：那么什么是宽接口呢？对应的是不是窄接口？"><a href="#问：那么什么是宽接口呢？对应的是不是窄接口？" class="headerlink" title="问：那么什么是宽接口呢？对应的是不是窄接口？"></a>问：那么什么是宽接口呢？对应的是不是窄接口？</h3><p>  <strong>宽接口</strong>通常能够让一个类功能强大，但有时容易失去真正的关注点从而破坏了”单一职责原则“。<strong>窄接口</strong>则比较容易确保对某一特定点的关注。</p>
+<h3 id="问：是否允许用例向栈或队列中添加空（null）元素？"><a href="#问：是否允许用例向栈或队列中添加空（null）元素？" class="headerlink" title="问：是否允许用例向栈或队列中添加空（null）元素？"></a>问：是否允许用例向栈或队列中添加空（null）元素？</h3><p>  是允许的。</p>
+<h3 id="问：如果用例在迭代中调用-push-或者-pop-，Stack-的迭代器应该怎么办？"><a href="#问：如果用例在迭代中调用-push-或者-pop-，Stack-的迭代器应该怎么办？" class="headerlink" title="问：如果用例在迭代中调用 push() 或者 pop() ，Stack 的迭代器应该怎么办？"></a>问：如果用例在迭代中调用 push() 或者 pop() ，Stack 的迭代器应该怎么办？</h3><p>  作为一个快速出错的迭代器，它应该立即抛出一个 java.util.ConcurrentModificationException 异常。</p>
+<h3 id="问：我们能够用-foreach-循环访问数组吗？"><a href="#问：我们能够用-foreach-循环访问数组吗？" class="headerlink" title="问：我们能够用 foreach 循环访问数组吗？"></a>问：我们能够用 foreach 循环访问数组吗？</h3><p>  可以，尽管数组没有实现 Iterable 接口。</p>
+<h3 id="问：我们能够用-foreach-循环访问字符串吗？"><a href="#问：我们能够用-foreach-循环访问字符串吗？" class="headerlink" title="问：我们能够用 foreach 循环访问字符串吗？"></a>问：我们能够用 foreach 循环访问字符串吗？</h3><p>  不行，String 没有实现 Iterable 接口。</p>
+<p>  ​</p>
+<p>  ​</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.iweeek.com">毁于随</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.iweeek.com/2018/05/10/algorithm/bag-queue-stack/">http://www.iweeek.com/2018/05/10/algorithm/bag-queue-stack/</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年05月10日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/算法/">算法</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/05/11/algorithm/merge-sort/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">深入浅出之归并排序</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/2018/05/05/algorithm/print-list-from-tail-to-head/">
+        下一篇：
+        <span class="next-text nav-default">从尾到头打印链表</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+
+      <footer id="footer" class="footer">
+<!--
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:nijun717@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/iweeek" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">毁于随</span>
+  </span>
+ 
+  <script src="https://s19.cnzz.com/z_stat.php?id=1273965476&web_id=1273965476" language="JavaScript"></script>
+</div>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+  
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/src/nijun/nijun.js"></script>
+  
+
+
+<script src="/js/src/fold.js"></script>
+<script src="/js/src/post-detail.js"></script>
+<script src="/js/src/tags.js"></script>
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Linux sed总结"/>
+
+
+
+
+  <meta name="keywords" content="Linux, 毁于随" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毁于随">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.iweeek.com/2018/06/20/linux/daily-command-sed/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102765380-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz",
+      appKey: "emG4bvM4WSlRew7VB7p13lxw"
+    });
+  </script>
+
+
+
+
+
+    <title> Linux sed总结 - 毁于随 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">毁于随</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/photos/">
+        <li class="mobile-menu-item">
+          
+          
+            相册
+          
+        </li>
+      </a>
+    
+      <a href="/resume/index.html">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">毁于随</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/photos/">
+            
+            
+              相册
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/resume/index.html">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Linux sed总结
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-06-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/06/20/linux/daily-command-sed/"
+             data-title="Linux sed总结">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed正则表达式"><span class="toc-text">sed正则表达式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed常用选项"><span class="toc-text">sed常用选项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed使用地址定位"><span class="toc-text">sed使用地址定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed操作命令"><span class="toc-text">sed操作命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sed工作过程"><span class="toc-text">sed工作过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报错信息和退出信息"><span class="toc-text">报错信息和退出信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#p命令打印"><span class="toc-text">p命令打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#d命令删除"><span class="toc-text">d命令删除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#s替换命令"><span class="toc-text">s替换命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模式替代"><span class="toc-text">模式替代</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逗号-指定行的范围"><span class="toc-text">逗号,指定行的范围</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#e命令多重编辑"><span class="toc-text">e命令多重编辑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#r从文件中读取编辑器命令"><span class="toc-text">r从文件中读取编辑器命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#a命令追加"><span class="toc-text">a命令追加</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#i命令插入"><span class="toc-text">i命令插入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#c命令修改"><span class="toc-text">c命令修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多行命令"><span class="toc-text">多行命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#y命令转换"><span class="toc-text">y命令转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#q命令退出"><span class="toc-text">q命令退出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令打印行号"><span class="toc-text">=命令打印行号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#l命令打印不可打印的ACSII字符"><span class="toc-text">l命令打印不可打印的ACSII字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#w写入文件"><span class="toc-text">w写入文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#r从文件读取数据"><span class="toc-text">r从文件读取数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保持空间"><span class="toc-text">保持空间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#命令排除"><span class="toc-text">!命令排除</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#b改变流"><span class="toc-text">b改变流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t测试命令"><span class="toc-text">t测试命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用包装脚本"><span class="toc-text">使用包装脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向sed的输出"><span class="toc-text">重定向sed的输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加倍行间距"><span class="toc-text">加倍行间距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对可能含有空白行的文件加倍行间距"><span class="toc-text">对可能含有空白行的文件加倍行间距</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产环境案例"><span class="toc-text">生产环境案例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#替换指定目录所有文件中匹配的字符串"><span class="toc-text">替换指定目录所有文件中匹配的字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除空格"><span class="toc-text">删除空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除空行和开头的-注释"><span class="toc-text">删除空行和开头的#注释</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>sed是stream editor（流式编辑器）的缩写，它可以对文本流、指定文件集或标准输入进行文本编辑。sed编辑器默认情况下没有破坏性，所有的输出都被打印到屏幕上。并且它不会修改文件，除非使用shell重定向来保存输出结果。</p>
+<a id="more"></a>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>sed [选项] &#39;命令&#39; 文本</code></p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>sed是一个强大的文本过滤工具。使用sed可以从文件或字符串中抽取所需信息。<br>sed命令总是以单个字母开头。<br>sed多数命令允许在前面加个地址。该地址用于指定输入流的哪一行被编辑，如果省略，默认是对所有行都进行编辑。</p>
+<h2 id="sed正则表达式"><a href="#sed正则表达式" class="headerlink" title="sed正则表达式"></a>sed正则表达式</h2><p>表1：sed的正则表达式元字符</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">元字符</th>
+<th style="text-align:left">功 能</th>
+<th style="text-align:left">示 例</th>
+<th style="text-align:left">示例的匹配对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">^</td>
+<td style="text-align:left">行首定位符</td>
+<td style="text-align:left">/^iweeek/</td>
+<td style="text-align:left">匹配所有以iweeek开头的行</td>
+</tr>
+<tr>
+<td style="text-align:left">$</td>
+<td style="text-align:left">行尾定位符</td>
+<td style="text-align:left">/iweeek$/</td>
+<td style="text-align:left">匹配所有以iweeek结尾的行</td>
+</tr>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">匹配除换行外的单个字符</td>
+<td style="text-align:left">/i…k/</td>
+<td style="text-align:left">匹配包含字符i、后跟三个任意字符、再跟字母k的行</td>
+</tr>
+<tr>
+<td style="text-align:left">*</td>
+<td style="text-align:left">匹配零个或多个前导字符</td>
+<td style="text-align:left">/*iweeek/</td>
+<td style="text-align:left">匹配在零个或多个空格紧跟着模式iweeek的行</td>
+</tr>
+<tr>
+<td style="text-align:left">[]</td>
+<td style="text-align:left">匹配指定字符组内任一字符</td>
+<td style="text-align:left">/i[Ww]eeek/</td>
+<td style="text-align:left">匹配包含iweeek或iWeeek的行</td>
+</tr>
+<tr>
+<td style="text-align:left">[^]</td>
+<td style="text-align:left">匹配不在指定字符组内任一字符</td>
+<td style="text-align:left">/[^A-HJ-Z]weeek/</td>
+<td style="text-align:left">匹配包含weeek，但weeek之前的那个字符不在A至H或J至Z间的行</td>
+</tr>
+<tr>
+<td style="text-align:left">(..)</td>
+<td style="text-align:left">保存已匹配的字符</td>
+<td style="text-align:left"></td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">&amp;</td>
+<td style="text-align:left">保存查找串以便在替换串中引用</td>
+<td style="text-align:left">s/iweeek/**&amp;**/</td>
+<td style="text-align:left">符号&amp;代表查找串。字符串iweeek将替换前后各加了两个**的引用，即iweeek变成**iweeek**</td>
+</tr>
+<tr>
+<td style="text-align:left">\&lt;</td>
+<td style="text-align:left">词首定位符</td>
+<td style="text-align:left">/\&lt;iweeek/</td>
+<td style="text-align:left">匹配包含以iweeek开头的单词的行</td>
+</tr>
+<tr>
+<td style="text-align:left">\&gt;</td>
+<td style="text-align:left">词尾定位符</td>
+<td style="text-align:left">/iweeek\&gt;/</td>
+<td style="text-align:left">匹配包含iweeek结尾的单词的行</td>
+</tr>
+<tr>
+<td style="text-align:left">x\{m\}</td>
+<td style="text-align:left">连续m个x</td>
+<td style="text-align:left">/o\{5\}/</td>
+<td style="text-align:left">分别匹配出现连续5个字母o的行</td>
+</tr>
+<tr>
+<td style="text-align:left">x\{m,\}</td>
+<td style="text-align:left">至少m个x</td>
+<td style="text-align:left">/o\{5,\}/</td>
+<td style="text-align:left">匹配至少5个连续的o的行</td>
+</tr>
+<tr>
+<td style="text-align:left">x\{m,n\}</td>
+<td style="text-align:left">至少m个x，但不超过n个x</td>
+<td style="text-align:left">/o\{5,10\}/</td>
+<td style="text-align:left">匹配5~10个连续的o的行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sed常用选项"><a href="#sed常用选项" class="headerlink" title="sed常用选项"></a>sed常用选项</h2><p>表2：sed的常用选项</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-n</td>
+<td style="text-align:left">不产生命令输出，使用print命令来完成输出</td>
+</tr>
+<tr>
+<td style="text-align:left">-e</td>
+<td style="text-align:left">执行多个命令。在处理输入时，将script中指定的命令添加到已有的命令中，且命令顺序会影响结果</td>
+</tr>
+<tr>
+<td style="text-align:left">-f</td>
+<td style="text-align:left">执行多个命令。在处理输入时，将file中指定的命令添加到已有的命令中</td>
+</tr>
+<tr>
+<td style="text-align:left">-r</td>
+<td style="text-align:left">使用扩展正则</td>
+</tr>
+<tr>
+<td style="text-align:left">-i</td>
+<td style="text-align:left">直接修改文档读取的内容，不在屏幕上输出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sed使用地址定位"><a href="#sed使用地址定位" class="headerlink" title="sed使用地址定位"></a>sed使用地址定位</h2><p>sed命令在没有给定位置时，默认会处理所有行。<br>sed支持行寻址模式，在sed编辑器中有两种形式的行寻址：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[address]command</span><br><span class="line">也可以将特定地址的多个命令</span><br><span class="line">address &#123;</span><br><span class="line">	command1</span><br><span class="line">	command2</span><br><span class="line">	command3</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>sed编辑器会将指定的每条命令作用到匹配指定地址的行上。具体有以下几种地址类型：</p>
+<ol>
+<li>以数字方式的行寻址<ul>
+<li>first~step<ul>
+<li>first指其实匹配行，step指步长。例如：sed -n 2~5p。含义：从第二行开始匹配，每隔5行匹配一次，即2,7,12……。</li>
+</ul>
+</li>
+<li>$<ul>
+<li>表示匹配最后一行。</li>
+</ul>
+</li>
+<li>addr1, addr2<ul>
+<li>定址addr1，addr2决定用于对哪些行进行编辑。地址的形式可以是数字、正则表达式或二者的结合。如果没有指定地址，sed将处理输入文件中的所有行。如果定址是一个数字，则这个数字代表行号，如果是逗号分隔的两个行号，那么代表着两行之间的范围（包括两行在内）。范围可以是数字，正则或二者结合。</li>
+</ul>
+</li>
+<li>addr1, +N<ul>
+<li>从addr1这行到往下N行匹配，总共匹配N+1行。</li>
+</ul>
+</li>
+<li>addr1, ~N<br>  -</li>
+</ul>
+</li>
+<li>使用模式过滤器的行寻址<ul>
+<li>/REGEXP/<ul>
+<li>表示匹配正则的那一行，通过//之间的正则表达式来匹配。</li>
+</ul>
+</li>
+<li>\cREGEXPc<ul>
+<li>表示匹配正则的那一行，通过\c和c之间的正则表达式来匹配，c可以是任意字符。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>组合行寻址<ul>
+<li>数字行寻址和模式行寻址组合起来。例如’3,${s/first/First/ s/second/Second/}’</li>
+</ul>
+</li>
+</ol>
+<h2 id="sed操作命令"><a href="#sed操作命令" class="headerlink" title="sed操作命令"></a>sed操作命令</h2><p>sed操作命令告诉sed如何处理由地址指定的各输入行。如果没有指定地址，sed就会处理输入的所有的行。</p>
+<p>表3：sed命令</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命 令</th>
+<th style="text-align:left">说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">a\</td>
+<td style="text-align:left">在当前行后添加一行或多行</td>
+</tr>
+<tr>
+<td style="text-align:left">c\</td>
+<td style="text-align:left">用新文本修改（替换）当前行中的文本</td>
+</tr>
+<tr>
+<td style="text-align:left">d</td>
+<td style="text-align:left">删除行</td>
+</tr>
+<tr>
+<td style="text-align:left">i\</td>
+<td style="text-align:left">在当前行之前插入文本</td>
+</tr>
+<tr>
+<td style="text-align:left">h</td>
+<td style="text-align:left">把模式空间里的内容复制到暂存缓存区</td>
+</tr>
+<tr>
+<td style="text-align:left">H</td>
+<td style="text-align:left">把模式空间里的内容追加到暂存缓存区</td>
+</tr>
+<tr>
+<td style="text-align:left">g</td>
+<td style="text-align:left">取出暂存缓冲区里的内容，将其复制到模式空间，覆盖该处原有内容</td>
+</tr>
+<tr>
+<td style="text-align:left">G</td>
+<td style="text-align:left">取出暂存缓冲区里的内容，将其复制到模式空间，追加在原有内容后面</td>
+</tr>
+<tr>
+<td style="text-align:left">l</td>
+<td style="text-align:left">列出非打印字符</td>
+</tr>
+<tr>
+<td style="text-align:left">p</td>
+<td style="text-align:left">打印行</td>
+</tr>
+<tr>
+<td style="text-align:left">n</td>
+<td style="text-align:left">读入下一输入行，并从下一条命令而不是第一条命令开始处理</td>
+</tr>
+<tr>
+<td style="text-align:left">q</td>
+<td style="text-align:left">结束或退出 sed</td>
+</tr>
+<tr>
+<td style="text-align:left">r</td>
+<td style="text-align:left">从文件中读取输入行</td>
+</tr>
+<tr>
+<td style="text-align:left">!</td>
+<td style="text-align:left">对所选行以外的所有行应用命令</td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">用一个字符串替换另一个</td>
+</tr>
+<tr>
+<td style="text-align:left">N</td>
+<td style="text-align:left">将数据流的下一行加进来创建一个多行组来处理</td>
+</tr>
+<tr>
+<td style="text-align:left">D</td>
+<td style="text-align:left">删除多行组中的一行</td>
+</tr>
+<tr>
+<td style="text-align:left">P</td>
+<td style="text-align:left">打印多行组中的一行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sed工作过程"><a href="#sed工作过程" class="headerlink" title="sed工作过程"></a>sed工作过程</h2><p>sed编辑器逐行处理文件或标准输入，并将输出结果发送到屏幕。sed把当前正在处理的行保存在一个临时缓存区中，这个缓存区称为模式空间或临时缓存。sed处理完模式空间中的行后（即在该行上执行sed命令后），就把该行发送到屏幕上（除非之前有命令删除这一行或取消打印操作）。sed每处理完输入文件的最后一行后，sed便结束运行。sed把每一行都存在称作保持空间的临时缓存区中，对这个副本进行编辑，不会修改或破坏源文件。</p>
+<h2 id="报错信息和退出信息"><a href="#报错信息和退出信息" class="headerlink" title="报错信息和退出信息"></a>报错信息和退出信息</h2><p>sed通过返回一个状态值来说明执行的结果。如果执行成功，则返回0，如果不成功，则返回非0整数。</p>
+<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="p命令打印"><a href="#p命令打印" class="headerlink" title="p命令打印"></a><strong>p命令打印</strong></h3><p>描述：第一个命令显示mydata中所有的内容，sed默认读取所有行。第二个命令匹配行内出现first的行，使用p命令打印出来，可见加上默认的输出，出现了重复的两行。第三个例子中-n选项使默认的输出失效，与p命令搭配实现了只输出匹配的行。<br>命令：<br><code>sed &#39;&#39; mydata</code><br><code>sed &#39;/first/p&#39; mydata</code><br><code>sed -n &#39;/first/p&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-p.png" alt=""></p>
+<h3 id="d命令删除"><a href="#d命令删除" class="headerlink" title="d命令删除"></a><strong>d命令删除</strong></h3><p>描述：删掉mydata文件中的第3行。<br>命令：<code>sed &#39;3d&#39; mydata</code></p>
+<p>描述：删掉mydata文件中包含first的行。使用正则表达式匹配，第二个命令中反斜线后面的字符可以任意。<br>命令：<br><code>sed &#39;/first/d&#39; mydata</code><br>OR<br><code>sed &#39;\?north?d&#39; ceshi</code></p>
+<p>描述：删掉mydata文件中的第2~3行。<br>命令：<code>sed &#39;2~3d&#39; mydata</code></p>
+<p>描述：删掉mydata文件中的第1和第3行。<br>命令：<code>sed &#39;1,3d&#39; mydata</code></p>
+<p>描述：删掉mydata文件中的第1行，之后删除每次间隔两行的行。<br>命令：<code>sed &#39;1,+2d&#39; mydata</code></p>
+<p>描述：删掉mydata文件中从第3行开始，直到最后一行。<br>命令：<code>sed &#39;1,$d&#39; mydata</code></p>
+<p>描述：删掉mydata文件中从第3行开始，直到最后一行。<br>命令：<code>sed &#39;1,$d&#39; mydata</code></p>
+<p>输出：</p>
+<h3 id="s替换命令"><a href="#s替换命令" class="headerlink" title="s替换命令"></a><strong>s替换命令</strong></h3><p>替换命令在默认情况下只替换每行中出现的第一处，要让替换命令能够替换一行中不同地方出现的文本，需要使用替换标记：<br>表4：替换标志</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">标 志</th>
+<th style="text-align:left">说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">数字</td>
+<td style="text-align:left">表示替换第几处模式匹配的地方</td>
+</tr>
+<tr>
+<td style="text-align:left">g</td>
+<td style="text-align:left">表示在行内进行全局替换</td>
+</tr>
+<tr>
+<td style="text-align:left">p</td>
+<td style="text-align:left">表示将模式空间里的内容打印出来</td>
+</tr>
+<tr>
+<td style="text-align:left">w</td>
+<td style="text-align:left">表示将替换的结果写入文件</td>
+</tr>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">表示交换暂存缓冲区与模式空间的内容</td>
+</tr>
+<tr>
+<td style="text-align:left">y</td>
+<td style="text-align:left">表示将字符转换为另一字符（不能对正则表达式使用 y 命令）</td>
+</tr>
+</tbody>
+</table>
+<p>描述：替换每一行中第2次出现的first变为last。<br>命令：<br><code>echo &quot;first come, first served.&quot; | sed &#39;s/first/last/2&#39;</code><br>输出：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-number.png" alt=""></p>
+<p>描述：替换第一次出现的first变为last。使用g标志可以替换所有匹配的内容。<br>命令：<br><code>echo &quot;first come, first served.&quot; | sed &#39;s/first/last/&#39;</code><br><code>echo &quot;first come, first served.&quot; | sed &#39;s/first/last/g&#39;</code><br>输出：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-s-g.png" alt=""></p>
+<p>描述：替换所有的单词a变为A，正则表达式中的\b仅匹配单词。<br>命令：<code>echo &quot;Fire is a good servant but a bad master.&quot; | sed &#39;s/\ba\b/A/g&#39;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-s-b.png" alt=""></p>
+<p>描述：替换fairy文件中所有出现的you变为You，并且打印出这些行。-n选项与标志p结合，告诉sed只打印发生替换的那些行。<br>命令：<code>sed -n &#39;s/you/You/gp&#39; fairy</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-n-s-p.png" alt=""></p>
+<p>描述：紧跟在s命令后的字符就是查找串和替换串之间的分隔符。分隔符默认是正斜杠，可以改变为其他字符（换行符，反斜线除外）。这个特点在查找包含字符串中含有正斜杠的例子中很管用，例如查找路径名或生日。<br>命令：<code>echo &quot;Content is better than riches?&quot; | sed &#39;s/\?/./&#39;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-s-any-separator.png" alt=""></p>
+<h3 id="模式替代"><a href="#模式替代" class="headerlink" title="模式替代"></a><strong>模式替代</strong></h3><p>描述：使用&amp;来代表替换命令中匹配的模式。这个例子的单词中，以at结尾并且前一个字母任意，所有匹配的单词都将用双引号括起来。<br>命令：<code>echo &quot;The cat sleeps in his hat.&quot; | sed &#39;s/\b.at\b/&quot;&amp;&quot;/g&#39;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-ampersand.png" alt=""></p>
+<p>描述：将一个单词来替换一个短语，该单词正好是该短语的子字符串，这个字符串使用了正好使用了通配符。sed用圆括号来定义替换模式中的子模式，在替代模式中使用特殊字符来引用每个子模式。替代字符由反斜线和数字组成，第一个子模式分配字符\1。<br>在替换命令中使用子模式的圆括号时，必须用转义字符将其标记为分组字符而不是普通的圆括号。<br>命令：<br><code>echo &quot;That funny cat is pretty&quot; | sed &#39;s/funny \(.at\)/\1/&#39;</code><br><code>echo &quot;That funny hat is pretty&quot; | sed &#39;s/funny \(.at\)/\1/&#39;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-s-subpattern-substitution.png" alt=""></p>
+<p>描述：在大数字中插入逗号。<br>命令：<br><code>echo &quot;12345678&quot; | sed &#39;{
+:start
+s/\(.*[0-9]\)\([0-9]\{3\}\)/\1,\2/
+t start
+}&#39;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-split-big-number.png" alt=""></p>
+<h3 id="逗号-指定行的范围"><a href="#逗号-指定行的范围" class="headerlink" title="逗号,指定行的范围"></a><strong>逗号,指定行的范围</strong></h3><p>行的范围从文件中的一个地址开始，在另一个地址结束。地址范围可以是行号（例如5,10），正则表达式（例如/cat/,/hat/），或者两者的结合(例如/first/,$)，范围是闭合的，包含开始条件的行和结束条件的行，以及两者之间的行。如果结束条件无法满足，就会一直操作到文件结尾。如果结束条件满足，则继续查找满足开始条件的位置，范围重新开始。$观察下面mydata2文件：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-mydata2.png" alt=""></p>
+<p>描述：打印模式2和3之间所有的行。<br>命令：<code>sed -n &#39;/2/,/3/p&#39; mydata2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-2-3.png" alt=""></p>
+<p>描述：打印模式1和3之间所有的行。如果1出现在3之后的某一行，则打印的范围从1所在行开始，都下一个3的行货文件的末尾（如果3未出现）。图中第4行到文件结尾都没有再出现过3，因此打印到了文件结尾，在使用d删除的时候尤为要注意这点。<br>命令：<code>sed -n &#39;/1/,/3/p&#39; mydata2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-1-3.png" alt=""></p>
+<p>描述：打印第3行开始，到第一个匹配1的行之间的所有行。这里数字行寻址和模式行寻址结合起来用。<br>命令：<code>sed -n &#39;3,/1/p&#39; mydata2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-range-number-pattern.png" alt=""></p>
+<p>描述：从第3行开始，到第一个匹配1的行之间的所有行，将各行的行尾（$）替换为字符<em>$。换行符被移到了新的字符串的后面。最后将结果打印出来。<br>命令：`sed -n ‘3,/1/s/$/</em>/p’ mydata2`<br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-range-number-pattern-s.png" alt=""></p>
+<h3 id="e命令多重编辑"><a href="#e命令多重编辑" class="headerlink" title="e命令多重编辑"></a><strong>e命令多重编辑</strong></h3><p>-e选项是编辑命令，用于sed执行多个编辑任务的情况下。在下一行开始编辑前，所有的编辑动作将应用到模式缓存区（模式空间）的行上。每个命令可以用单独的-e选项指定，也可以使用连起来写，命令之间用分号隔开。<br>描述：-e选项用于多重编辑，第一重编辑是第2行到第4行被删除，第二重编辑将1替换为one。因为是逐行进行这两行编辑（这两个命令都在模式空间的当前行上执行），所有编辑命令的顺序会影响结果。例如，如果两条命令都执行的是替换，前一次替换会影响后一次替换。<br>命令：<code>sed -e &#39;2,4d&#39; -e &#39;s/1/one/&#39; mydata2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-e.png" alt=""></p>
+<h3 id="r从文件中读取编辑器命令"><a href="#r从文件中读取编辑器命令" class="headerlink" title="r从文件中读取编辑器命令"></a><strong>r从文件中读取编辑器命令</strong></h3><p>描述：将大量要处理的sed命令放进一个单独的文件中，使用-f选项来指定文件。在这种情况下，不用在每条命令后放一个分号，sed编辑器知道每行都是一条单独的命令。<br>命令：<code>sed -f script.sed mydata2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-script.png" alt=""></p>
+<h3 id="a命令追加"><a href="#a命令追加" class="headerlink" title="a命令追加"></a><strong>a命令追加</strong></h3><p>a命令是追加命令，会将新文本追到到文件中当前行（模式空间中的当前行）的后面。<br>格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;[address] command \</span><br><span class="line">new line 1\</span><br><span class="line">new line 2&apos;</span><br><span class="line">file</span><br></pre></td></tr></table></figure>
+<p>描述：向含有字符串first行的下一行加入Hello world。<br>命令：<code>sed &#39;/first/a\Hello world&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-a.png" alt=""></p>
+<p>描述：向含有模式first行的下一行加入两行，分别是Hello world和Welcome!。如果追加的内容超过一行，则除最后一行外，其他各行都必须以反斜杠结尾。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;/first/a Hello world\</span><br><span class="line">Welcome!</span><br><span class="line">&apos; mydata</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-a-more-line.png" alt=""></p>
+<h3 id="i命令插入"><a href="#i命令插入" class="headerlink" title="i命令插入"></a><strong>i命令插入</strong></h3><p>i命令是插入命令，类似于a命令，但不是在当前行后增加文本，而是在当前行前面插入新的文本，即刚读入模式空间的行。</p>
+<p>描述：命令i是插入命令。如果在某一行匹配到模式first，就会在该行的上方插入Hello world和反斜杠后面的内容。<br>命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;/first/i Hello world\</span><br><span class="line">-------------------</span><br><span class="line">&apos; mydata</span><br></pre></td></tr></table></figure></p>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-i.png" alt=""></p>
+<h3 id="c命令修改"><a href="#c命令修改" class="headerlink" title="c命令修改"></a><strong>c命令修改</strong></h3><p>c命令是修改命令，它允许修改数据流中整行文本的内容，旧文本被覆盖。<br>描述：将匹配模式first的行修改为新的内容。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;/first/c \</span><br><span class="line">This line is changed.&apos; mydata</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-c.png" alt=""></p>
+<h3 id="多行命令"><a href="#多行命令" class="headerlink" title="多行命令"></a><strong>多行命令</strong></h3><p>sed包含三个可用来处理多行文本的特殊命令。</p>
+<ul>
+<li>N：将数据流中的下一行加进来创建一个多行组。</li>
+<li>D：删除多行组中的一行。</li>
+<li>P：打印多行组中的一行。</li>
+</ul>
+<p>单行版n命令（next）表示获取下一行到模式空间内，后续的sed命令都将应用到这新获取的行上。记住，通常sed编辑器在移动到数据流中的下一文本行之前，会在当前行上执行完所有定义好的命令。n命令改变了这个流程。</p>
+<p>描述：删掉除最后一个空白行之外的所有空白行。<br>命令：<code>sed &#39;/^$/d&#39; mydata3</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-n.png" alt=""></p>
+<p>描述：合并文本行，N命令是n命令的多行版，读取匹配模式之后的下一行之后，替换其中的换行符为空格，将两行文本连成一行。<br>命令：<code>sed &#39;/first/{ N; s/\n/ /}&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-N-append.png" alt=""></p>
+<p>描述：查找句中分散在两行中的短语。源文件如下：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-separator-cat.png" alt=""><br>命令：<code>sed &#39; 2N; s/The.ideals/The nature/g&#39; longtext</code><br>输出：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-separator.png" alt=""></p>
+<p>描述：注意到上面例子中使用了通配符（.）来匹配空格和换行符这两种情况。但当匹配换行符时，sed从字符串中删掉了换行符，导致两行合并成了一行。下面的例子用了两个替换命令来解决这个问题，一个用来匹配短语出现在多行中的情况，一个用来匹配短语出现在单行中的情况。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;2N</span><br><span class="line">s/The ideals/The nature/</span><br><span class="line">s/The\nideals/The\nnature/</span><br><span class="line">&apos; longtext</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-separator-two-way.png" alt=""></p>
+<p>// TODO<br>描述：上面的脚本还是有点问题，如果<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;2N</span><br><span class="line">s/The ideals/The nature/</span><br><span class="line">s/The\nideals/The\nnature/</span><br><span class="line">&apos; longtext</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-separator-two-way.png" alt=""></p>
+<h3 id="y命令转换"><a href="#y命令转换" class="headerlink" title="y命令转换"></a><strong>y命令转换</strong></h3><p>y命令是转换命令，它是唯一可以处理单个字符的sed编辑器命令。字符按照一对一的方式从左到右进行转换。例如y/abc/ABC/，会把小写字母转换成大写字母。</p>
+<p>命令格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[address]y/inchars/ouchars/</span><br></pre></td></tr></table></figure>
+<p>描述：将第2和第3行中所有的小写字母转换成大写字母。<br>命令：<code>sed &#39;2,3y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-y.png" alt=""></p>
+<p>描述：转换命令是一个全局命令，它会从文本中找到所有指定字符自动进行替换，而不考虑它们出现的位置。<br>命令：<code>echo &quot;This 1 is a test of 1 try.&quot; | sed &#39;y/123/789/&#39;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-y-more-place.png" alt=""></p>
+<h3 id="q命令退出"><a href="#q命令退出" class="headerlink" title="q命令退出"></a><strong>q命令退出</strong></h3><p>q命令是退出命令，该命令导致sed程序退出，且不再进行其他的处理。</p>
+<p>描述：打印完第3行之后，程序退出。<br>命令：<code>sed &#39;3q&#39; mydata2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-q.png" alt=""></p>
+<p>描述：打印到匹配模式again的行后，先用s命令替换again为begin，然后q命令让sed退出。<br>命令：<code>sed &#39;/again/{s/again/begin/; q; }&#39; mydata2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-q-more.png" alt=""></p>
+<h3 id="命令打印行号"><a href="#命令打印行号" class="headerlink" title="=命令打印行号"></a><strong>=命令打印行号</strong></h3><p>等号命令会打印行在数据流中的当前行号，行号由数据流中的换行符决定。每出现一个换行符，sed编辑器就认为一行文本结束了。<br>描述：给mydata文件的每行加上行号，行号在当前行的上面一行。<br>命令：<code>sed &#39;=&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-line-number.png" alt=""></p>
+<h3 id="l命令打印不可打印的ACSII字符"><a href="#l命令打印不可打印的ACSII字符" class="headerlink" title="l命令打印不可打印的ACSII字符"></a><strong>l命令打印不可打印的ACSII字符</strong></h3><p>l命令（list）可以打印数据流中的文本和不可打印的ASCII字符，任何不可打印的字符要么在其八进制值前加一个反斜线，要么使用标准C风格的命令法，比如\t，开代表制表符。<br>描述：打印制表符。<br>命令：<code>sed -n &#39;l&#39; tab</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-l.png" alt=""></p>
+<h3 id="w写入文件"><a href="#w写入文件" class="headerlink" title="w写入文件"></a><strong>w写入文件</strong></h3><p>w命令用来向文件写入行，该命令格式如下：</p>
+<p><code>[address]w filename</code></p>
+<p>描述：替换所有的单词a变为A，w标志可以将sed执行结果输出到文件中。<br>命令：<code>echo &quot;Fire is a good servant but a bad master.&quot; | sed &#39;s/\ba\b/A/gw sed.out&#39;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-s-w.png" alt=""></p>
+<h3 id="r从文件读取数据"><a href="#r从文件读取数据" class="headerlink" title="r从文件读取数据"></a><strong>r从文件读取数据</strong></h3><p>r命令用来将一个独立文件中的数据插入到数据流中，该命令格式如下：<br><code>[address]r filename</code><br>filename参数指定了数据文件的绝对路径或相对路径。读取命令中使用的地址区间只能指定单独一个行号或文本模式地址。sed编辑器会将文件中的文本插入到指定地址后。</p>
+<p>描述：将tab文件的内容插入到mydata文件中，具体插入在匹配模式first的行的后面。<br>命令：<code>sed &#39;/first/r tab&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-r.png" alt=""></p>
+<p>描述：将tab文件的内容插入到mydata文件中，具体插入在匹配模式first的行的后面。<br>命令：<br><code>sed &#39;/LIST/ {
+r detail.txt
+d
+}</code><br><code>sed -f placehold.sed placehold</code><br>源文件：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-placehold.png" alt=""><br>sed脚本文件：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-placehold-script.png" alt=""><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-placehold-f.png" alt=""></p>
+<h3 id="保持空间"><a href="#保持空间" class="headerlink" title="保持空间"></a><strong>保持空间</strong></h3><p>模式空间（pattern space）是一块活跃的缓冲区，在sed编辑器执行命令时它会保存待检查文本。保持空间（hold space）是sed编辑器的另一块缓冲区域，在处理模式空间中的某些行时，可以用保持空间来临时保存一些行。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命 令</th>
+<th style="text-align:left">说 明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">h</td>
+<td style="text-align:left">将模式空间复制到保持空间</td>
+</tr>
+<tr>
+<td style="text-align:left">H</td>
+<td style="text-align:left">将模式空间追加到保持空间</td>
+</tr>
+<tr>
+<td style="text-align:left">g</td>
+<td style="text-align:left">将保持空间复制到模式空间</td>
+</tr>
+<tr>
+<td style="text-align:left">G</td>
+<td style="text-align:left">将保持空间追加到模式空间</td>
+</tr>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">交换保持空间与模式空间的内容</td>
+</tr>
+</tbody>
+</table>
+<p>描述：用h和g目录将数据在sed编辑器缓冲空间之间移动。<br>命令：<code>sed -n &#39;/first/ { h; p; n; p; g; p }&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-hold-space.png" alt=""></p>
+<p>描述：将第一个数据行输出到第二个数据行的后面。<br>命令：<code>sed -n &#39;/first/ { h; n; p; g; p }&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-hold-space-switch.png" alt=""></p>
+<h3 id="命令排除"><a href="#命令排除" class="headerlink" title="!命令排除"></a><strong>!命令排除</strong></h3><p>描述：排除匹配模式header的行，感叹号（!)命令用来排除，让原本会起作用的命令不起作用，原本不起作用反而其作用。<br>命令：<code>sed -n &#39;/header/!p&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-exclude.png" alt=""></p>
+<p>描述：将文件的内容反转。<br>命令：<code></code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-exclude.png" alt=""></p>
+<h3 id="b改变流"><a href="#b改变流" class="headerlink" title="b改变流"></a><strong>b改变流</strong></h3><p>分支（branch）命令b可以基于地址、地址模式或地址区间排除一整块命令。这样就可以对数据流中的特定行执行一组命令。分支（branch）命令b的格式如下：</p>
+<p><code>[address]b [label]</code><br>address参数决定了哪些行的数据会触发分支命令。label参数定义了要跳转到的位置。如果没有加label参数，跳转命令会跳转到脚本的结尾。</p>
+<p>描述：分支命令在数据流中的第2行和第3行处跳过了两个替换命令。<br>命令：<code>sed &#39;{2,3b; s/This is/Is this/; s/line./test?/}&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-b.png" alt=""></p>
+<p>如果不行直接跳到脚本的结尾，可以为分支命令定义一个要跳转的标签，定义跳转的标签以冒号开始，最多是7个字符长度。要指定标签，加到b命令后即可。标签可以跳过地址匹配出的命令，但任然执行脚本中的其他命令。</p>
+<p>描述：如果出现匹配模式first的行，程序应该跳到标签为jump1的脚本行。如果分支命令的模式没有匹配，sed编辑器会继续执行脚本中的命令，包括分支标签后的命令。（所有的s替换命令都会在不匹配分支模式的行上执行）。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;&#123;/first/b jump1; s/This is the/No jump on/</span><br><span class="line">:jump1</span><br><span class="line">s/This is the/Jump here on/&#125;&apos; mydata</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-label.png" alt=""></p>
+<p>描述：使用分支标签达到循环的效果。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;This, is, a, test, to, remove, commas.&quot; | sed -n &apos;&#123;</span><br><span class="line">:start</span><br><span class="line">s/,//1p</span><br><span class="line">b start</span><br><span class="line">&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-infinite-loop.png" alt=""></p>
+<p>描述：上面的脚本永远不会结束，在分支命令之前指定一个/,/地址模式，如果没有找到匹配，跳转就应该结束。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;This, is, a, test, to, remove, commas.&quot; | sed -n &apos;&#123;</span><br><span class="line">:start</span><br><span class="line">s/,//1p</span><br><span class="line">/,/b start</span><br><span class="line">&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-limit-loop.png" alt=""></p>
+<h3 id="t测试命令"><a href="#t测试命令" class="headerlink" title="t测试命令"></a><strong>t测试命令</strong></h3><p>描述：匹配模式first的行，如果匹配上则不会执行第二个替换命令。反之，则执行之。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;&#123;</span><br><span class="line">s/first/matched/</span><br><span class="line">t</span><br><span class="line">s/This is the/No match on/</span><br><span class="line">&#125;&apos; mydata</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-t.png" alt=""></p>
+<p>描述：匹配模式first的行，如果匹配上则不会执行第二个替换命令。反之，则执行之。<br>命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sed &apos;&#123;</span><br><span class="line">s/first/matched/</span><br><span class="line">t</span><br><span class="line">s/This is the/No match on/</span><br><span class="line">&#125;&apos; mydata</span><br></pre></td></tr></table></figure>
+<p>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-t-limit-loop.png" alt=""></p>
+<h3 id="使用包装脚本"><a href="#使用包装脚本" class="headerlink" title="使用包装脚本"></a><strong>使用包装脚本</strong></h3><p>描述：将脚本封装进shell包装脚本（wrapper），执行之前需要赋予执行权限。$1代表从命令行提取第一个参数，在这里就是需要进行反转的文件名。<br>命令：<code>sed -n &#39;{ 1!G; h; $p}&#39; $1</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-reverse-sh.png" alt=""><br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-run-reverse.png" alt=""></p>
+<h3 id="重定向sed的输出"><a href="#重定向sed的输出" class="headerlink" title="重定向sed的输出"></a><strong>重定向sed的输出</strong></h3><p>描述：使用$()将sed编辑器命令的输出重定向到一个变量中，以备后用。<br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-script-fact.png" alt=""></p>
+<h3 id="加倍行间距"><a href="#加倍行间距" class="headerlink" title="加倍行间距"></a><strong>加倍行间距</strong></h3><p>描述：G命令会简单将保持空间内容附加到模式空间内容后，当启动sed编辑器时，保持空间只有一个空行。将它附加到已有行后面，就在已有行后面创建了一个空白行。<br>命令：<code>sed &#39;G&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-G.png" alt=""></p>
+<p>描述：去掉上例中最后一行的空格。$和!结合表示一旦达到文件最后一行，就不执行G命令操作。<br>命令：<code>sed &#39;$!G&#39; mydata</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-G-clean-end.png" alt=""></p>
+<h3 id="对可能含有空白行的文件加倍行间距"><a href="#对可能含有空白行的文件加倍行间距" class="headerlink" title="对可能含有空白行的文件加倍行间距"></a><strong>对可能含有空白行的文件加倍行间距</strong></h3><p>描述：去掉上例中最后一行的空格。<br>命令：<code>sed &#39;{ /^$/d; $!G}&#39; mydata4</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/sed/sed-clear-multiple-lines.png" alt=""></p>
+<h2 id="生产环境案例"><a href="#生产环境案例" class="headerlink" title="生产环境案例"></a>生产环境案例</h2><h3 id="替换指定目录所有文件中匹配的字符串"><a href="#替换指定目录所有文件中匹配的字符串" class="headerlink" title="替换指定目录所有文件中匹配的字符串"></a><strong>替换指定目录所有文件中匹配的字符串</strong></h3><p>描述：将当前目录下所有文件中出现字符串p9xqnn501的地方，全部替换为pabfn7ecx，并直接修改原始文件。<br>命令：<code>sed -i &#39;&#39; &#39;s/p9xqnn501/pabfn7ecx/g&#39; *</code><br>输出：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo.png" alt=""></p>
+<h3 id="删除空格"><a href="#删除空格" class="headerlink" title="删除空格"></a><strong>删除空格</strong></h3><p>描述：删除每行开头的空格。<br>命令：<br><code>sed &#39;s/^[ ]*//&#39; mydata</code><br><code>sed &#39;s/^[[:space:]]*//&#39; mydata</code></p>
+<h3 id="删除空行和开头的-注释"><a href="#删除空行和开头的-注释" class="headerlink" title="删除空行和开头的#注释"></a><strong>删除空行和开头的#注释</strong></h3><p>描述：删除空行和开头的#注释<br>命令：<br><code>sed -e &#39;s/^#//; s/^$//&#39; mydataΩ</code></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.iweeek.com">毁于随</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.iweeek.com/2018/06/20/linux/daily-command-sed/">http://www.iweeek.com/2018/06/20/linux/daily-command-sed/</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年06月20日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Linux/">Linux</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2018/06/20/daily-command-stat/">
+        下一篇：
+        <span class="next-text nav-default">Linux stat总结</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+
+      <footer id="footer" class="footer">
+<!--
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:nijun717@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/iweeek" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">毁于随</span>
+  </span>
+ 
+  <script src="https://s19.cnzz.com/z_stat.php?id=1273965476&web_id=1273965476" language="JavaScript"></script>
+</div>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+  
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/src/nijun/nijun.js"></script>
+  
+
+
+<script src="/js/src/fold.js"></script>
+<script src="/js/src/post-detail.js"></script>
+<script src="/js/src/tags.js"></script>
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="java 二维数组"/>
+
+
+
+
+  <meta name="keywords" content="java, 毁于随" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毁于随">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.iweeek.com/2017/05/04/java/java-array/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102765380-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz",
+      appKey: "emG4bvM4WSlRew7VB7p13lxw"
+    });
+  </script>
+
+
+
+
+
+    <title> java 二维数组 - 毁于随 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">毁于随</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/photos/">
+        <li class="mobile-menu-item">
+          
+          
+            相册
+          
+        </li>
+      </a>
+    
+      <a href="/resume/index.html">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">毁于随</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/photos/">
+            
+            
+              相册
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/resume/index.html">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          java 二维数组
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
+        </span>
+        <span class="post-time">
+           日期: 2017-05-04
+        </span>
+        
+        
+        <div class="post-visits"
+             data-url="/2017/05/04/java/java-array/"
+             data-title="java 二维数组">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一维数组"><span class="toc-text">一维数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成随机数量的数组元素-基本类型"><span class="toc-text">生成随机数量的数组元素(基本类型)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生成随机数量的数组元素-非基本类型"><span class="toc-text">生成随机数量的数组元素(非基本类型)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二维数组"><span class="toc-text">二维数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方式一："><span class="toc-text">方式一：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方式二："><span class="toc-text">方式二：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#粗糙数组："><span class="toc-text">粗糙数组：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二维数组的应用"><span class="toc-text">二维数组的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二维数组的反转——头尾交换"><span class="toc-text">二维数组的反转——头尾交换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杨辉三角"><span class="toc-text">杨辉三角</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二维数组中的查找"><span class="toc-text">二维数组中的查找</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h2><p>Java 的数组是通过方括号[]来定义和使用的，以下两者都可以使用：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a1;</span><br><span class="line"><span class="keyword">int</span> a1[]； <span class="comment">// 符合 C/C++</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>编译器不允许指定数组的大小，现在拥有的只是对数组的一个引用（已经分配的空间），而且没给数组对象本身分配任何空间。<br>为了给数组创建相应的存储空间，必须写初始化一维数组，即初始化表达式。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a1 = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[] a2;</span><br><span class="line">a2 = a1;</span><br></pre></td></tr></table></figure></p>
+<h3 id="生成随机数量的数组元素-基本类型"><a href="#生成随机数量的数组元素-基本类型" class="headerlink" title="生成随机数量的数组元素(基本类型)"></a>生成随机数量的数组元素(基本类型)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Random rand = <span class="keyword">new</span> Random(<span class="number">47</span>);</span><br><span class="line"><span class="keyword">int</span> a[] = <span class="keyword">new</span> <span class="keyword">int</span>[rand.nextInt(<span class="number">20</span>)];</span><br></pre></td></tr></table></figure>
+<h3 id="生成随机数量的数组元素-非基本类型"><a href="#生成随机数量的数组元素-非基本类型" class="headerlink" title="生成随机数量的数组元素(非基本类型)"></a>生成随机数量的数组元素(非基本类型)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Integer[] a = <span class="keyword">new</span> Integer[rand.nextInt(<span class="number">20</span>)]; <span class="comment">// 这时执行 a[i] 是 null</span></span><br></pre></td></tr></table></figure>
+<p>因为是非基本类型，所以 a 只是一个引用数组，直到通过创建新的 Integer 对象（自动包装机制），并把对象赋值给引用，初始化进程才算结束。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[i] = rand.nextInt(<span class="number">500</span>);</span><br></pre></td></tr></table></figure></p>
+<h2 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h2><p><strong>二维数组，即数组的数组，二维数组的每一个元素都是一个一维数组。</strong></p>
+<h3 id="方式一："><a href="#方式一：" class="headerlink" title="方式一："></a>方式一：</h3><p>数据类型[][] 数组名 = new 数据类型[二维数组的长度/包含以为数组的个数][每个一维数组的长度];<br>数据类型 数组名[][] = new 数据类型[n][m];<br>数据类型[] 数组名[] = new 数据类型[n][m];</p>
+<p>int[][] arr = new int[3][5]; // 定义了一个基本类型整体的二维数组，包含 3 个一维数组，每个一维数组可以存储 5 个整数。<br>arr[0] // 第一个一维数组，下标为0<br>arr[1][3] // 获取第二行第四列上的元素</p>
+<h3 id="方式二："><a href="#方式二：" class="headerlink" title="方式二："></a>方式二：</h3><p>数据类型[][] 数组名 = { {元素},{元素1， 元素2},…… };<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][] a = &#123;</span><br><span class="line">	&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, &#125;,</span><br><span class="line">	&#123;<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">Arrays.deepToString(); <span class="comment">// 将多维数组转换为多个String</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="粗糙数组："><a href="#粗糙数组：" class="headerlink" title="粗糙数组："></a>粗糙数组：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[][][] a = <span class="keyword">new</span> <span class="keyword">int</span>[rand.nextInt(<span class="number">10</span>)][][];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; a.length; i++) &#123;</span><br><span class="line">    a[i] = <span class="keyword">new</span> <span class="keyword">int</span>[rand.nextInt(<span class="number">8</span>)][];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; a[i].length; j++) &#123;</span><br><span class="line">        a[i][j] = <span class="keyword">new</span> <span class="keyword">int</span>[rand.nextInt(<span class="number">5</span>)];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(Arrays.deepToString(a)); <span class="comment">// 对基本类型数组和对象数组都起作用</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Output: [[[0, 0, 0], [], [0]], [[0, 0], [0, 0, 0], [0], </span></span><br><span class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]], [[<span class="number">0</span>], [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>], [], [], [<span class="number">0</span>]]]</span><br></pre></td></tr></table></figure>
+<h2 id="二维数组的应用"><a href="#二维数组的应用" class="headerlink" title="二维数组的应用"></a>二维数组的应用</h2><p>二维数组的长度：数组名.length<br>每个一维数组的长度：数组名[下标].length<br>二维数组的遍历——双重 for 循环<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length; i++)&#123; <span class="comment">//遍历二维数组，遍历出来的每一个元素是一个一维数组</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; arr[i].length; j++)&#123; <span class="comment">//遍历对应位置上的一维数组</span></span><br><span class="line">		System.out.println(arr[i][j]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二维数组的反转——头尾交换"><a href="#二维数组的反转——头尾交换" class="headerlink" title="二维数组的反转——头尾交换"></a>二维数组的反转——头尾交换</h3><h3 id="杨辉三角"><a href="#杨辉三角" class="headerlink" title="杨辉三角"></a>杨辉三角</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line"><span class="keyword">int</span> n = scanner.nextInt();</span><br><span class="line"><span class="keyword">int</span>[][] arr = <span class="keyword">new</span> <span class="keyword">int</span>[n][n];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= i; j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (j == <span class="number">0</span> || j == i) &#123;</span><br><span class="line">            arr[i][j] = <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            arr[i][j] = arr[i - <span class="number">1</span>][j] + arr[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.print(arr[i][j] + <span class="string">"\t"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    System.out.println();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[][] a = &#123;</span><br><span class="line">            &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">9</span>&#125;,</span><br><span class="line">            &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">12</span>&#125;,</span><br><span class="line">            &#123;<span class="number">4</span>,<span class="number">7</span>,<span class="number">10</span>,<span class="number">13</span>&#125;,</span><br><span class="line">            &#123;<span class="number">6</span>,<span class="number">8</span>,<span class="number">11</span>,<span class="number">15</span>&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">    System.out.println(Find(<span class="number">7</span>, a));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">Find</span> <span class="params">( <span class="keyword">int</span> target, <span class="keyword">int</span>[][] array)</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">boolean</span> found = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span> rows = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> columns = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (array.length != <span class="number">0</span>) &#123;</span><br><span class="line">        columns = array[<span class="number">0</span>].length;</span><br><span class="line">        rows = array.length;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (rows &gt; <span class="number">0</span> &amp;&amp; columns &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> row = rows - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> column = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (row &gt;= <span class="number">0</span> &amp;&amp; column &lt; columns) &#123;</span><br><span class="line">                <span class="keyword">if</span> (array[row][column] == target) &#123;</span><br><span class="line">                    found = <span class="keyword">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[row][column] &lt; target) &#123;</span><br><span class="line">                    column++;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (array[row][column] &gt; target) &#123;</span><br><span class="line">                    row--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> found;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.iweeek.com">毁于随</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.iweeek.com/2017/05/04/java/java-array/">http://www.iweeek.com/2017/05/04/java/java-array/</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2017年05月04日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/java/">java</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/05/other/this-time-I-am-serious/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">这次，我认真了</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+
+      <footer id="footer" class="footer">
+<!--
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:nijun717@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/iweeek" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">毁于随</span>
+  </span>
+ 
+  <script src="https://s19.cnzz.com/z_stat.php?id=1273965476&web_id=1273965476" language="JavaScript"></script>
+</div>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+  
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/src/nijun/nijun.js"></script>
+  
+
+
+<script src="/js/src/fold.js"></script>
+<script src="/js/src/post-detail.js"></script>
+<script src="/js/src/tags.js"></script>
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  </body>
+</html>

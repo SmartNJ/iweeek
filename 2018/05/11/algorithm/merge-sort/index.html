@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="深入浅出之归并排序"/>
+
+
+
+
+  <meta name="keywords" content="Algorithm, 毁于随" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毁于随">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.iweeek.com/2018/05/11/algorithm/merge-sort/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102765380-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz",
+      appKey: "emG4bvM4WSlRew7VB7p13lxw"
+    });
+  </script>
+
+
+
+
+
+    <title> 深入浅出之归并排序 - 毁于随 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">毁于随</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/photos/">
+        <li class="mobile-menu-item">
+          
+          
+            相册
+          
+        </li>
+      </a>
+    
+      <a href="/resume/index.html">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">毁于随</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/photos/">
+            
+            
+              相册
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/resume/index.html">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          深入浅出之归并排序
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-05-11
+        </span>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/05/11/algorithm/merge-sort/"
+             data-title="深入浅出之归并排序">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#算法定义"><span class="toc-text">算法定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原地归并的抽象方法-Abstract-in-place-merge"><span class="toc-text">原地归并的抽象方法 (Abstract in-place merge)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自顶向下——递归法-Top-down-mergesort"><span class="toc-text">自顶向下——递归法 (Top-down mergesort)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自底向上——迭代法-Bottom-up-mergesort"><span class="toc-text">自底向上——迭代法 (Bottom-up mergesort)</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>二叉树基础知识：<br>高度是：对于任意节点 n, n 的高度为从 n 到一片树叶的最长路径长，所有树叶的高度为 0.<br>深度是：对于任意节点 n, n 的深度从根到 n 的唯一路径长，根的深度为 0.</p>
+<h2 id="算法定义"><a href="#算法定义" class="headerlink" title="算法定义"></a>算法定义</h2><p>归并是指将两个有序的数组归并成一个更大的有序数组，根据这个简单的操作，人们很快就发明了一种简单的递归排序算法，即归并排序。</p>
+<p>思路：<strong>要将一个数组排序，可以先（递归地）将它分成两半分别排序，然后再将结果归并起来。</strong></p>
+<p>分治思想：<strong>我们将一个大问题分割成小问题分别解决，然后用所有的小问题的答案来解决整个大问题。</strong></p>
+<p>归并排序最突出的特点就是，<strong>它能够保证将任意长度为 N 的数组排序所需时间和 NlogN 成正比，它的主要缺点则是它所需的额外空间和 N 成正比。</strong></p>
+<p><img src="http://p748dqat4.bkt.clouddn.com/Mergesort%20overview.png" alt=""></p>
+<a id="more"></a>
+<h2 id="原地归并的抽象方法-Abstract-in-place-merge"><a href="#原地归并的抽象方法-Abstract-in-place-merge" class="headerlink" title="原地归并的抽象方法 (Abstract in-place merge)"></a>原地归并的抽象方法 (Abstract in-place merge)</h2><p><strong>原地归并</strong>（in-place）是指将数组的前半部分排序，再将后半部分排序，在数组中移动元素而不需要额外的空间。也就是 <strong>merge(a, lo, mid, hi)</strong>，它会将子数组 <strong>a[lo..mid]</strong> 和 <strong>a[mid+1, hi]</strong> 归并成一个有序的数组并将结果存放在 <strong>a[lo..hi]</strong> 中。下面的代码实现了这种归并，它将所有的元素复制到一个辅助数组中，再把归并的结果放回原数组中。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 原地归并的抽象方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> mid, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = lo, j = mid + <span class="number">1</span>; <span class="comment">// 将 a[lo..mid] 和 a[mid+1..hi]归并</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = lo; k &lt;= hi; k++) &#123; <span class="comment">// 将 a[lo..hi] 复制到 aux[lo..hi]</span></span><br><span class="line">        aux[k] = a[k];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = lo; k &lt;= hi; k++) &#123; <span class="comment">// 归并回 a[lo..hi]</span></span><br><span class="line">        <span class="keyword">if</span>      (i &gt; mid)               a[k] = aux[j++];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (j &gt; hi)                a[k] = aux[i++];</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (less(aux[j], aux[i]))  a[k] = aux[j++]; <span class="comment">// for 循环最多访问 2N + 2N 次数组</span></span><br><span class="line">        <span class="keyword">else</span>                            a[k] = aux[i++];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://p748dqat4.bkt.clouddn.com/Abstract%20in-place%20merge%20trace.png" alt=""></p>
+<h2 id="自顶向下——递归法-Top-down-mergesort"><a href="#自顶向下——递归法-Top-down-mergesort" class="headerlink" title="自顶向下——递归法 (Top-down mergesort)"></a>自顶向下——递归法 (Top-down mergesort)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自顶向下的归并排序：分治思想</span></span><br><span class="line"><span class="comment"> * 要对子数组 a[lo..hi] 进行排序，先将它分为 a[lo..mid] 和 a[mid+1..hi] 两部分，</span></span><br><span class="line"><span class="comment"> * 分别通过递归调用将他们单独排序，最后将有序的子数组归并为最终的排序结果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 将数组 a[lo..hi] 排序</span></span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>;</span><br><span class="line">    sort(a, lo, mid);</span><br><span class="line">    sort(a, mid + <span class="number">1</span>, hi);</span><br><span class="line">    merge(a, lo, mid, hi); <span class="comment">// 最多 6N 次访问数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://p748dqat4.bkt.clouddn.com/Trace%20of%20merge%20results%20for%20top-down%20mergesort.png" alt=""></p>
+<p>假设这棵树有 n 层，对于 0 到 n-1 之间的任意 k，自顶向下的第 k 层有 2^k 个子数组，每个数组的长度为 2^(n-k) ，归并最多需要 2^(n-k) 次比较。因此每层的比较次数为 2^k <em> 2^(n-k) = 2^n，n 层总共 n</em>2^n = NlgN。</p>
+<p><img src="http://p748dqat4.bkt.clouddn.com/Mergesort%20sybarray%20dependence%20tree%20for%20N%20=%2016.png" alt=""></p>
+<blockquote>
+<p>对于长度为 N 的任意数组，自顶向下的归并排序最多需要访问数组 6NlgN 次。</p>
+<p>每次归并排序最多需要访问数组 6N 次，其中 2N 用来复制，2N 次用来将排好序的元素移动回去，另外最多比较 2N 次。</p>
+</blockquote>
+<p>优化：</p>
+<ul>
+<li><p>对小规模子数组使用插入排序。因为插入排序非常简单，在小数组上很可能比归并排序更快。</p>
+</li>
+<li><p>数组有序则跳过 merge() 方法。<br>如果 a[mid] 小于等于 a[mid+1]，那么就认为数组已经是有序的并跳过 merge() 方法。</p>
+</li>
+<li>不将元素复制到辅助数组。</li>
+</ul>
+<h2 id="自底向上——迭代法-Bottom-up-mergesort"><a href="#自底向上——迭代法-Bottom-up-mergesort" class="headerlink" title="自底向上——迭代法 (Bottom-up mergesort)"></a>自底向上——迭代法 (Bottom-up mergesort)</h2><p>与自顶向下的分治（divide-and-conquer）思想不同，自底向上的思想是先归并那些微型数组，然后再成对归并得到的子数组，如此这般，直到我们将整个数组归并在一起。这种方法比标准递归方法所需要的代码量更少。假设数组的大小不是 N = 2^k+n，如果其中 n 为 0 ，那么最后一个子数组的大小就等于 sz，不然就会比 sz 小。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N = a.length;</span><br><span class="line">    aux = <span class="keyword">new</span> Comparable[N];</span><br><span class="line">    <span class="comment">// 最后一个子数组的大小只有在数组大小是 sz 的偶数倍的时候才会等于 sz，否则会比 sz 小</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> sz = <span class="number">1</span>; sz &lt; N; sz = sz + sz) &#123; <span class="comment">// sz 子数组大小</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> lo = <span class="number">0</span>; lo &lt; N - sz; lo += sz + sz) &#123; <span class="comment">// lo: 子数组索引</span></span><br><span class="line">        	merge(a, lo, lo + sz - <span class="number">1</span>, Math.min(lo + sz + sz - <span class="number">1</span>, N - <span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://p748dqat4.bkt.clouddn.com/Visual%20trace%20of%20bottom-up%20mergesort.png" alt=""></p>
+<p><img src="http://p748dqat4.bkt.clouddn.com/Trace%20of%20merge%20results%20for%20bottom-up%20mergesort.png" alt=""></p>
+<blockquote>
+<p>设有两个有序数组 arr1 与 arr2，数组长度分别为 m 与 n， 要合并成一个长度位 m+n 的有序数组 arr3，arr3 的长度即 N。</p>
+<p>最差情况下：比较次数为 m+n-1<br>将 arr1 和 arr2 中的数组两两比较，最后一次比较是两个数组中的最后一个数进行比较。相当于需要比较 N 次。</p>
+<p>最好情况下：比较次数为 min{m, n}<br>假设 arr1 中的每个数都比 arr2 中的小，那么比较的次数就是 arr1 的数组长度。相当于 N/2。</p>
+<p>对于长度为 N 的任意数组，自底向上的归并排序需要 1/2NlgN 至 NlgN 次比较。自多访问数组 6NlgN 次。</p>
+<p>因为处理一个数组的遍数正好是 ⎡lgN⎤（即 2^n ≤ N &lt; 2^(n+1) 中的 n），每一遍会访问数组 6N 次，比较次数在 N/2 和 N 之间。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.iweeek.com">毁于随</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.iweeek.com/2018/05/11/algorithm/merge-sort/">http://www.iweeek.com/2018/05/11/algorithm/merge-sort/</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年05月11日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/Algorithm/">Algorithm</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/05/15/algorithm/quick-sort/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">深入浅出之快速排序</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/2018/05/10/algorithm/bag-queue-stack/">
+        下一篇：
+        <span class="next-text nav-default">背包，队列和栈问题</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+
+      <footer id="footer" class="footer">
+<!--
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:nijun717@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/iweeek" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">毁于随</span>
+  </span>
+ 
+  <script src="https://s19.cnzz.com/z_stat.php?id=1273965476&web_id=1273965476" language="JavaScript"></script>
+</div>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+  
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/src/nijun/nijun.js"></script>
+  
+
+
+<script src="/js/src/fold.js"></script>
+<script src="/js/src/post-detail.js"></script>
+<script src="/js/src/tags.js"></script>
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  </body>
+</html>

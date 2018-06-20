@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="GDB 用法总结（转载）"/>
+
+
+
+
+  <meta name="keywords" content="C, 毁于随" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="毁于随">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/icon_ios7.png?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://www.iweeek.com/2018/05/27/c/learn-to-use-gdb/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-102765380-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "2JbLYIPhKt2NzUDtxAz8m4eL-gzGzoHsz",
+      appKey: "emG4bvM4WSlRew7VB7p13lxw"
+    });
+  </script>
+
+
+
+
+
+    <title> GDB 用法总结（转载） - 毁于随 </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">毁于随</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/photos/">
+        <li class="mobile-menu-item">
+          
+          
+            相册
+          
+        </li>
+      </a>
+    
+      <a href="/resume/index.html">
+        <li class="mobile-menu-item">
+          
+          
+            关于
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">毁于随</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/photos/">
+            
+            
+              相册
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/resume/index.html">
+            
+            
+              关于
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main" style="line-height: 180%;">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          GDB 用法总结（转载）
+        
+      </h1>
+      
+      <div class="post-meta">
+        <span class="post-author">
+           作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
+        </span>
+        <span class="post-time">
+           日期: 2018-05-27
+        </span>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/05/27/c/learn-to-use-gdb/"
+             data-title="GDB 用法总结（转载）">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、概述"><span class="toc-text">一、概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、安装"><span class="toc-text">二、安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、用法"><span class="toc-text">三、用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、help-命令"><span class="toc-text">1、help 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、list-命令"><span class="toc-text">2、list 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、quit-命令"><span class="toc-text">3、quit 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、start-命令"><span class="toc-text">4、start 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、next-命令-amp-step-命令"><span class="toc-text">5、next 命令 &amp; step 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、backtrace-命令"><span class="toc-text">6、backtrace 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、info-命令"><span class="toc-text">7、info 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、frame-命令"><span class="toc-text">8、frame 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、print-命令"><span class="toc-text">9、print 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10、display-命令"><span class="toc-text">10、display 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11、break-命令"><span class="toc-text">11、break 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12、continue-命令"><span class="toc-text">12、continue 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13、操作-breakpoint-断点"><span class="toc-text">13、操作 breakpoint 断点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14、examine-命令"><span class="toc-text">14、examine 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15、操作-Watchpoint-观察点"><span class="toc-text">15、操作 Watchpoint 观察点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四、总结"><span class="toc-text">四、总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五、参考"><span class="toc-text">五、参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>本文转载自：<a href="http://docs.linuxtone.org/ebooks/C&amp;CPP/c/ch10.html" target="_blank" rel="noopener">gdb 入门</a></p>
+<p>程序中除了一目了然的 Bug 之外都需要一定的调试手段来分析到底错在哪。到目前为止我们的调试手段只有一种：根据程序执行时的出错现象假设错误原因，然后在代码中适当的位置插入 printf，执行程序并分析打印结果，如果结果和预期的一样，就基本上证明了自己假设的错误原因，就可以动手修正 Bug 了，如果结果和预期的不一样，就根据结果做进一步的假设和分析。</p>
+<a id="more"></a>
+<h2 id="一、概述"><a href="#一、概述" class="headerlink" title="一、概述"></a>一、概述</h2><p>本文介绍一种非常强大的调试工具 gdb，可以完全操控程序的运行，使得程序就像你手里的玩具一样，叫它走就走，叫它停就停，并且随时可以查看程序中所有的内部状态，比如各变量的值、传给函数的参数、当前执行的语句位置等。掌握了 gdb 的用法以后，调试的手段就更加丰富了。但要注意，即使调试的手段非常丰富了，其基本思想仍然是“分析现象 -&gt; 假设错误原因 -&gt; 产生新的现象去验证假设”这样一个循环，根据现象如何假设错误原因，以及如何设计新的现象去验证假设，这都需要非常严密的分析和思考，如果因为手里有了强大的工具就滥用，而忽视了严谨的思维，往往会治标不治本地修正 Bug，导致一个错误现象消失了但 Bug 仍然存在，甚至是把程序越改越错。本文根据原作者提供的几个错误实例经过删减，来讲解如何使用 gdb 调试程序，在最后总结一部分常用的 gdb 命令。</p>
+<h2 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> sudo apt-get install libc6-dbg gdb valgrind</span><br></pre></td></tr></table></figure>
+<h2 id="三、用法"><a href="#三、用法" class="headerlink" title="三、用法"></a>三、用法</h2><p>查找帮助信息<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> gdb -help</span><br></pre></td></tr></table></figure></p>
+<p>在编译时要加上-g选项，生成的目标文件才能用gdb进行调试，生成可执行文件之后，使用 <code>gdb</code> 命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> gcc -g father.c -o father</span><br><span class="line"><span class="meta">$</span> gdb fatherGNU gdb (Ubuntu 7.7-0ubuntu3.1) 7.7Copyright (C) 2014 Free Software Foundation, Inc.License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;This is free software: you are free to change and redistribute it.There is NO WARRANTY, to the extent permitted by law.  Type "show copying"and "show warranty" for details.This GDB was configured as "x86_64-linux-gnu".(gdb)</span><br></pre></td></tr></table></figure>
+<p>-g 选项的作用是在目标文件中加入源代码的信息，比如目标文件中第几条机器指令对应源代码的第几行，但并不是把整个源文件嵌入到目标文件中，所以在调试时目标文件时必须保证 gdb 也能找到源文件。gdb 提供一个类似 shell 的命令行环境，上面的 (gdb) 就是提示符，在这个提示符下输入 help 可以查看命令的类别：</p>
+<h3 id="1、help-命令"><a href="#1、help-命令" class="headerlink" title="1、help 命令"></a>1、help 命令</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) help<span class="symbol">List</span> of classes of commands:<span class="symbol">aliases</span> -- Aliases of other commands<span class="keyword">breakpoints </span>-- Making program stop at certain points<span class="symbol">data</span> -- Examining <span class="meta">data</span><span class="symbol">files</span> -- Specifying <span class="keyword">and </span>examining files<span class="symbol">internals</span> -- Maintenance commands<span class="symbol">obscure</span> -- Obscure features<span class="symbol">running</span> -- Running the program<span class="symbol">stack</span> -- Examining the stack<span class="symbol">status</span> -- Status inquiries<span class="symbol">support</span> -- Support facilities<span class="symbol">tracepoints</span> -- Tracing of program execution without stopping the program<span class="symbol">user</span>-defined -- User-defined commands<span class="symbol">Type</span> <span class="string">"help"</span> followed <span class="keyword">by </span>a class name for a list of commands in that class.<span class="symbol">Type</span> <span class="string">"help all"</span> for the list of all commands.<span class="symbol">Type</span> <span class="string">"help"</span> followed <span class="keyword">by </span>command name for full documentation.<span class="symbol">Type</span> <span class="string">"apropos word"</span> to search for commands related to <span class="string">"word"</span>.<span class="symbol">Command</span> name abbreviations are allowed <span class="meta">if</span> unambiguous.(gdb)</span><br></pre></td></tr></table></figure>
+<p>可以进一步查看某一类别中有哪些命令，例如查看 running 类别下有哪些命令可以用：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) help running<span class="symbol">Running</span> the program.<span class="symbol">List</span> of commands:<span class="symbol">advance</span> -- Continue the program up to the given location (same form as args for <span class="keyword">break </span>command)<span class="symbol">attach</span> -- Attach to a process or file outside of GDB<span class="symbol">continue</span> -- Continue program <span class="keyword">being </span>debugged<span class="symbol">detach</span> -- Detach a process or file previously attached<span class="symbol">detach</span> checkpoint -- Detach from a checkpoint (experimental)<span class="symbol">detach</span> inferiors -- Detach from inferior ID (or list of IDS)<span class="symbol">disconnect</span> -- Disconnect from a target<span class="symbol">...</span></span><br></pre></td></tr></table></figure>
+<h3 id="2、list-命令"><a href="#2、list-命令" class="headerlink" title="2、list 命令"></a>2、list 命令</h3><p>用 <code>list</code> 命令从第一行开始列出源代码：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) list <span class="number">1</span><span class="number">1</span>	int g(int x)<span class="number">2</span>	&#123;<span class="number">3</span>	    return x+<span class="number">5</span><span class="comment">;</span><span class="number">4</span>	&#125;<span class="number">5</span>	<span class="number">6</span>	int f(int x)<span class="number">7</span>	&#123;<span class="number">8</span>	    return g(x)<span class="comment">;</span><span class="number">9</span>	&#125;<span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>一次只列 10 行，如果要从 11 行开始继续列源代码：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) list</span><br></pre></td></tr></table></figure>
+<p>也可以什么都不输直接敲回车，gdb提供了一个很方便的功能，在提示符下直接敲回车表示用适当的参数重复上一条命令。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) (直接回车)</span><br><span class="line">(gdb)<span class="number">11</span>	int main(void)<span class="number">12</span>	&#123;<span class="number">13</span>	    return f(<span class="number">10</span>)+<span class="number">1</span><span class="comment">;</span><span class="number">14</span>	&#125;</span><br></pre></td></tr></table></figure>
+<p>gdb 有很多常用命令有简写形式，例如 list 命令可以写成 l，要列一个函数的源代码也可以用函数名做参数：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) l main<span class="number">7</span>	&#123;<span class="number">8</span>	    return g(x)<span class="comment">;</span><span class="number">9</span>	&#125;<span class="number">10</span>	<span class="number">11</span>	int main(void)<span class="number">12</span>	&#123;<span class="number">13</span>	    return f(<span class="number">10</span>)+<span class="number">1</span><span class="comment">;</span><span class="number">14</span>	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3、quit-命令"><a href="#3、quit-命令" class="headerlink" title="3、quit 命令"></a>3、quit 命令</h3><p>现在退出 gdb 环境：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) quit</span><br></pre></td></tr></table></figure>
+<p>现在把源代码改名或移到别处，再用gdb调试目标文件，就列不出源代码了：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mv father.c fathe.c</span><br><span class="line">$ gdb father</span><br><span class="line">......</span><br><span class="line">(gdb) l</span><br><span class="line"><span class="number">5</span>	father.c: No such file <span class="keyword">or</span> directory.</span><br><span class="line">	<span class="keyword">in</span> fathe.c</span><br></pre></td></tr></table></figure>
+<h3 id="4、start-命令"><a href="#4、start-命令" class="headerlink" title="4、start 命令"></a>4、start 命令</h3><p>可见gcc的-g选项并不是把源代码嵌入到目标文件中的，在调试目标文件时也需要源文件。现在把源代码恢复原样，我们继续调试。首先用start命令开始执行程序：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">nijun@ubuntu:</span>~/C语言程序设计$ gdb father...(gdb) startTemporary breakpoint <span class="number">1</span> <span class="meta">at</span> <span class="number">0x400517</span>: file father.c, line <span class="number">13</span>.Starting program: /home/nijun/C语言程序设计/father Temporary breakpoint <span class="number">1</span>, main () <span class="meta">at</span> father.c:<span class="number">13</span><span class="number">13</span>	    return f(<span class="number">10</span>)+<span class="number">1</span><span class="comment">;</span>(gdb)</span><br></pre></td></tr></table></figure>
+<h3 id="5、next-命令-amp-step-命令"><a href="#5、next-命令-amp-step-命令" class="headerlink" title="5、next 命令 &amp; step 命令"></a>5、next 命令 &amp; step 命令</h3><p>这表示停在 main 函数中变量定义之后的第一条语句处等待我们发命令，gdb列出这条语句表示它还没执行，并且马上要执行。我们可以用 <code>next</code> 命令（简写为 <code>n</code>）控制这些语句一条一条地执行，或者用 <code>step</code> 命令（简写为<code>s</code>）：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) sf (x=<span class="number">10</span>) <span class="meta">at</span> father.c:<span class="number">8</span><span class="number">8</span>	    return g(x)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="6、backtrace-命令"><a href="#6、backtrace-命令" class="headerlink" title="6、backtrace 命令"></a>6、backtrace 命令</h3><p>它停在了函数中变量定义之后的第一条语句处。在函数中有几种查看状态的办法， <code>backtrace</code> 命令（简写为<code>bt</code>）可以查看函数调用的栈帧：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="keyword">bt</span>#<span class="number">0</span>  f (x=<span class="number">10</span>) <span class="meta">at</span> father.c:<span class="number">8</span>#<span class="number">1</span>  <span class="number">0x0000000000400521</span> <span class="keyword">in</span> main () <span class="meta">at</span> father.c:<span class="number">13</span></span><br></pre></td></tr></table></figure>
+<h3 id="7、info-命令"><a href="#7、info-命令" class="headerlink" title="7、info 命令"></a>7、info 命令</h3><p>可见当前的 f 函数是被 main 函数调用的，main传进来的参数是 x=10。main函数的栈帧编号为 <code>1</code>，f 的栈帧编号为 <code>0</code> 。现在可以用 <code>info</code> 命令（简写为 <code>i</code>）查看 f 局部变量的值，但这里我们没有局部变量：）</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) i localsNo locals.</span><br></pre></td></tr></table></figure>
+<h3 id="8、frame-命令"><a href="#8、frame-命令" class="headerlink" title="8、frame 命令"></a>8、frame 命令</h3><p>如果想查看 main 函数当前局部变量的值也可以做到，先用 <code>frame</code> 命令（简写为 <code>f</code>）选择 <code>1</code> 号栈帧然后再查看局部变量：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) f <span class="number">1</span>#<span class="number">1</span>  <span class="number">0x0000000000400521</span> <span class="keyword">in</span> main () <span class="meta">at</span> father.c:<span class="number">13</span><span class="number">13</span>	    return f(<span class="number">10</span>)+<span class="number">1</span><span class="comment">;</span></span><br><span class="line">(gdb) i localsNo locals.</span><br></pre></td></tr></table></figure>
+<h3 id="9、print-命令"><a href="#9、print-命令" class="headerlink" title="9、print 命令"></a>9、print 命令</h3><p>我们知道，未经初始化的局部变量具有不确定的值。用print命令（简写为p）打出变量参数 x 的值：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) p x<span class="number">$1</span> = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h3 id="10、display-命令"><a href="#10、display-命令" class="headerlink" title="10、display 命令"></a>10、display 命令</h3><p>用 <code>display</code> 命令使得每次停下来的时候都显示当前 x 值，用 <code>si</code> 命令执行一步汇编指令。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) display x<span class="number">1</span>: x = <span class="number">10</span></span><br><span class="line">(gdb) <span class="built_in">si</span><span class="number">4</span>	&#125;<span class="number">1</span>: x = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h3 id="11、break-命令"><a href="#11、break-命令" class="headerlink" title="11、break 命令"></a>11、break 命令</h3><p>用 <code>break</code> 命令（简写为 <code>b</code>）在第9行设一个断点（Breakpoint）：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) list<span class="number">1</span>	<span class="keyword">int</span> g(<span class="keyword">int</span> x)<span class="number">2</span>	&#123;<span class="number">3</span>	    return x+<span class="number">5</span><span class="comment">;</span><span class="number">4</span>	&#125;<span class="number">5</span>	<span class="number">6</span>	<span class="keyword">int</span> f(<span class="keyword">int</span> x)<span class="number">7</span>	&#123;<span class="number">8</span>	    return g(x)<span class="comment">;</span><span class="number">9</span>	&#125;<span class="number">10</span>	(gdb) b <span class="number">8</span>Breakpoint <span class="number">2</span> <span class="meta">at</span> <span class="number">0x400507</span>: file father.c, line <span class="number">8</span>.</span><br></pre></td></tr></table></figure>
+<h3 id="12、continue-命令"><a href="#12、continue-命令" class="headerlink" title="12、continue 命令"></a>12、continue 命令</h3><p>break命令的参数也可以是函数名，表示在某一个函数开头设断点。现在用continue命令（简写为c）连续运行而非单步运行，程序到达断点会自动停下来，这样就可以停在下一次循环的开头：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) cContinuing.Breakpoint <span class="number">2</span>, f (x=<span class="number">10</span>) <span class="meta">at</span> father.c:<span class="number">8</span><span class="number">8</span>	    return g(x)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<h3 id="13、操作-breakpoint-断点"><a href="#13、操作-breakpoint-断点" class="headerlink" title="13、操作 breakpoint 断点"></a>13、操作 breakpoint 断点</h3><p>用 <code>info breakpoints</code> 命令可以查看已经设置的断点：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) info breakpointsNum     Type           Disp Enb Address            What<span class="number">2</span>       breakpoint     keep y   <span class="number">0x0000000000400507</span> <span class="keyword">in</span> f <span class="meta">at</span> father.c:<span class="number">8</span>	breakpoint already hit <span class="number">1</span> time<span class="number">4</span>       breakpoint     keep y   <span class="number">0x0000000000400507</span> <span class="keyword">in</span> f <span class="meta">at</span> father.c:<span class="number">8</span>	breakpoint already hit <span class="number">1</span> time</span><br></pre></td></tr></table></figure>
+<p>每个断点都有一个编号，可以用编号指定删除某个断点：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) delete breakpoints <span class="number">4</span></span><br><span class="line">(gdb) info breakpointsNum     Type           Disp Enb Address            What<span class="number">2</span>       breakpoint     keep y   <span class="number">0x0000000000400507</span> <span class="keyword">in</span> f <span class="meta">at</span> father.c:<span class="number">8</span>	breakpoint already hit <span class="number">1</span> time(gdb)</span><br></pre></td></tr></table></figure>
+<p>有时候一个断点暂时不想用可以禁用掉而不必删除，这样以后想用的时候可以直接启用，而不必重新从代码里找应该在哪一行设断点：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) disable breakpoints <span class="number">2</span>(gdb) info breakpointsNum     Type           Disp Enb Address            What<span class="number">2</span>       breakpoint     keep n   <span class="number">0x0000000000400507</span> <span class="keyword">in</span> f <span class="meta">at</span> father.c:<span class="number">8</span>	breakpoint already hit <span class="number">1</span> time(gdb) enable breakpoints <span class="number">2</span>(gdb) info breakpointsNum     Type           Disp Enb Address            What<span class="number">2</span>       breakpoint     keep y   <span class="number">0x0000000000400507</span> <span class="keyword">in</span> f <span class="meta">at</span> father.c:<span class="number">8</span>	breakpoint already hit <span class="number">1</span> time</span><br></pre></td></tr></table></figure>
+<p>gdb的断点功能非常灵活，还可以设置断点在满足某个条件时才激活，例如我们仍然在循环开头设置断点，但是仅当 x 不等于 0 时才中断，然后用 <code>run</code> 命令（简写为 <code>r</code>）重新从程序开头连续执行：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) break <span class="number">8</span> if x != <span class="number">0</span><span class="symbol">Note:</span> breakpoint <span class="number">2</span> also set <span class="meta">at</span> pc <span class="number">0x400507</span>.Breakpoint <span class="number">5</span> <span class="meta">at</span> <span class="number">0x400507</span>: file father.c, line <span class="number">8</span>.</span><br></pre></td></tr></table></figure>
+<h3 id="14、examine-命令"><a href="#14、examine-命令" class="headerlink" title="14、examine 命令"></a>14、examine 命令</h3><p>我们还可以用 <code>examine</code> 命令（简写是 <code>x</code>）来查看内存地址中的值，下面的命令表示从 <code>rsp</code> 寄存器里的地址值开始，向后取 16 个地址的内容，每个默认是 4 字节，<code>x</code> 表示以十六进制表示 ：</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) x/16x $<span class="built_in">rsp</span><span class="number">0x7fffffffd9b8</span>:	<span class="number">0xffffd9d0</span>	<span class="number">0x00007fff</span>	<span class="number">0x00400511</span>	<span class="number">0x00000000</span><span class="number">0x7fffffffd9c8</span>:	<span class="number">0x00400400</span>	<span class="number">0x0000000a</span>	<span class="number">0xffffd9e0</span>	<span class="number">0x00007fff</span><span class="number">0x7fffffffd9d8</span>:	<span class="number">0x00400521</span>	<span class="number">0x00000000</span>	<span class="number">0x00000000</span>	<span class="number">0x00000000</span><span class="number">0x7fffffffd9e8</span>:	<span class="number">0xf7a35ec5</span>	<span class="number">0x00007fff</span>	<span class="number">0x00000000</span>	<span class="number">0x00000000</span>(gdb)</span><br></pre></td></tr></table></figure>
+<h3 id="15、操作-Watchpoint-观察点"><a href="#15、操作-Watchpoint-观察点" class="headerlink" title="15、操作 Watchpoint 观察点"></a>15、操作 Watchpoint 观察点</h3><p>可以用观察点（Watchpoint）来跟踪。我们知道断点是当程序执行到某一代码行时中断，而观察点是当程序访问某一存储单元时中断，如果我们不知道某一存储单元是在哪里被改动的，这时候观察点尤其有用。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) watch xHardware watchpoint <span class="number">6</span>: x(gdb) info watchpointsNum     Type           Disp Enb Address            What<span class="number">6</span>       hw watchpoint  keep y                      x</span><br></pre></td></tr></table></figure>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>目前仅仅是简单地学会了 gdb 的一些基础用法，剩下更加高级的功能，等需要用到的时候再去查即可。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令（简写）</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">backtrace（或bt）</td>
+<td style="text-align:left">查看各级函数调用及参数</td>
+</tr>
+<tr>
+<td style="text-align:left">finish</td>
+<td style="text-align:left">执行到当前函数返回，然后停下来等待命令</td>
+</tr>
+<tr>
+<td style="text-align:left">frame（或f） 帧编号</td>
+<td style="text-align:left">选择栈帧</td>
+</tr>
+<tr>
+<td style="text-align:left">info（或i） locals</td>
+<td style="text-align:left">查看当前栈帧局部变量的值</td>
+</tr>
+<tr>
+<td style="text-align:left">list（或l）</td>
+<td style="text-align:left">列出源代码，接着上次的位置往下列，每次列10行</td>
+</tr>
+<tr>
+<td style="text-align:left">list 行号</td>
+<td style="text-align:left">列出从第几行开始的源代码</td>
+</tr>
+<tr>
+<td style="text-align:left">list 函数名</td>
+<td style="text-align:left">列出某个函数的源代码</td>
+</tr>
+<tr>
+<td style="text-align:left">next（或n）</td>
+<td style="text-align:left">执行下一行语句</td>
+</tr>
+<tr>
+<td style="text-align:left">print（或p）</td>
+<td style="text-align:left">打印表达式的值，通过表达式可以修改变量的值或者调用函数</td>
+</tr>
+<tr>
+<td style="text-align:left">set var</td>
+<td style="text-align:left">修改变量的值</td>
+</tr>
+<tr>
+<td style="text-align:left">start</td>
+<td style="text-align:left">开始执行程序，停在main函数第一行语句前面等待命令</td>
+</tr>
+<tr>
+<td style="text-align:left">step（或s）</td>
+<td style="text-align:left">执行下一行语句，如果有函数调用则进入到函数中</td>
+</tr>
+<tr>
+<td style="text-align:left">break（或b） 行号</td>
+<td style="text-align:left">在某一行设置断点</td>
+</tr>
+<tr>
+<td style="text-align:left">break 函数名</td>
+<td style="text-align:left">在某个函数开头设置断点</td>
+</tr>
+<tr>
+<td style="text-align:left">break…if…</td>
+<td style="text-align:left">设置条件断点</td>
+</tr>
+<tr>
+<td style="text-align:left">continue（或c）</td>
+<td style="text-align:left">从当前位置开始连续而非单步执行程序</td>
+</tr>
+<tr>
+<td style="text-align:left">delete breakpoints</td>
+<td style="text-align:left">删除断点</td>
+</tr>
+<tr>
+<td style="text-align:left">display 变量名</td>
+<td style="text-align:left">跟踪查看一个变量，每次停下来都显示它的值</td>
+</tr>
+<tr>
+<td style="text-align:left">disable breakpoints</td>
+<td style="text-align:left">禁用断点</td>
+</tr>
+<tr>
+<td style="text-align:left">enable breakpoints</td>
+<td style="text-align:left">启用断点</td>
+</tr>
+<tr>
+<td style="text-align:left">info（或i） breakpoints</td>
+<td style="text-align:left">查看当前设置了哪些断点</td>
+</tr>
+<tr>
+<td style="text-align:left">run（或r）</td>
+<td style="text-align:left">从头开始连续而非单步执行程序</td>
+</tr>
+<tr>
+<td style="text-align:left">undisplay</td>
+<td style="text-align:left">取消对先前设置的那些变量的跟踪</td>
+</tr>
+<tr>
+<td style="text-align:left">watch</td>
+<td style="text-align:left">设置观察点</td>
+</tr>
+<tr>
+<td style="text-align:left">info（或i） watchpoints</td>
+<td style="text-align:left">查看当前设置了哪些观察点</td>
+</tr>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">从某个位置开始打印存储器的一段内容，全部当成字节来看，而不区分哪些字节属于哪些变量</td>
+</tr>
+</tbody>
+</table>
+<h2 id="五、参考"><a href="#五、参考" class="headerlink" title="五、参考"></a>五、参考</h2><p><a href="http://docs.linuxtone.org/ebooks/C&amp;CPP/c/ch10.html" target="_blank" rel="noopener">gdb 入门</a><br><a href="http://sourceware.org/gdb/current/onlinedocs/gdb/" target="_blank" rel="noopener">gdb 手册</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <h3> 文档信息 </h3>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://www.iweeek.com">毁于随</a>
+    </p>
+    <!-- <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://www.iweeek.com/2018/05/27/c/learn-to-use-gdb/">http://www.iweeek.com/2018/05/27/c/learn-to-use-gdb/</a>
+    </p> -->
+    <p class="copyright-item">
+      <span>发表日期: </span>
+      <a href=""> 2018年05月27日</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags"> 分类：
+            
+              <a href="/tags/C/">C</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/05/27/css/css-selectors/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">CSS 选择器总结</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+        ：上一篇
+      </a>
+    
+    
+      <a class="next" href="/2018/05/26/c/deep-in-c-proccess/">
+        下一篇：
+        <span class="next-text nav-default">深入 C 语言的过程</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      
+  
+  
+
+  
+
+
+
+      <footer id="footer" class="footer">
+<!--
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:nijun717@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/iweeek" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+      <a href="/atom.xml" class="iconfont icon-rss" title="rss"></a>
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">毁于随</span>
+  </span>
+ 
+  <script src="https://s19.cnzz.com/z_stat.php?id=1273965476&web_id=1273965476" language="JavaScript"></script>
+</div>
+
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+  
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/src/nijun/nijun.js"></script>
+  
+
+
+<script src="/js/src/fold.js"></script>
+<script src="/js/src/post-detail.js"></script>
+<script src="/js/src/tags.js"></script>
+
+<!-- TODO 2018年05月28日12:35:38 解决了 photoswipe 找不到的问题  -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+    
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+  </body>
+</html>
