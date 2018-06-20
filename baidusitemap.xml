@@ -1299,44 +1299,6 @@ d
 
     
   <url>
-    <loc>http://www.iweeek.com/2018/05/29/mysql/mysql-jdbc-zeroDateTimeBehavior/</loc>
-    <lastmod>2018-06-18T12:41:56.343Z</lastmod>
-    <data>
-        <display>
-        <title>Mysql JDBC 连接池时间转换问题</title>
-        <pubTime>2018-05-29T04:48:59.000Z</pubTime>
-      
-         <content><p>在查询 Mysql 数据库的时候，有时候会产生一个异常：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Value <span class="string">'0000-00-00 00:00:00'</span> can not be represented as java.sql.Timestamp. Stacktrace follows:</span><br><span class="line">java.sql.SQLException: Value <span class="string">'0000-00-00 00:00:00'</span> can not be represented as java.sql.Timestamp</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
-<p>查找资料</p>
-<blockquote>
-<p><strong>Datetimes</strong> with all-zero components (<em>0000-00-00</em> …): These values cannot be represented reliably in Java. Connector/J 3.0.x always converted them to NULL when being read from a ResultSet.<br><br></p>
-<p>Connector/J 3.1 throws an exception by default when these values are encountered, as this is the most correct behavior according to the JDBC and SQL standards. This behavior can be modified using the zeroDateTimeBehavior configuration property. The permissible values are:</p>
-<ul>
-<li>exception (the default), which throws an SQLException with an SQLState of S1009.</li>
-<li>convertToNull, which returns NULL instead of the date.</li>
-<li>round, which rounds the date to the nearest closest value which is 0001-01-01.</li>
-</ul>
-</blockquote>
-<p>这个问题出现的起因是，尝试将一个存储在 Mysql 里的零值日期（<code>0000-00-00 00:00:00</code>），转换为一个 Java 日期对象。</p>
-<p>关键在于在 Mysql 里 <code>0000-00-00 00:00:00</code> 可能是有效的；而在 Java 中，这样的转换是无效的。</p>
-<p>因此，Mysql JDBC 驱动将抛出一个 java.sql.SQLException ，因为 Java 不能识别 <code>0000-00-00 00:00:00</code> 这样的日期格式。</p>
-<p>解决的办法：<br>1、可以改变数据库的模式（schema），使之允许 NULL 值。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">table</span> <span class="keyword">SET</span> datefield = <span class="literal">NULL</span> <span class="keyword">WHERE</span> datefield = <span class="string">'0000-00-00 00:00:00'</span>;</span><br></pre></td></tr></table></figure>
-<p>2、在 JDBC 数据库连接池配置中，编辑 JDBC URL ，添加一个 <code>zeroDateTimeBehavior = convertToNull</code> 的参数。这样 Java 就会把零值日期转换为 null 值。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql://localhost:3306/yourMySqlDatabase?zeroDateTimeBehavior=convertToNull</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<p><a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-configuration-properties.html" target="_blank" rel="noopener">zeroDateTimeBehavior 定义</a><br><a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-installing-upgrading-3-0-to-3-1.html" target="_blank" rel="noopener">zeroDateTimeBehavior 三个选项</a></p>
-</content>
-
-         
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www.iweeek.com/2018/06/08/linux/daily-command-xargs/</loc>
     <lastmod>2018-06-18T12:41:56.343Z</lastmod>
     <data>
@@ -1399,6 +1361,44 @@ d
 <p><img src="http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-s.png" alt=""></p>
 <p><strong>实例：18. 替换{}指定其他代替字符</strong><br>描述：将当前目录下以.jpg结尾的文件移动到move目录中。-i选项默认的前面输出用{}代替，-I选项可以指定其他代替字符，如例子中的[]。<br>命令：<code>find . -name &quot;*.jpg&quot; | xargs -I [] mv [] move/</code><br>输出：</p>
 <p><img src="http://pabfn7ecx.bkt.clouddn.com/xargs/xargs-I.png" alt=""></p>
+</content>
+
+         
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.iweeek.com/2018/05/29/mysql/mysql-jdbc-zeroDateTimeBehavior/</loc>
+    <lastmod>2018-06-18T12:41:56.343Z</lastmod>
+    <data>
+        <display>
+        <title>Mysql JDBC 连接池时间转换问题</title>
+        <pubTime>2018-05-29T04:48:59.000Z</pubTime>
+      
+         <content><p>在查询 Mysql 数据库的时候，有时候会产生一个异常：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Value <span class="string">'0000-00-00 00:00:00'</span> can not be represented as java.sql.Timestamp. Stacktrace follows:</span><br><span class="line">java.sql.SQLException: Value <span class="string">'0000-00-00 00:00:00'</span> can not be represented as java.sql.Timestamp</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>查找资料</p>
+<blockquote>
+<p><strong>Datetimes</strong> with all-zero components (<em>0000-00-00</em> …): These values cannot be represented reliably in Java. Connector/J 3.0.x always converted them to NULL when being read from a ResultSet.<br><br></p>
+<p>Connector/J 3.1 throws an exception by default when these values are encountered, as this is the most correct behavior according to the JDBC and SQL standards. This behavior can be modified using the zeroDateTimeBehavior configuration property. The permissible values are:</p>
+<ul>
+<li>exception (the default), which throws an SQLException with an SQLState of S1009.</li>
+<li>convertToNull, which returns NULL instead of the date.</li>
+<li>round, which rounds the date to the nearest closest value which is 0001-01-01.</li>
+</ul>
+</blockquote>
+<p>这个问题出现的起因是，尝试将一个存储在 Mysql 里的零值日期（<code>0000-00-00 00:00:00</code>），转换为一个 Java 日期对象。</p>
+<p>关键在于在 Mysql 里 <code>0000-00-00 00:00:00</code> 可能是有效的；而在 Java 中，这样的转换是无效的。</p>
+<p>因此，Mysql JDBC 驱动将抛出一个 java.sql.SQLException ，因为 Java 不能识别 <code>0000-00-00 00:00:00</code> 这样的日期格式。</p>
+<p>解决的办法：<br>1、可以改变数据库的模式（schema），使之允许 NULL 值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> <span class="keyword">table</span> <span class="keyword">SET</span> datefield = <span class="literal">NULL</span> <span class="keyword">WHERE</span> datefield = <span class="string">'0000-00-00 00:00:00'</span>;</span><br></pre></td></tr></table></figure>
+<p>2、在 JDBC 数据库连接池配置中，编辑 JDBC URL ，添加一个 <code>zeroDateTimeBehavior = convertToNull</code> 的参数。这样 Java 就会把零值日期转换为 null 值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jdbc:mysql://localhost:3306/yourMySqlDatabase?zeroDateTimeBehavior=convertToNull</span><br></pre></td></tr></table></figure>
+<p>参考：</p>
+<p><a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference-configuration-properties.html" target="_blank" rel="noopener">zeroDateTimeBehavior 定义</a><br><a href="https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-installing-upgrading-3-0-to-3-1.html" target="_blank" rel="noopener">zeroDateTimeBehavior 三个选项</a></p>
 </content>
 
          
@@ -2421,6 +2421,22 @@ d
 
     
   <url>
+    <loc>http://www.iweeek.com/2018/06/06/linux/daily-command-iftop/</loc>
+    <lastmod>2018-06-18T12:41:56.292Z</lastmod>
+    <data>
+        <display>
+        <title>Linux iftop总结</title>
+        <pubTime>2018-06-05T21:53:09.000Z</pubTime>
+      
+         <content></content>
+
+         
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-io-redirection/</loc>
     <lastmod>2018-06-18T12:41:56.292Z</lastmod>
     <data>
@@ -2440,22 +2456,6 @@ d
 <p><strong>实例：1. &amp;&gt; afile</strong><br>描述：将ls命令的stdout重定向到dir-tree.list文件。如果这个文件不存在，那就创建它，否则就覆盖。<br>命令：<code>ls -lR &gt; dir-tree.list</code><br>输出：</p>
 <p><img src="http://pabfn7ecx.bkt.clouddn.com/redirection/redirection-clear.png" alt=""></p>
 </content>
-
-         
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www.iweeek.com/2018/06/06/linux/daily-command-iftop/</loc>
-    <lastmod>2018-06-18T12:41:56.292Z</lastmod>
-    <data>
-        <display>
-        <title>Linux iftop总结</title>
-        <pubTime>2018-06-05T21:53:09.000Z</pubTime>
-      
-         <content></content>
 
          
         </display>
@@ -4639,6 +4639,8 @@ d
     
     
     
+    
+    
   <url>
     <loc>http://www.iweeek.com/drafts/iframe.html</loc>
     <lastmod>2018-06-11T02:58:23.333Z</lastmod>
@@ -4692,8 +4694,6 @@ d
     </data>
     </url>
 
-    
-    
     
     
     

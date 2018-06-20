@@ -86,14 +86,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/04/05/other/this-time-I-am-serious/</loc>
+    <loc>http://www.iweeek.com/2018/04/17/other/three-successful-transgenic-companies/</loc>
     
     <lastmod>2018-06-18T12:41:56.345Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/04/17/other/three-successful-transgenic-companies/</loc>
+    <loc>http://www.iweeek.com/2018/04/05/other/this-time-I-am-serious/</loc>
     
     <lastmod>2018-06-18T12:41:56.345Z</lastmod>
     
@@ -121,14 +121,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-type/</loc>
+    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-uniq/</loc>
     
     <lastmod>2018-06-18T12:41:56.342Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-uniq/</loc>
+    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-type/</loc>
     
     <lastmod>2018-06-18T12:41:56.342Z</lastmod>
     
@@ -289,14 +289,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-cut/</loc>
+    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-df/</loc>
     
     <lastmod>2018-06-18T12:41:56.285Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-df/</loc>
+    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-cut/</loc>
     
     <lastmod>2018-06-18T12:41:56.285Z</lastmod>
     
@@ -359,13 +359,6 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/05/27/css/css-selectors/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.276Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iweeek.com/2018/05/04/android/service-is-a-context/</loc>
     
     <lastmod>2018-06-18T12:41:56.276Z</lastmod>
@@ -373,14 +366,21 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/05/04/android/android-processes-and-threads/</loc>
+    <loc>http://www.iweeek.com/2018/05/27/css/css-selectors/</loc>
+    
+    <lastmod>2018-06-18T12:41:56.276Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/05/15/algorithm/quick-sort/</loc>
     
     <lastmod>2018-06-18T12:41:56.275Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/05/15/algorithm/quick-sort/</loc>
+    <loc>http://www.iweeek.com/2018/05/04/android/android-processes-and-threads/</loc>
     
     <lastmod>2018-06-18T12:41:56.275Z</lastmod>
     
@@ -429,14 +429,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/photos/data.json</loc>
+    <loc>http://www.iweeek.com/manifest.json</loc>
     
     <lastmod>2018-06-11T02:58:23.344Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/manifest.json</loc>
+    <loc>http://www.iweeek.com/photos/data.json</loc>
     
     <lastmod>2018-06-11T02:58:23.344Z</lastmod>
     
@@ -464,13 +464,6 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/about/index.html</loc>
-    
-    <lastmod>2018-06-11T02:58:23.332Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iweeek.com/books/index.html</loc>
     
     <lastmod>2018-06-11T02:58:23.332Z</lastmod>
@@ -479,6 +472,13 @@
   
   <url>
     <loc>http://www.iweeek.com/atom/index.html</loc>
+    
+    <lastmod>2018-06-11T02:58:23.332Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/about/index.html</loc>
     
     <lastmod>2018-06-11T02:58:23.332Z</lastmod>
     
