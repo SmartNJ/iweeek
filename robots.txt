@@ -3,5 +3,5 @@ Allow: /
 Allow: /home/
 Allow: /archives/
 Allow: /about/
-Sitemap: http://dajipai.cc/sitemap.xml
-Sitemap: http://dajipai.cc/baidusitemap.xml
+Sitemap: http://www.iweeek.com/sitemap.xml
+Sitemap: http://www.iweeek.com/baidusitemap.xml
