@@ -3,5 +3,7 @@ Allow: /
 Allow: /home/
 Allow: /archives/
 Allow: /about/
+Allow: /tags/
+Allow: /categories/
 Sitemap: http://www.iweeek.com/sitemap.xml
 Sitemap: http://www.iweeek.com/baidusitemap.xml
