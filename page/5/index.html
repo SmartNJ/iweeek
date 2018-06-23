@@ -216,7 +216,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2018/04/19/design-pattern/initialization-on-demand-holder-idiom/">单例模式——双重检查</a>
+          <a class="post-link" href="/2018/05/04/android/service-is-a-context/">android 服务记录</a>
         
       </h1>
       
@@ -225,13 +225,13 @@
            作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
         </span>
         <span class="post-time">
-           日期: 2018-04-19
+           日期: 2018-05-04
         </span>
         
         
         <div class="post-visits"
-             data-url="/2018/04/19/design-pattern/initialization-on-demand-holder-idiom/"
-             data-title="单例模式——双重检查">
+             data-url="/2018/05/04/android/service-is-a-context/"
+             data-title="android 服务记录">
             阅读次数
           </div>
         
@@ -249,9 +249,10 @@
         
 
         
-          <p>双重检查设计模式的一个推荐版本，Initialization_on_demand_holder。</p>
+          <h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>1、主线程。不能做耗时操作。</p>
+<p>2、开启服务两种方式，一种是startService，另一种是bindService。<br>startService开启服务后，服务会一直在后台运行，即使Activity退出也不会停止。<br>bindService与Activity绑定后，可以与Activity进行数据交互，如果不在同一进程中，可以使用进程间通信。（IPC）</p>
           <div class="read-more">
-            <a href="/2018/04/19/design-pattern/initialization-on-demand-holder-idiom/" class="read-more-link">阅读更多</a>
+            <a href="/2018/05/04/android/service-is-a-context/" class="read-more-link">阅读更多</a>
           </div>
         
       
@@ -263,6 +264,8 @@
 
   </article>
 
+  	  
+    
   	  
     
   	  
@@ -326,6 +329,16 @@
           </h2>
           <ul itemscope="" itemtype="http://schema.org/Article">
             
+    
+      
+
+  <li>
+    <span itemprop="timeCreated" aria-hidden="true">2018-05-04 » </span>
+    
+    <a href="/2018/05/04/android/service-is-a-context/" itemprop="url">android 服务记录</a>
+  </li>
+
+
     
       
 

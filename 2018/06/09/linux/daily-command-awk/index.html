@@ -249,9 +249,9 @@
 
     <div class="post-content">
       
-        <p>awk是一种小巧的编程语言及命令行工具。（其名称得自于它的创始人Alfred Aho、Peter Weinberger 和 Brian Kernighan姓氏的首个字母）。它非常适合服务器上的日志处理，主要是因为awk可以对文件进行操作，通常以可读文本构建行。</p>
+        <p>awk命令在文件或字符串中基于指定规则浏览和抽取信息。</p>
 <a id="more"></a>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>在文件或字符串中基于指定规则浏览和抽取信息。awk抽取信息后，才能进行其他文本操作，awk脚本通常用来格式化文本文件中的信息。</p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>awk是一种小巧的编程语言及命令行工具。（其名称得自于它的创始人Alfred Aho、Peter Weinberger 和 Brian Kernighan姓氏的首个字母）。它非常适合服务器上的日志处理，主要是因为awk可以对文件进行操作，通常以可读文本构建行。<br>awk命令在文件或字符串中基于指定规则浏览和抽取信息。awk抽取信息后，才能进行其他文本操作，awk脚本通常用来格式化文本文件中的信息。</p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>有三种方式调用awk，第一种是命令行方式，例如：<br><code>awk [-F field-separator] &#39;commands&#39; input-file(s)</code><br>awk默认使用空格作为缺省的域分隔符。如果要浏览诸如passwd文件，此文件是以冒号作为分隔符，则必须指明-F选项。例如：<br><code>awk -F : &#39;commands&#39; input-file</code><br>第二种方式是将所有awk命令插入一个文件，并使awk程序可执行，然后用awk命令解释器作为脚本的首行，以便通过键入脚本名称来调用它。<br>第三种方式是将所有的awk命令插入一个单独文件，然后调用：<br><code>awl -f awk-script-file input-file(s)</code><br>-f选项指明在文件awk-script-file中的awk脚本，input_file(s)是使用awk进行浏览的文件名。</p>
 <h2 id="awk脚本"><a href="#awk脚本" class="headerlink" title="awk脚本"></a>awk脚本</h2><h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><p>awk脚本的代码结构很简单，就是一系列的模式（pattern）和动作（action）。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># comment</span><br><span class="line">Pattern1 &#123; ACTIONS; &#125;</span><br><span class="line"># comment</span><br><span class="line">Pattern2 &#123; ACTIONS; &#125;</span><br><span class="line"># comment</span><br><span class="line">Pattern3 &#123; ACTIONS; &#125;</span><br><span class="line"># comment</span><br><span class="line">Pattern4 &#123; ACTIONS; &#125;</span><br></pre></td></tr></table></figure>

@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.iweeek.com/2018/06/20/daily-command-stat/"/>
+<link rel="canonical" href="http://www.iweeek.com/2018/06/21/linux/daily-command-stat/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -224,7 +224,7 @@
            作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-20
+           日期: 2018-06-21
         </span>
         
           <div class="post-category">
@@ -235,7 +235,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/06/20/daily-command-stat/"
+             data-url="/2018/06/21/linux/daily-command-stat/"
              data-title="Linux stat总结">
             阅读次数
           </div>
@@ -248,7 +248,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stat显示更多信息"><span class="toc-text">stat显示更多信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重命名改变状态时间"><span class="toc-text">重命名改变状态时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看多个文件"><span class="toc-text">查看多个文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用ls获取额外的信息"><span class="toc-text">用ls获取额外的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示文件系统的信息"><span class="toc-text">显示文件系统的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用ls获取额外的信息-1"><span class="toc-text">用ls获取额外的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示指定的信息"><span class="toc-text">显示指定的信息</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stat显示更多信息"><span class="toc-text">stat显示更多信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示文件系统的状态"><span class="toc-text">显示文件系统的状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重命名改变状态时间"><span class="toc-text">重命名改变状态时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看多个文件"><span class="toc-text">查看多个文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用ls获取额外的信息"><span class="toc-text">用ls获取额外的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用ls获取额外的信息-1"><span class="toc-text">用ls获取额外的信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示指定的信息"><span class="toc-text">显示指定的信息</span></a></li></ol></li></ol>
     </div>
   </div>
 
@@ -257,25 +257,206 @@
       
         <p>stat命令用来显示文件或文件系统的状态。</p>
 <a id="more"></a>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>stat命令用来显示文件或文件系统的状态。stat命令从文件的索引节点获取信息，每个系统里的文件都存有三组日期和时间，他们包括最近修改时间（即ls -l显示的日期和时间），最近状态改变时间（包括对文件重命名）和最近访问时间。因此，stat命令的输出信息比ls命令的输出信息要更详细。见touch命令。</p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>stat命令用来显示文件或文件系统的状态。stat命令从文件的索引节点获取信息，它们包括文件类型的信息，八进制访问权限和人类可读形式的权限，SELinux安全上下文字符串，文件创建时间，上次访问时间，上次数据修改时间，上次状态改变时间以及Epoch以来的秒数等等。因此，stat命令的输出信息比ls命令的输出信息要更详细。见touch命令。</p>
 <p><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-man.png" alt=""></p>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>stat [OPTION]… FILE…</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
+<li>-c或–format：使用特定或自定义格式而不是默认格式，在每一行结束之后打印一个新行。</li>
 <li>-L：支持符号连接。</li>
 <li>-f：显示文件系统状态而非文件状态。</li>
+<li>–printf：类似于format，但它能够解释反斜线转义，并关闭后续换行符的打印，可以手动添加\n打印新行。</li>
 <li>-t：以简洁方式输出信息。</li>
 <li>–help：显示指令的帮助信息。</li>
 <li>–version：显示指令的版本信息。</li>
 </ul>
 <h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="stat显示更多信息"><a href="#stat显示更多信息" class="headerlink" title="stat显示更多信息"></a><strong>stat显示更多信息</strong></h3><p>描述：使用ls命令的长列表模式和使用stat命令查看文件信息。<br>命令：<br><code>ls -l names.txt</code><br><code>stat names.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-ls.png" alt=""><br>说明：图中，文件状态改变和文件修改的日期/时间是相同的，而访问时间是更近的时间。文件使用了8个块，以两个格式显示文件权限，八进制（0664）和-rw-rw-r–格式。在第三行显示索引为393342，文件没有其他硬链接（Links:1）。这个文件是一个常规文件。</p>
+<h3 id="显示文件系统的状态"><a href="#显示文件系统的状态" class="headerlink" title="显示文件系统的状态"></a><strong>显示文件系统的状态</strong></h3><p>描述：f选项将显示指定文件系统的信息。需要提供一个目录/文件系统作为参数。<br>命令：<br><code>stat -f /dev/vda1</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-file-system.png" alt=""></p>
 <h3 id="重命名改变状态时间"><a href="#重命名改变状态时间" class="headerlink" title="重命名改变状态时间"></a><strong>重命名改变状态时间</strong></h3><p>描述：重命名文件将会改变状态时间，即ctime。文件创建的时候ctime存储文件的创建日期和时间，修改文件后就变为记录文件的状态改动时间。<br>命令：<br><code>mv fairy fairy2</code><br><code>stat fairy2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-mv.png" alt=""></p>
 <h3 id="查看多个文件"><a href="#查看多个文件" class="headerlink" title="查看多个文件"></a><strong>查看多个文件</strong></h3><p>描述：使用通配符查看多个文件的状态。<br>命令：<code>stat t*</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-wild.png" alt=""></p>
 <h3 id="用ls获取额外的信息"><a href="#用ls获取额外的信息" class="headerlink" title="用ls获取额外的信息"></a><strong>用ls获取额外的信息</strong></h3><p>描述：ls的u选项显示最后访问时间，c选项显示状态改动时间。<br>命令：<br><code>ls -lu fairy2</code><br><code>ls -lc fairy2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-ls-u-c.png" alt=""></p>
-<h3 id="显示文件系统的信息"><a href="#显示文件系统的信息" class="headerlink" title="显示文件系统的信息"></a><strong>显示文件系统的信息</strong></h3><p>描述：f选项将显示指定文件系统的信息。<br>命令：<br><code>stat -f /dev/vda1</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-file-system.png" alt=""></p>
 <h3 id="用ls获取额外的信息-1"><a href="#用ls获取额外的信息-1" class="headerlink" title="用ls获取额外的信息"></a><strong>用ls获取额外的信息</strong></h3><p>描述：ls的u选项显示最后访问时间，c选项显示状态改动时间。<br>命令：<br><code>ls -lu fairy2</code><br><code>ls -lc fairy2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-ls-u-c.png" alt=""></p>
-<h3 id="显示指定的信息"><a href="#显示指定的信息" class="headerlink" title="显示指定的信息"></a><strong>显示指定的信息</strong></h3><p>–format选项可以单独显示具体的信息。可用的选项如下：</p>
+<h3 id="显示指定的信息"><a href="#显示指定的信息" class="headerlink" title="显示指定的信息"></a><strong>显示指定的信息</strong></h3><p>--format选项可以单独显示具体的信息。可用的选项如下：</p>
+<p>表: 文件的格式序列</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">%a</td>
+<td style="text-align:left">八进制表示的访问权限</td>
+</tr>
+<tr>
+<td style="text-align:left">%A</td>
+<td style="text-align:left">可读格式表示的访问权限</td>
+</tr>
+<tr>
+<td style="text-align:left">%b</td>
+<td style="text-align:left">分配的块数（参见%B）</td>
+</tr>
+<tr>
+<td style="text-align:left">%B</td>
+<td style="text-align:left">%b参数显示的每个块的字节数</td>
+</tr>
+<tr>
+<td style="text-align:left">%d</td>
+<td style="text-align:left">十进制表示的设备号</td>
+</tr>
+<tr>
+<td style="text-align:left">%D</td>
+<td style="text-align:left">十六进制表示的设备号</td>
+</tr>
+<tr>
+<td style="text-align:left">%f</td>
+<td style="text-align:left">十六进制表示的Raw模式</td>
+</tr>
+<tr>
+<td style="text-align:left">%F</td>
+<td style="text-align:left">文件类型</td>
+</tr>
+<tr>
+<td style="text-align:left">%g</td>
+<td style="text-align:left">属主的组ID</td>
+</tr>
+<tr>
+<td style="text-align:left">%G</td>
+<td style="text-align:left">属主的组名</td>
+</tr>
+<tr>
+<td style="text-align:left">%h</td>
+<td style="text-align:left">硬连接数</td>
+</tr>
+<tr>
+<td style="text-align:left">%i</td>
+<td style="text-align:left">Inode号</td>
+</tr>
+<tr>
+<td style="text-align:left">%n</td>
+<td style="text-align:left">文件名</td>
+</tr>
+<tr>
+<td style="text-align:left">%N</td>
+<td style="text-align:left">如果是符号链接，显示器所链接的文件名</td>
+</tr>
+<tr>
+<td style="text-align:left">%o</td>
+<td style="text-align:left">I/O块大小</td>
+</tr>
+<tr>
+<td style="text-align:left">%s</td>
+<td style="text-align:left">全部占用的字节大小</td>
+</tr>
+<tr>
+<td style="text-align:left">%t</td>
+<td style="text-align:left">十六进制的主设备号</td>
+</tr>
+<tr>
+<td style="text-align:left">%T</td>
+<td style="text-align:left">十六进制的副设备号</td>
+</tr>
+<tr>
+<td style="text-align:left">%u</td>
+<td style="text-align:left">属主的用户ID</td>
+</tr>
+<tr>
+<td style="text-align:left">%U</td>
+<td style="text-align:left">属主的用户名</td>
+</tr>
+<tr>
+<td style="text-align:left">%x</td>
+<td style="text-align:left">最后访问时间</td>
+</tr>
+<tr>
+<td style="text-align:left">%X</td>
+<td style="text-align:left">最后访问时间，自Epoch开始的秒数</td>
+</tr>
+<tr>
+<td style="text-align:left">%y</td>
+<td style="text-align:left">最后修改时间</td>
+</tr>
+<tr>
+<td style="text-align:left">%Y</td>
+<td style="text-align:left">最后修改时间，自Epoch开始的秒数</td>
+</tr>
+<tr>
+<td style="text-align:left">%z</td>
+<td style="text-align:left">最后改变时间</td>
+</tr>
+<tr>
+<td style="text-align:left">%Z</td>
+<td style="text-align:left">最后改变时间，自Epoch开始的秒数</td>
+</tr>
+</tbody>
+</table>
+<p>表: 文件系统的格式序列</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">%a</td>
+<td style="text-align:left">普通用户可用的块数</td>
+</tr>
+<tr>
+<td style="text-align:left">%b</td>
+<td style="text-align:left">文件系统的全部数据块数</td>
+</tr>
+<tr>
+<td style="text-align:left">%c</td>
+<td style="text-align:left">文件系统的全部文件节点数</td>
+</tr>
+<tr>
+<td style="text-align:left">%d</td>
+<td style="text-align:left">文件系统的可用文件节点数</td>
+</tr>
+<tr>
+<td style="text-align:left">%f</td>
+<td style="text-align:left">文件系统的可用节点数</td>
+</tr>
+<tr>
+<td style="text-align:left">%C</td>
+<td style="text-align:left">SELinux的安全上下文</td>
+</tr>
+<tr>
+<td style="text-align:left">%i</td>
+<td style="text-align:left">十六进制表示的文件系统ID</td>
+</tr>
+<tr>
+<td style="text-align:left">%l</td>
+<td style="text-align:left">文件名的最大长度</td>
+</tr>
+<tr>
+<td style="text-align:left">%n</td>
+<td style="text-align:left">文件系统的文件名</td>
+</tr>
+<tr>
+<td style="text-align:left">%s</td>
+<td style="text-align:left">块大小（用于更快的传输）</td>
+</tr>
+<tr>
+<td style="text-align:left">%S</td>
+<td style="text-align:left">基本块大小（用于块计数）</td>
+</tr>
+<tr>
+<td style="text-align:left">%t</td>
+<td style="text-align:left">十六进制表示的文件系统类型</td>
+</tr>
+<tr>
+<td style="text-align:left">%T</td>
+<td style="text-align:left">可读格式表示的文件系统类型</td>
+</tr>
+</tbody>
+</table>
 <p>描述：–format选项可以一次显示所有指定的信息。例如只查看文件类型，和硬链接数。<br>命令：<br><code>stat --format=%F %h fairy2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-F-h.png" alt=""></p>
-<p>描述：以两种格式查看权限，查看文件的最后访问时间，自Epoch开始的秒数，还查看了文件的属主。<br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-format.png" alt=""></p>
+<p>描述：以两种格式查看权限，查看文件的最后访问时间，自Epoch开始的秒数，还查看了文件的属主。–format或-c选项可以打印特定或自定义格式，在每一行结束之后打印一个新行。<br>命令：<br><code>stat --format=%a fairy2</code><br><code>stat --format=%A fairy2</code><br><code>stat --format=%X fairy2</code><br><code>stat --format=%U fairy2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-format.png" alt=""></p>
+<p>描述：以两种格式查看权限，查看文件的最后访问时间，自Epoch开始的秒数，还查看了文件的属主。–printf类似于format，但它能够解释反斜线转义，并关闭后续换行符的打印，可以手动添加\n打印新行。<br>命令：<br><code>stat --printf=&quot;%a\n&quot; fairy2</code><br><code>stat --printf=&quot;%A\n&quot; fairy2</code><br><code>stat --printf=&quot;%X\n&quot; fairy2</code><br><code>stat --printf=&quot;%U\n&quot; fairy2</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/stat/stat-printf.png" alt=""></p>
 
       
     </div>
@@ -297,11 +478,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.iweeek.com/2018/06/20/daily-command-stat/">http://www.iweeek.com/2018/06/20/daily-command-stat/</a>
+      <a href="http://www.iweeek.com/2018/06/21/linux/daily-command-stat/">http://www.iweeek.com/2018/06/21/linux/daily-command-stat/</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月20日</a>
+      <a href=""> 2018年06月21日</a>
     </p>
   </div>
 
@@ -324,15 +505,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/20/linux/daily-command-sed/">
+      <a class="prev" href="/2018/06/22/linux/daily-command-mkdir/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux sed总结</span>
+        <span class="prev-text nav-default">Linux mkdir总结</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/2018/06/20/daily-command-wc/">
+      <a class="next" href="/2018/06/20/linux/daily-command-wc/">
         下一篇：
         <span class="next-text nav-default">Liunx wc总结</span>
         <span class="prev-text nav-mobile">下一篇</span>

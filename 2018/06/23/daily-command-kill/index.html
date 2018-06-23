@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux cd总结"/>
+  <meta name="description" content="Linux kill命令用法详解"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.iweeek.com/2018/06/19/daily-command-cd/"/>
+<link rel="canonical" href="http://www.iweeek.com/2018/06/23/daily-command-kill/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -99,7 +99,7 @@
 
 
 
-    <title> Linux cd总结 - 毁于随 </title>
+    <title> Linux kill命令用法详解 - 毁于随 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,7 +215,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux cd总结
+          Linux kill命令用法详解
         
       </h1>
       
@@ -224,7 +224,7 @@
            作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-19
+           日期: 2018-06-23
         </span>
         
           <div class="post-category">
@@ -235,8 +235,8 @@
         
         
         <div class="post-visits"
-             data-url="/2018/06/19/daily-command-cd/"
-             data-title="Linux cd总结">
+             data-url="/2018/06/23/daily-command-kill/"
+             data-title="Linux kill命令用法详解">
             阅读次数
           </div>
         
@@ -248,65 +248,68 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到当前目录的上一级目录"><span class="toc-text">切换到当前目录的上一级目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到当前目录的上上两层目录"><span class="toc-text">切换到当前目录的上上两层目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到当前目录的上一级目录-1"><span class="toc-text">切换到当前目录的上一级目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到根目录"><span class="toc-text">切换到根目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到某个目录"><span class="toc-text">切换到某个目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回进入当前目录前所在目录"><span class="toc-text">返回进入当前目录前所在目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把上个命令的参数用作cd命令的参数"><span class="toc-text">把上个命令的参数用作cd命令的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到名字带有空格的目录"><span class="toc-text">切换到名字带有空格的目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到某个目录并且打印列表"><span class="toc-text">切换到某个目录并且打印列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存当前工作目录至内存"><span class="toc-text">保存当前工作目录至内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到某个字符串开头的目录"><span class="toc-text">切换到某个字符串开头的目录</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kill的执行范围"><span class="toc-text">kill的执行范围</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#杀死进程"><span class="toc-text">杀死进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用进程名称杀死进程"><span class="toc-text">使用进程名称杀死进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#killall杀死多个进程"><span class="toc-text">killall杀死多个进程</span></a></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>cd命令用来切换工作目录。</p>
+        <p>kill命令用来删除执行中的程序或工作。</p>
 <a id="more"></a>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>cd [选项] 目录</code></p>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cd命令（change directory）用来切换工作目录。其中目录可以表示为绝对路径或相对路径，若目录名称省略，则变换至使用者的home directory（登录时所在的目录）。使用者只能访问自己的目录或者其余指定目录。通常与pwd命令一同使用，pwd命令获取当前目录路径并打印出来。</p>
-<p>表: 特殊目录</p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>kill命令用来删除执行中的程序或工作。kill可将指定的信息送至程序。预设的信息为SIGTERM(15),可将指定程序终止。若仍无法终止该程序，可使用SIGKILL(9)信息尝试强制删除程序。程序或工作的编号可利用ps指令或job指令查看。</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/kill/kill-man.png" alt=""></p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>kill [signal or option] PID(s)</code></p>
+<p>表: kill命令的信号名</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">特殊目录</th>
-<th style="text-align:left">含义</th>
+<th style="text-align:left">信号</th>
+<th style="text-align:left">信号值</th>
+<th style="text-align:left">行为</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">.</td>
-<td style="text-align:left">代表此层目录</td>
+<td style="text-align:left">SIGHUP</td>
+<td style="text-align:left">1</td>
+<td style="text-align:left">挂起</td>
 </tr>
 <tr>
-<td style="text-align:left">..</td>
-<td style="text-align:left">代表上一层目录</td>
+<td style="text-align:left">SIGKILL</td>
+<td style="text-align:left">9</td>
+<td style="text-align:left">杀死信号</td>
 </tr>
 <tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">代表前一个工作目录</td>
-</tr>
-<tr>
-<td style="text-align:left">~</td>
-<td style="text-align:left">代表“目前使用者身份”所在的主文件</td>
-</tr>
-<tr>
-<td style="text-align:left">~account</td>
-<td style="text-align:left">代表account这个使用者的主文件夹（account是个账号名称）</td>
+<td style="text-align:left">SIGTERM</td>
+<td style="text-align:left">15</td>
+<td style="text-align:left">终止</td>
 </tr>
 </tbody>
 </table>
+<p>SIGTERM是杀死进程默认和最安全的方式，SIGHUP次之。SIGKILL是最不安全的方式，它将杀死一个没有完全保存的进程。</p>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-p 如果要切换到的目标目录是一个符号连接，直接切换到符号连接指向的目标目录。</li>
-<li>-L 如果要切换的目标目录是一个符号的连接，直接切换到字符连接名代表的目录，而非符号连接所指向的目标目录。</li>
-<li>- 只有 - 一个选项时，当前工作目录将被切换到环境变量”OLDPWD”所表示的目录。</li>
+<li>-a：当处理当前进程时，不限制命令名和进程号的对应关系。</li>
+<li>-l &lt;信号编号&gt;：若不加&lt;信号编号&gt;选项，则-l参数会列出全部的信号名称。</li>
+<li>-p：指定kill 命令只打印相关进程的进程号，而不发送任何信号。</li>
+<li>-s &lt;信号名称或编号&gt;：指定要送出的信息。</li>
+<li>-i：交互式的终止进程。</li>
+<li>-I：忽略大小写。</li>
+<li>-u：指定用户。</li>
 </ul>
-<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="切换到当前目录的上一级目录"><a href="#切换到当前目录的上一级目录" class="headerlink" title="切换到当前目录的上一级目录"></a><strong>切换到当前目录的上一级目录</strong></h3><p>命令：<code>cd ..</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-previous.png" alt=""></p>
-<h3 id="切换到当前目录的上上两层目录"><a href="#切换到当前目录的上上两层目录" class="headerlink" title="切换到当前目录的上上两层目录"></a><strong>切换到当前目录的上上两层目录</strong></h3><p>命令：<code>cd ../..</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-previous-previous.png" alt=""></p>
-<h3 id="切换到当前目录的上一级目录-1"><a href="#切换到当前目录的上一级目录-1" class="headerlink" title="切换到当前目录的上一级目录"></a><strong>切换到当前目录的上一级目录</strong></h3><p>命令：<code>cd ~</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-home.png" alt=""></p>
-<h3 id="切换到根目录"><a href="#切换到根目录" class="headerlink" title="切换到根目录"></a><strong>切换到根目录</strong></h3><p>命令：<code>cd /</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-root.png" alt=""></p>
-<h3 id="切换到某个目录"><a href="#切换到某个目录" class="headerlink" title="切换到某个目录"></a><strong>切换到某个目录</strong></h3><p>命令：<code>cd /etc/security</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-specific.png" alt=""></p>
-<h3 id="返回进入当前目录前所在目录"><a href="#返回进入当前目录前所在目录" class="headerlink" title="返回进入当前目录前所在目录"></a><strong>返回进入当前目录前所在目录</strong></h3><p>命令：<code>cd /etc/security</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-just-now.png" alt=""></p>
-<h3 id="把上个命令的参数用作cd命令的参数"><a href="#把上个命令的参数用作cd命令的参数" class="headerlink" title="把上个命令的参数用作cd命令的参数"></a><strong>把上个命令的参数用作cd命令的参数</strong></h3><p>命令：<code>cd !$</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-last-command.png" alt=""></p>
-<h3 id="切换到名字带有空格的目录"><a href="#切换到名字带有空格的目录" class="headerlink" title="切换到名字带有空格的目录"></a><strong>切换到名字带有空格的目录</strong></h3><p>命令：<code>cd iweeek\ config/</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-space.png" alt=""></p>
-<h3 id="切换到某个目录并且打印列表"><a href="#切换到某个目录并且打印列表" class="headerlink" title="切换到某个目录并且打印列表"></a><strong>切换到某个目录并且打印列表</strong></h3><p>命令：<code>cd /home/nijun/ &amp;&amp; ls;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-pipe.png" alt=""></p>
-<h3 id="保存当前工作目录至内存"><a href="#保存当前工作目录至内存" class="headerlink" title="保存当前工作目录至内存"></a><strong>保存当前工作目录至内存</strong></h3><p>描述：保存当前目录到内存，然后切换到要求的目录。一旦popd被执行，它会从内存取出保存的目录位置，作为当前目录。<br>命令：<br><code>cd /home/nijun/sed</code><br><code>popd</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-pushd-popd.png" alt=""><br>说明：pushd和popd是Linux bash命令，也是其他几个能够保存当前工作目录位置至内存，并且从内存读取目录作为当前目录的脚本，这些脚本也可以切换目录。</p>
-<h3 id="切换到某个字符串开头的目录"><a href="#切换到某个字符串开头的目录" class="headerlink" title="切换到某个字符串开头的目录"></a><strong>切换到某个字符串开头的目录</strong></h3><p>描述：如果目录中只有一个以s开头的目录，就会直接移动security目录中。如果有很多目录以s开头，而且命令行没有提供更多的标准，这将会移动到第一个以s开头的命令（以标准字典的顺序）。<br>命令：<br><code>cd /etc/s*</code><br><code>cd /etc/securi*</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-asterisk.png" alt=""></p>
-<p>命令：<code>cd /etc/p?</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-question.png" alt=""></p>
+<h2 id="kill的执行范围"><a href="#kill的执行范围" class="headerlink" title="kill的执行范围"></a>kill的执行范围</h2><ul>
+<li>用户可以杀死他的所有进程。</li>
+<li>用户不能杀死另一个用户的进程。</li>
+<li>用户无法终止系统正在使用的进程。</li>
+<li>root用户可以终止系统级进程和任何用户的进程。</li>
+</ul>
+<h3 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a><strong>杀死进程</strong></h3><p>描述：用pgrep找出进程PID，并用kill终止PID为2807的进程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># pgrep mysql</span><br><span class="line">2807</span><br><span class="line"># kill -9 2807</span><br></pre></td></tr></table></figure></p>
+<p>说明：使用<code>kill -9 PID</code>与<code>kill -SIGKILL PID</code>类似。</p>
+<h3 id="使用进程名称杀死进程"><a href="#使用进程名称杀死进程" class="headerlink" title="使用进程名称杀死进程"></a><strong>使用进程名称杀死进程</strong></h3><p>描述：pkill命令后直接加上进程名即可杀死该进程，但在杀死之前，最好先确认进程名称是否正确。<br>命令：<br><code>pkill mysql</code></p>
+<p>描述：为了避免kill掉错误的进程，也可以通过下面命令来匹配进程名称。<br>命令：<br><code>pgrep -l ssh</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-pgrep-l.png" alt=""></p>
+<h3 id="killall杀死多个进程"><a href="#killall杀死多个进程" class="headerlink" title="killall杀死多个进程"></a><strong>killall杀死多个进程</strong></h3><p>描述：一次杀死多个进程。<br>命令：<br><code>kill PID1 PID2 PID3</code><br><code>kill -9 PID1 PID2 PID3</code><br><code>kill -SIGKILL PID1 PID2 PID3</code></p>
+<p>描述：killall用进程名替代PID，并且会kill掉所有的同名进程。<br>语法：<code>killall [signal or option] Process name</code><br>命令：<code>killall mysqld</code><br>检查：验证进程是否处于运行状态。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> service mysql status</span><br><span class="line"><span class="meta">#</span> pgrep mysql</span><br><span class="line"><span class="meta">#</span> ps -aux | grep mysql</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -328,11 +331,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.iweeek.com/2018/06/19/daily-command-cd/">http://www.iweeek.com/2018/06/19/daily-command-cd/</a>
+      <a href="http://www.iweeek.com/2018/06/23/daily-command-kill/">http://www.iweeek.com/2018/06/23/daily-command-kill/</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月19日</a>
+      <a href=""> 2018年06月23日</a>
     </p>
   </div>
 
@@ -355,17 +358,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/19/daily-command-date/">
+      <a class="prev" href="/2018/06/23/daily-command-curl/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux date总结</span>
+        <span class="prev-text nav-default">Linux curl用法详解</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/2018/06/15/linux/daily-command-ls/">
+      <a class="next" href="/2018/06/22/linux/daily-command-mkdir/">
         下一篇：
-        <span class="next-text nav-default">Linux ls总结</span>
+        <span class="next-text nav-default">Linux mkdir总结</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

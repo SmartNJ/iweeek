@@ -2,44 +2,219 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/20/daily-command-stat/</loc>
+    <loc>http://www.iweeek.com/2018/06/23/daily-command-curl/</loc>
     
-    <lastmod>2018-06-20T02:18:42.814Z</lastmod>
+    <lastmod>2018-06-23T05:18:49.807Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/20/daily-command-wc/</loc>
+    <loc>http://www.iweeek.com/2018/06/04/linux/daily-command-ps/</loc>
     
-    <lastmod>2018-06-19T17:39:21.204Z</lastmod>
+    <lastmod>2018-06-23T04:26:12.807Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/23/daily-command-kill/</loc>
+    
+    <lastmod>2018-06-23T00:34:42.809Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/07/linux/daily-command-netstat/</loc>
+    
+    <lastmod>2018-06-23T00:21:47.158Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/22/linux/daily-command-mkdir/</loc>
+    
+    <lastmod>2018-06-22T06:32:02.985Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/08/linux/daily-command-xargs/</loc>
+    
+    <lastmod>2018-06-22T01:57:28.853Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-type/</loc>
+    
+    <lastmod>2018-06-22T01:56:40.559Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/14/linux/daily-command-touch/</loc>
+    
+    <lastmod>2018-06-22T01:56:05.845Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-top/</loc>
+    
+    <lastmod>2018-06-22T01:55:28.666Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-tee/</loc>
+    
+    <lastmod>2018-06-22T01:55:13.908Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-tail/</loc>
+    
+    <lastmod>2018-06-22T01:54:41.175Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-sort/</loc>
+    
+    <lastmod>2018-06-22T01:53:57.512Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/23/linux/daily-command-sed/</loc>
+    
+    <lastmod>2018-06-22T01:53:42.734Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-scp/</loc>
+    
+    <lastmod>2018-06-22T01:52:16.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-route/</loc>
+    
+    <lastmod>2018-06-22T01:21:36.133Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-ping/</loc>
+    
+    <lastmod>2018-06-22T01:20:45.532Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-more/</loc>
+    
+    <lastmod>2018-06-22T01:19:00.688Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://www.iweeek.com/2018/06/15/linux/daily-command-ls/</loc>
     
-    <lastmod>2018-06-19T17:31:22.768Z</lastmod>
+    <lastmod>2018-06-22T01:17:53.910Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/19/daily-command-date/</loc>
+    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-join/</loc>
+    
+    <lastmod>2018-06-22T01:17:31.573Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-io-redirection/</loc>
+    
+    <lastmod>2018-06-22T01:17:20.781Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-grep/</loc>
+    
+    <lastmod>2018-06-22T01:16:28.230Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/08/linux/daily-command-find/</loc>
+    
+    <lastmod>2018-06-22T01:14:30.912Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-du/</loc>
+    
+    <lastmod>2018-06-22T01:12:42.564Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-df/</loc>
+    
+    <lastmod>2018-06-22T01:11:49.538Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/10/linux/daily-command-cat/</loc>
+    
+    <lastmod>2018-06-22T01:10:14.536Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-awk/</loc>
+    
+    <lastmod>2018-06-22T01:09:55.482Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/21/linux/daily-command-stat/</loc>
+    
+    <lastmod>2018-06-22T01:07:12.200Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/02/linux/daily-command-tar/</loc>
+    
+    <lastmod>2018-06-20T12:35:44.922Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/20/linux/daily-command-wc/</loc>
+    
+    <lastmod>2018-06-19T17:39:21.204Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/2018/06/19/linux/daily-command-date/</loc>
     
     <lastmod>2018-06-19T16:41:23.668Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/19/daily-command-cd/</loc>
+    <loc>http://www.iweeek.com/2018/06/19/linux/daily-command-cd/</loc>
     
     <lastmod>2018-06-19T08:44:11.263Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/20/linux/daily-command-sed/</loc>
-    
-    <lastmod>2018-06-19T07:55:35.997Z</lastmod>
     
   </url>
   
@@ -54,13 +229,6 @@
     <loc>http://www.iweeek.com/2017/05/04/java/java-array/</loc>
     
     <lastmod>2018-06-18T13:24:25.857Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/14/linux/daily-command-touch/</loc>
-    
-    <lastmod>2018-06-18T12:50:31.442Z</lastmod>
     
   </url>
   
@@ -114,79 +282,9 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/08/linux/daily-command-xargs/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.343Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-uniq/</loc>
     
     <lastmod>2018-06-18T12:41:56.342Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-type/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.342Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-top/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.340Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-tee/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-tail/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.339Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/02/linux/daily-command-tar/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.337Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-sort/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.336Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-scp/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.335Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-route/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.334Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/04/linux/daily-command-ps/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.333Z</lastmod>
     
   </url>
   
@@ -205,72 +303,9 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/07/linux/daily-command-netstat/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.297Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-ping/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.296Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-more/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.295Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/04/linux/daily-command-lsof/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.294Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/12/linux/daily-command-join/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.293Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-io-redirection/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.292Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/06/linux/daily-command-iftop/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.292Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-grep/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.291Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-head/</loc>
     
     <lastmod>2018-06-18T12:41:56.291Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/08/linux/daily-command-find/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.290Z</lastmod>
     
   </url>
   
@@ -282,37 +317,9 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-du/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.286Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/11/linux/daily-command-df/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.285Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iweeek.com/2018/06/13/linux/daily-command-cut/</loc>
     
     <lastmod>2018-06-18T12:41:56.285Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/10/linux/daily-command-cat/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.284Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/06/09/linux/daily-command-awk/</loc>
-    
-    <lastmod>2018-06-18T12:41:56.283Z</lastmod>
     
   </url>
   
@@ -324,14 +331,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/04/13/efficiency/the-best-way-to-program/</loc>
+    <loc>http://www.iweeek.com/2018/04/19/design-pattern/initialization-on-demand-holder-idiom/</loc>
     
     <lastmod>2018-06-18T12:41:56.280Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/04/19/design-pattern/initialization-on-demand-holder-idiom/</loc>
+    <loc>http://www.iweeek.com/2018/04/13/efficiency/the-best-way-to-program/</loc>
     
     <lastmod>2018-06-18T12:41:56.280Z</lastmod>
     
@@ -359,14 +366,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/05/04/android/service-is-a-context/</loc>
+    <loc>http://www.iweeek.com/2018/05/27/css/css-selectors/</loc>
     
     <lastmod>2018-06-18T12:41:56.276Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/05/27/css/css-selectors/</loc>
+    <loc>http://www.iweeek.com/2018/05/04/android/service-is-a-context/</loc>
     
     <lastmod>2018-06-18T12:41:56.276Z</lastmod>
     
@@ -415,14 +422,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/tags/index.html</loc>
+    <loc>http://www.iweeek.com/slides/index.html</loc>
     
     <lastmod>2018-06-11T02:58:23.347Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/slides/index.html</loc>
+    <loc>http://www.iweeek.com/tags/index.html</loc>
     
     <lastmod>2018-06-11T02:58:23.347Z</lastmod>
     

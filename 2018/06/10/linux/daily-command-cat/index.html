@@ -249,7 +249,7 @@
 
     <div class="post-content">
       
-        <p>cat（concatenate）命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。</p>
+        <p>cat命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。</p>
 <a id="more"></a>
 <h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>cat [选项] [文件]</code></p>
 <h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cat（concatenate）命令可以创建单个或多个文件，查看文件的内容和控制字符，连接文件以及在终端或文件中重定向输出。<br>cat命令不会在文件分页处停下来，而是一下子显示完整整个文件。如果希望每次显示一页，可以使用more命令或把cat命令的输出通过管道传递到另外一个具有分页功能的命令中。</p>
@@ -286,6 +286,8 @@
 <p><img src="http://pabfn7ecx.bkt.clouddn.com/cat/cat-merge.png" alt=""></p>
 <p><strong>实例：11. 重定向多个文件到一个文件中并排序</strong><br>描述：将文件aa，bb和cc的内容合并，通过管道并排序后输入到dd文件中。若dd不存在，则创建，若存在，则覆盖它。<br>命令：<code>cat aa bb cc | sort &gt; dd</code> </p>
 <p><img src="http://pabfn7ecx.bkt.clouddn.com/cat/cat-merge-and-sort.png" alt=""></p>
+<p><strong>实例：12. 在/home/$USER/iweeek创建一个文件并填入内容</strong><br>描述：在/home/$USER/Desktop创建一个文件（例如 test）并填入以下内容。要求创建，编辑，输入内容这些操作一步完成。<br>命令：<code>cat &lt;&lt; EOF &gt; /home/$USER/iweeek/test</code> </p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/cat/cat-redirection.png" alt=""></p>
 
       
     </div>

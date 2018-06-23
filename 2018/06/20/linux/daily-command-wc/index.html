@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux lsof总结"/>
+  <meta name="description" content="Liunx wc总结"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.iweeek.com/2018/06/04/linux/daily-command-lsof/"/>
+<link rel="canonical" href="http://www.iweeek.com/2018/06/20/linux/daily-command-wc/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -99,7 +99,7 @@
 
 
 
-    <title> Linux lsof总结 - 毁于随 </title>
+    <title> Liunx wc总结 - 毁于随 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,7 +215,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux lsof总结
+          Liunx wc总结
         
       </h1>
       
@@ -224,13 +224,19 @@
            作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-04
+           日期: 2018-06-20
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
         
         
         <div class="post-visits"
-             data-url="/2018/06/04/linux/daily-command-lsof/"
-             data-title="Linux lsof总结">
+             data-url="/2018/06/20/linux/daily-command-wc/"
+             data-title="Liunx wc总结">
             阅读次数
           </div>
         
@@ -239,11 +245,37 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打印字节数"><span class="toc-text">打印字节数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印字节数-1"><span class="toc-text">打印字节数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印字符数"><span class="toc-text">打印字符数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印换行数"><span class="toc-text">打印换行数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印单词数"><span class="toc-text">打印单词数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印最长行长度"><span class="toc-text">打印最长行长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计目录中文件或目录的数量"><span class="toc-text">统计目录中文件或目录的数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多命令信息"><span class="toc-text">更多命令信息</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>lsof的意思是LiSt打开文件，它用于找出哪些文件通过哪个进程打开。众所周知，Linux/Unix将所有内容视为一个文件（管道，套接字，目录，设备等）。使用lsof的原因之一是当磁盘无法卸载时，是因为有进程正在使用这些文件。</p>
-<p>参考：<br><a href="https://www.tecmint.com/10-lsof-command-examples-in-linux/" target="_blank" rel="noopener">https://www.tecmint.com/10-lsof-command-examples-in-linux/</a></p>
+        <p>wc命令可以计算文件的新行、字符数、字节数。</p>
+<a id="more"></a>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>wc命令可以计算文件的新行、字符数、字节数。如果指定多于一个文件，也列出总的行数。单词是由空格分隔的非零长度的字符序列。如果没有指定文件，或当文件为-，则读取标准输入。</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-man.png" alt=""></p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>wc [OPTION]… [FILE]…<br>wc [OPTION]… –files0-from=F</p>
+<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
+<li>-c或–bytes或——chars：只显示Bytes数；</li>
+<li>-l或——lines：只显示列数；</li>
+<li>-w或——words：只显示字数。</li>
+<li>-m或——chars：只显示字符数。</li>
+<li>-L或–max-line-length：打印最长行的长度。</li>
+<li>–files0-from=F：从文件读取文件名，文件名应该是NUL-terminated空字符结尾。如果是-则从标准输入中读取。</li>
+</ul>
+<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="打印字节数"><a href="#打印字节数" class="headerlink" title="打印字节数"></a><strong>打印字节数</strong></h3><p>描述：打印letter文件的行数，字符数，字节数和文件名。默认没有参数。<br>命令：<code>wc letter</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc.png" alt=""></p>
+<h3 id="打印字节数-1"><a href="#打印字节数-1" class="headerlink" title="打印字节数"></a><strong>打印字节数</strong></h3><p>描述：打印file.txt文件的字节数，包含29个字节。-c选项打印字节数。<br>命令：<code>wc -c file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-c.png" alt=""></p>
+<h3 id="打印字符数"><a href="#打印字符数" class="headerlink" title="打印字符数"></a><strong>打印字符数</strong></h3><p>描述：打印file.txt文件的字符数，包含29个字符。-m选项打印字符数。<br>命令：<code>wc -m file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-m.png" alt=""></p>
+<h3 id="打印换行数"><a href="#打印换行数" class="headerlink" title="打印换行数"></a><strong>打印换行数</strong></h3><p>描述：打印file.txt文件中的新行数，包含4行。-l选项打印新行数。<br>命令：<code>wc -l file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-l.png" alt=""></p>
+<h3 id="打印单词数"><a href="#打印单词数" class="headerlink" title="打印单词数"></a><strong>打印单词数</strong></h3><p>描述：打印file.txt文件中的单词数，包含6个单子。-w选项打印单词数。<br>命令：<code>wc -w file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-w.png" alt=""></p>
+<h3 id="打印最长行长度"><a href="#打印最长行长度" class="headerlink" title="打印最长行长度"></a><strong>打印最长行长度</strong></h3><p>描述：打印file.txt文件中的最长行的长度，最长行长度为11。-L选项打印输入文件中最长行的长度。<br>命令：<code>wc -L file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-width-L.png" alt=""></p>
+<h3 id="统计目录中文件或目录的数量"><a href="#统计目录中文件或目录的数量" class="headerlink" title="统计目录中文件或目录的数量"></a><strong>统计目录中文件或目录的数量</strong></h3><p>描述：统计目录中文件夹和文件的数量。ls -1将每个文件夹或文件放在新行上，然后通过wc -l来计算换行数。<br>命令：<code>ls -1 | wc -l</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-pipe.png" alt=""></p>
+<h3 id="更多命令信息"><a href="#更多命令信息" class="headerlink" title="更多命令信息"></a><strong>更多命令信息</strong></h3><p><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-more-detail.png" alt=""></p>
 
       
     </div>
@@ -265,11 +297,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.iweeek.com/2018/06/04/linux/daily-command-lsof/">http://www.iweeek.com/2018/06/04/linux/daily-command-lsof/</a>
+      <a href="http://www.iweeek.com/2018/06/20/linux/daily-command-wc/">http://www.iweeek.com/2018/06/20/linux/daily-command-wc/</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月04日</a>
+      <a href=""> 2018年06月20日</a>
     </p>
   </div>
 
@@ -292,17 +324,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/06/linux/daily-command-iftop/">
+      <a class="prev" href="/2018/06/21/linux/daily-command-stat/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux iftop总结</span>
+        <span class="prev-text nav-default">Linux stat总结</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/2018/06/04/linux/daily-command-ps/">
+      <a class="next" href="/2018/06/19/linux/daily-command-date/">
         下一篇：
-        <span class="next-text nav-default">Linux ps总结</span>
+        <span class="next-text nav-default">Linux date总结</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

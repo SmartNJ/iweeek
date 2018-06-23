@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux ps总结"/>
+  <meta name="description" content="Linux ps命令用法详解"/>
 
 
 
@@ -99,7 +99,7 @@
 
 
 
-    <title> Linux ps总结 - 毁于随 </title>
+    <title> Linux ps命令用法详解 - 毁于随 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,7 +215,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux ps总结
+          Linux ps命令用法详解
         
       </h1>
       
@@ -230,7 +230,7 @@
         
         <div class="post-visits"
              data-url="/2018/06/04/linux/daily-command-ps/"
-             data-title="Linux ps总结">
+             data-title="Linux ps命令用法详解">
             阅读次数
           </div>
         
@@ -239,20 +239,99 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不加参数执行ps命令"><span class="toc-text">不加参数执行ps命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示更多信息"><span class="toc-text">显示更多信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示所有进程"><span class="toc-text">显示所有进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示所有进程信息，连同命令行"><span class="toc-text">显示所有进程信息，连同命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示用户进程"><span class="toc-text">显示用户进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过进程名和PID过滤进程"><span class="toc-text">通过进程名和PID过滤进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过cpu和内存使用来过滤进程"><span class="toc-text">通过cpu和内存使用来过滤进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化输出root用户（真实的或有效的UID）创建的进程"><span class="toc-text">格式化输出root用户（真实的或有效的UID）创建的进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#指定显示的格式"><span class="toc-text">指定显示的格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过线程过滤进程"><span class="toc-text">通过线程过滤进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实时监控进程状态"><span class="toc-text">实时监控进程状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#树形显示进程"><span class="toc-text">树形显示进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杀掉进程"><span class="toc-text">杀掉进程</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        <p>为了查阅系统上面正在运行当中的程序，可以利用静态的ps或者是动态的top，本文就来介绍ps的相关用法。</p>
-<p>Linux中的ps命令是Process Status的缩写。ps命令用来列出系统中当前运行的那些进程。ps命令列出的是当前那些进程的快照，就是执行ps命令的那个时刻的那些进程，如果想要动态的显示进程信息，就可以使用top命令。</p>
+        <p>ps命令用来列出系统中当前运行进程的快照。</p>
 <a id="more"></a>
-<p>要对进程进行监测和控制，首先必须要了解当前进程的情况，也就是需要查看当前进程，而 ps 命令就是最基本同时也是非常强大的进程查看命令。使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等。总之大部分信息都是可以通过执行该命令得到的。</p>
-<p>ps 为我们提供了进程的一次性的查看，它所提供的查看结果并不动态连续的；如果想对进程时间监控，应该用 top 工具。</p>
-<p>kill 命令用于杀死进程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># ps aux &lt;== 观察系统所有的程序数据</span><br><span class="line"># ps -lA &lt;== 观察系统所有的程序数据</span><br><span class="line"># ps axjf &lt;== 连同部分程序树</span><br></pre></td></tr></table></figure>
-<p>选项与参数：<br>-A：所有的不同process均显示出来，与-e具有同样的效果。<br>-a：不与terminal有关的所有process。<br>-u：有效使用者（effective user）相关的process。<br>-e：列出所有程序，与-A效果相同。<br>x：通常与a这个参数一起使用，可列出完整的信息。<br>l：较长、较详细的输出该该PID的信息。<br>j：工作的格式(jobs format)。<br>-f：做一个更为完整的输出。</p>
-<p>实例：仅观察自己的bash相关程序：ps -l<br>描述：ps默认只显示属于当前用户这次登录的PID与相关信息，-l参数显示更详细的信息。<br>命令：ps -l<br>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ps -l</span><br><span class="line">F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</span><br><span class="line">4 S     0 16215 16213  0  80   0 - 28845 wait   pts/1    00:00:00 bash</span><br><span class="line">0 R     0 16308 16215  0  80   0 - 37232 -      pts/1    00:00:00 ps</span><br></pre></td></tr></table></figure>
-<p>每个字段具体的含义如下：</p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>ps命令（Process Status）用来列出系统中当前运行的那些进程的快照。使用该命令可以确定有哪些进程正在运行和运行的状态、进程是否结束、进程有没有僵死、哪些进程占用了过多的资源等等。如果想要动态地显示进程信息，就可以使用top命令</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-man.png" alt=""></p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>ps [options]</code></p>
+<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><p>表: ps命令选项</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-A</td>
+<td style="text-align:left">所有的不同process均显示出来，与-e具有同样的效果</td>
+</tr>
+<tr>
+<td style="text-align:left">-a</td>
+<td style="text-align:left">不与terminal有关的所有process</td>
+</tr>
+<tr>
+<td style="text-align:left">-u</td>
+<td style="text-align:left">有效使用者（effectiveuser）相关的process</td>
+</tr>
+<tr>
+<td style="text-align:left">-e</td>
+<td style="text-align:left">列出所有程序，与-A效果相同</td>
+</tr>
+<tr>
+<td style="text-align:left">-x</td>
+<td style="text-align:left">通常与a这个参数一起使用，可列出完整的信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">较长、较详细的输出该该PID的信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-j</td>
+<td style="text-align:left">工作的格式(jobsformat)</td>
+</tr>
+<tr>
+<td style="text-align:left">-f</td>
+<td style="text-align:left">做一个更为完整的输出</td>
+</tr>
+</tbody>
+</table>
+<p>ps命令支持三种使用的语法格式:</p>
+<ol>
+<li>UNIX 风格，选项可以组合在一起，并且选项前必须有“-”连字符</li>
+<li>BSD 风格，选项可以组合在一起，但是选项前不能有“-”连字符</li>
+<li>GNU 风格的长选项，选项前有两个“-”连字符</li>
+</ol>
+<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="不加参数执行ps命令"><a href="#不加参数执行ps命令" class="headerlink" title="不加参数执行ps命令"></a><strong>不加参数执行ps命令</strong></h3><p>描述：结果显示4列信息，这些信息并未排序。<br>命令：<code>ps</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps.png" alt=""><br>表: ps命令默认的列表所代表的含义</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">PID</td>
+<td style="text-align:left">运行着的命令(CMD)的进程编号</td>
+</tr>
+<tr>
+<td style="text-align:left">TTY</td>
+<td style="text-align:left">命令所运行的位置（终端）</td>
+</tr>
+<tr>
+<td style="text-align:left">TIME</td>
+<td style="text-align:left">运行着的该命令所占用的CPU处理时间</td>
+</tr>
+<tr>
+<td style="text-align:left">CMD</td>
+<td style="text-align:left">该进程所运行的命令</td>
+</tr>
+</tbody>
+</table>
+<h3 id="显示更多信息"><a href="#显示更多信息" class="headerlink" title="显示更多信息"></a><strong>显示更多信息</strong></h3><p>描述：ps默认只显示属于当前用户这次登录的PID与相关信息，-l参数显示更详细的信息。<br>命令：<code>ps -l</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-l.png" alt=""></p>
+<p>-l显示信息的每个字段具体含义如下：</p>
 <ul>
 <li>F：代表这个程序的旗标（process flags），说明这个程序的总结权限，常见的有：<ul>
 <li>若为4表示此程序的权限为root。</li>
@@ -275,35 +354,94 @@
 <li>TIME：使用掉的CPU时间，此程序实际花费CPU运行的时间，而不是系统时间。</li>
 <li>CMD：command的缩写，造成此程序的出发程序是什么。</li>
 </ul>
-<p>实例：显示指定用户信息<br>描述：列出指定用户的进程信息。<br>命令：ps -u root<br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># ps -u root</span><br><span class="line">  PID TTY          TIME CMD</span><br><span class="line">    1 ?        00:00:01 systemd</span><br><span class="line">    2 ?        00:00:00 kthreadd</span><br><span class="line">    3 ?        00:00:00 ksoftirqd/0</span><br></pre></td></tr></table></figure></p>
-<p>实例：显示所有进程信息，连同命令行<br>描述：-e参数与-A参数一样显示所有进程信息，-a将不显示命令行。<br>命令：ps -ef<br>输出：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># ps -ef</span><br><span class="line">OR</span><br><span class="line"># ps -Af</span><br><span class="line">	UID        PID  PPID  C STIME TTY          TIME CMD</span><br><span class="line">	root         1     0  0 Jun02 ?        00:00:01 /usr/lib/systemd/systemd --switched-root --system --deserialize 21</span><br><span class="line">	root         2     0  0 Jun02 ?        00:00:00 [kthreadd]</span><br><span class="line">	...</span><br></pre></td></tr></table></figure></p>
-<p>实例：观察系统所有程序<br>描述：列出目前所有的正在内存当中的程序，ps aux会依照PID的顺序来排序显示。<br>命令：ps aux<br>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ps aux</span><br><span class="line">USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</span><br><span class="line">root         1  0.0  0.1  43212  3532 ?        Ss   Jun02   0:01 /usr/lib/system</span><br><span class="line">root         2  0.0  0.0      0     0 ?        S    Jun02   0:00 [kthreadd]</span><br></pre></td></tr></table></figure>
-<p>各个字段的意义：</p>
-<ul>
-<li>User：该process属于哪个使用者账号。</li>
-<li>PID：该process使用掉的CPU资源百分比。</li>
-<li>%CPU：该process所占用的实体内存百分比。</li>
-<li>%MEM：该process所占用的实体内存百分比。</li>
-<li>VSZ：该process使用掉的虚拟内存量（KBytes）。</li>
-<li>RSS：该process占用的固定的内存量（KBytes）。</li>
-<li>TTY：该process是在哪个终端机上面运行，若与终端机无关则显示？。另外，tty1-tty6是本机上面的登陆者程序，如果是pts/0等等的，则表示为网络连接的主机程序。</li>
-<li>STAT：该process目前的状态，状态显示与ps -l的S旗标相同（R/S/T/Z）。</li>
-<li>START：该process被触发启动的时间。</li>
-<li>TIME：该process实际使用CPU运行的时间。</li>
-<li>COMMAND：该process的实际指令是什么。</li>
-</ul>
-<p>实例：找出指定程序。<br>描述：通过ps打印出所有的process信息，再使用grep过滤结果信息，查找指定程序的PID。<br>命令：ps aux | egrep ‘(cron|syslog)’<br>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># ps aux | egrep &apos;(cron|syslog)&apos;</span><br><span class="line">root       450  0.0  0.0 126220  1604 ?        Ss   Jun02   0:00 /usr/sbin/crond -n</span><br><span class="line">root       687  0.0  0.2 224044  5332 ?        Ssl  Jun02   0:00 /usr/sbin/rsyslogd -n</span><br><span class="line">root      1029  0.0  0.0 122032  1488 ?        Sl   Jun02   0:43 /usr/local/cloudmonitor/wrapper/bin/./wrapper /usr/local/cloudmonitor/wrapper/bin/../conf/wrapper.conf wrapper.syslog.ident=cloudmonitor wrapper.pidfile=/usr/local/cloudmonitor/wrapper/bin/./cloudmonitor.pid wrapper.daemonize=TRUE wrapper.name=cloudmonitor wrapper.displayname=cloudmonitor wrapper.statusfile=/usr/local/cloudmonitor/wrapper/bin/./cloudmonitor.status wrapper.java.statusfile=/usr/local/cloudmonitor/wrapper/bin/./cloudmonitor.java.status wrapper.lockfile=/var/lock/subsys/cloudmonitor wrapper.script.version=3.5.27</span><br><span class="line">root     16939  0.0  0.0 112644   980 pts/3    R+   12:32   0:00 grep -E --color=auto (cron|syslog)</span><br></pre></td></tr></table></figure>
-<p>实例：显示程序树<br>描述：显示类似程序树的进程信息。<br>命令：ps -axjf<br>输出：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ps -axjf</span><br><span class="line"> PPID   PID  PGID   SID TTY      TPGID STAT   UID   TIME COMMAND</span><br><span class="line">    0     2     0     0 ?           -1 S        0   0:00 [kthreadd]</span><br><span class="line">    2     3     0     0 ?           -1 S        0   0:00  \_ [ksoftirqd/0]</span><br><span class="line">...</span><br><span class="line">15920 15922 15922 15922 pts/2    15922 Ss+      0   0:00  |   \_ -bash</span><br><span class="line"> 2099 16451 16451 16451 ?           -1 Ss       0   0:00  \_ sshd: root@pts/3</span><br><span class="line">16451 16453 16453 16453 pts/3    16550 Ss       0   0:00      \_ -bash</span><br><span class="line">16453 16499 16499 16453 pts/3    16550 S        0   0:00          \_ bash</span><br><span class="line">16499 16511 16511 16453 pts/3    16550 S        0   0:00              \_ sudo su -</span><br><span class="line">16511 16512 16511 16453 pts/3    16550 S        0   0:00                  \_ su -</span><br><span class="line">16512 16513 16513 16453 pts/3    16550 S        0   0:00                      \_ -bash</span><br><span class="line">16513 16530 16530 16453 pts/3    16550 S        0   0:00                          \_ bash</span><br><span class="line">16530 16550 16550 16453 pts/3    16550 R+       0   0:00                              \_ ps -axjf</span><br></pre></td></tr></table></figure>
-<p>进阶：使用管道与其他命令</p>
-<p>实例：使用管道与其他命令<br>描述：列出目前所有的正在内存当中的程序，ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。<br>命令：ps -aux | head</p>
-<p>实例：列出目前所有的正在内存当中的程序，ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。<br>命令：ps -aux &gt; out.txt</p>
-<p>实例：指定显示的格式。<br>描述：-o显示指定的格式输出，–sort=-%mem指定以倒序显示程序。<br>命令：ps -eo pid,ppid,cmd,%mem,%cpu –sort=-%mem | head<br>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</span><br><span class="line">  PID  PPID CMD                         %MEM %CPU</span><br><span class="line"> 1248  1029 /usr/local/cloudmonitor/jre  3.6  0.4</span><br><span class="line">  690     1 /usr/bin/python -Es /usr/sb  0.8  0.0</span><br><span class="line">  976     1 /usr/local/aegis/aegis_clie  0.6  0.1</span><br><span class="line">  423     1 /usr/lib/polkit-1/polkitd -  0.6  0.0</span><br><span class="line">16409  2099 sshd: root@pts/0             0.3  0.0</span><br><span class="line">15920  2099 sshd: root@pts/2             0.3  0.0</span><br><span class="line">16213  2099 sshd: root@pts/1             0.3  0.0</span><br><span class="line">16451  2099 sshd: root@pts/3             0.3  0.0</span><br><span class="line">  687     1 /usr/sbin/rsyslogd -n        0.2  0.0</span><br></pre></td></tr></table></figure>
-<p>参考：</p>
-<p><a href="https://www.tecmint.com/find-linux-processes-memory-ram-cpu-usage/" target="_blank" rel="noopener">https://www.tecmint.com/find-linux-processes-memory-ram-cpu-usage/</a></p>
+<h3 id="显示所有进程"><a href="#显示所有进程" class="headerlink" title="显示所有进程"></a><strong>显示所有进程</strong></h3><p>描述：使用-a参数，-a代表all，加上x参数会显示没有控制终端的进程。可以结合less命令和管道来使用。<br>命令：<br><code>ps -ax</code><br><code>ps -ax | less</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-ax.png" alt=""><br>说明：如果用户名的长度大于8个字符，那么ps只会显示UID。</p>
+<h3 id="显示所有进程信息，连同命令行"><a href="#显示所有进程信息，连同命令行" class="headerlink" title="显示所有进程信息，连同命令行"></a><strong>显示所有进程信息，连同命令行</strong></h3><p>描述：-e参数与-A参数一样显示所有进程信息，-a将不显示命令行。-f和u选项可以显示进程的具体信息。<br>命令：<code>ps efu</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-efu.png" alt=""></p>
+<h3 id="显示用户进程"><a href="#显示用户进程" class="headerlink" title="显示用户进程"></a><strong>显示用户进程</strong></h3><p>描述：查看root用户的进程信息。-u选项后跟用户名过滤所属用户的进程，多个用户名用逗号分隔。<br>命令：<code>ps -u root</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-u.png" alt=""></p>
+<h3 id="通过进程名和PID过滤进程"><a href="#通过进程名和PID过滤进程" class="headerlink" title="通过进程名和PID过滤进程"></a><strong>通过进程名和PID过滤进程</strong></h3><p>描述：-C选项可以显示指定进程名的进程信息。<br>命令：<code>ps -C agetty</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-C.png" alt=""></p>
+<p>描述：-p选项通过进程ID显示进程，通过逗号分隔来指定多个进程ID。<br>命令：<code>ps -f -p 423,32535,2087</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-f-p.png" alt=""></p>
+<p>描述：使用grep查找，因为-C选项必须提供精确的进程名，它并不能通过部分名字或者通配符查找。<br>命令：<code>ps -ef | grep ssh</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-grep.png" alt=""></p>
+<p>描述：只列出指定进程名的进程ID。<br>命令：<code>ps -C agetty -o pid=</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-C-o.png" alt=""></p>
+<p>描述：-f选项查看格式化的信息列表。<br>命令：<code>ps -f -C agetty</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-f-C.png" alt=""></p>
+<p>描述：只打印进程ID为27815的进程名字。<br>命令：<code>ps -q 27815 -o comm=</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-f-C.png" alt=""></p>
+<h3 id="通过cpu和内存使用来过滤进程"><a href="#通过cpu和内存使用来过滤进程" class="headerlink" title="通过cpu和内存使用来过滤进程"></a><strong>通过cpu和内存使用来过滤进程</strong></h3><p>描述：列出目前所有的正在内存当中的程序。ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。</p>
+<p>命令：<code>ps aux | less</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-aux-less.png" alt=""></p>
+<p>描述：根据CPU使用来排序。默认的结果集是依照PID的顺序来排序显示的，可以通过–sort命令来排序。<br>命令：<code>ps -aux --sort -pcpu | less</code></p>
+<p>描述：根据内存使用来排序。默认的结果集是依照PID的顺序来排序显示的，可以通过–sort命令来排序。<br>命令：<code>ps -aux --sort -pmem | less</code></p>
+<p>描述：将前两个命令合并，通过管道显示前10个结果。<br>命令：<br><code>ps -aux --sort -pcpu,+pmem | head -n 10</code><br><code>ps -aux --sort=-pcpu,+pmem | head -n 10</code></p>
+<p>描述：ps aux会依照PID的顺序来排序显示，只显示排在前面的一部分数据。<br>命令：<code>ps -aux &gt; out.txt</code></p>
+<p>表: ps命令显示字段的意义</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">User</td>
+<td style="text-align:left">该process属于哪个使用者账号</td>
+</tr>
+<tr>
+<td style="text-align:left">PID</td>
+<td style="text-align:left">该process使用掉的CPU资源百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">%CPU</td>
+<td style="text-align:left">该process所占用的实体内存百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">%MEM</td>
+<td style="text-align:left">该process所占用的实体内存百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">VSZ</td>
+<td style="text-align:left">该process使用掉的虚拟内存量（KBytes）</td>
+</tr>
+<tr>
+<td style="text-align:left">RSS</td>
+<td style="text-align:left">该process占用的固定的内存量（KBytes）</td>
+</tr>
+<tr>
+<td style="text-align:left">TTY</td>
+<td style="text-align:left">该process是在哪个终端机上面运行，若与终端机无关则显示？另外，tty1-tty6是本机上面的登陆者程序，如果是pts/0等等的，则表示为网络连接的主机程序</td>
+</tr>
+<tr>
+<td style="text-align:left">STAT</td>
+<td style="text-align:left">该process目前的状态，状态显示与ps -l的S旗标相同（R/S/T/Z）</td>
+</tr>
+<tr>
+<td style="text-align:left">START</td>
+<td style="text-align:left">该process被触发启动的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">TIME</td>
+<td style="text-align:left">该process实际使用CPU运行的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">COMMAND</td>
+<td style="text-align:left">该process的实际指令是什么</td>
+</tr>
+</tbody>
+</table>
+<h3 id="格式化输出root用户（真实的或有效的UID）创建的进程"><a href="#格式化输出root用户（真实的或有效的UID）创建的进程" class="headerlink" title="格式化输出root用户（真实的或有效的UID）创建的进程"></a><strong>格式化输出root用户（真实的或有效的UID）创建的进程</strong></h3><p>描述：查看由root用户运行的进程以及其他相关信息。<br>命令：<code>ps -U root -u root u</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-U-u.png" alt=""><br>说明：<br>-U参数按真实用户ID(RUID)筛选进程，它会从用户列表中选择真实用户名或 ID。真实用户即实际创建该进程的用户。<br>-u参数用来筛选有效用户ID（EUID）。<br>最后的u参数用来决定以针对用户的格式输出，由User，PID，%CPU，%MEM，VSZ，RSS，TTY，STAT，START，TIME和COMMAND这几列组成。</p>
+<h3 id="指定显示的格式"><a href="#指定显示的格式" class="headerlink" title="指定显示的格式"></a><strong>指定显示的格式</strong></h3><p>描述：-o显示指定的格式输出，–sort=-%mem指定以内存倒序的方式显示程序。<br>命令：<code>ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</code><br>输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head</span><br><span class="line">  PID  PPID CMD                         %MEM %CPU</span><br><span class="line"> 1248  1029 /usr/local/cloudmonitor/jre  3.6  0.4</span><br><span class="line">  690     1 /usr/bin/python -Es /usr/sb  0.8  0.0</span><br><span class="line">  976     1 /usr/local/aegis/aegis_clie  0.6  0.1</span><br><span class="line">  423     1 /usr/lib/polkit-1/polkitd -  0.6  0.0</span><br><span class="line">16409  2099 sshd: root@pts/0             0.3  0.0</span><br><span class="line">15920  2099 sshd: root@pts/2             0.3  0.0</span><br><span class="line">16213  2099 sshd: root@pts/1             0.3  0.0</span><br><span class="line">16451  2099 sshd: root@pts/3             0.3  0.0</span><br><span class="line">  687     1 /usr/sbin/rsyslogd -n        0.2  0.0</span><br></pre></td></tr></table></figure>
+<p>描述：显示安全信息，查看谁登录了服务器。能够与-e参数一起使用的关键字是args，cmd，comm，command，fname，ucmd，ucomm，lstart，bsdstart和start。<br>命令：<code>ps -eo pid,user,args</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-o.png" alt=""></p>
+<h3 id="通过线程过滤进程"><a href="#通过线程过滤进程" class="headerlink" title="通过线程过滤进程"></a><strong>通过线程过滤进程</strong></h3><p>描述：-L选项可以过滤特定进程的线程。<br>命令：<code>ps -L 456</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-thread-L.png" alt=""></p>
+<h3 id="实时监控进程状态"><a href="#实时监控进程状态" class="headerlink" title="实时监控进程状态"></a>实时监控进程状态</h3><p>描述：每秒刷新一次ps命令，使之动态显示CPU和内存的使用率。<br>命令：<code>watch -n 1 &#39;ps -aux --sort -pmem,-pcpu&#39;</code><br>输出：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-watch.png" alt=""></p>
+<p>描述：每秒刷新一次ps命令，使之动态显示CPU和内存的使用率，显示前20条内容。<br>命令：<code>watch -n 1 &#39;ps -aux --sort -pmem,-pcpu | head -20&#39;</code><br>输出：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-watch-head.png" alt=""></p>
+<p>描述：与top不同的是，ps可以选择想查看的字段。<br>命令：<code>watch -n 1 &#39;ps -U nijun u --sort -pmem,-pcpu | head -20&#39;</code><br>输出：</p>
+<p><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-watch-head-user.png" alt=""></p>
+<h3 id="树形显示进程"><a href="#树形显示进程" class="headerlink" title="树形显示进程"></a><strong>树形显示进程</strong></h3><p>描述：显示类似程序树的进程信息。<br>命令：<code>ps -axjf</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-axjf.png" alt=""></p>
+<p>命令：<code>ps -ejH</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-ejH.png" alt=""></p>
+<p>描述：forest选项会构造一个树形进程层次视图。<br>命令：<code>ps -f --forest -C sshd</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-forest.png" alt=""></p>
+<p>描述：另一个显示树形结构的命令。<br>命令：<code>pstree</code><br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-pstree.png" alt=""></p>
+<h3 id="杀掉进程"><a href="#杀掉进程" class="headerlink" title="杀掉进程"></a><strong>杀掉进程</strong></h3><p>描述：用ps -A命令列出所有进程，然后通过管道输入到grep来查找进程/服务，例如ssh。<br>命令：<code>ps -A | grep -i ssh</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-A-grep.png" alt=""></p>
+<p>描述：使用pgrep和pkill工具更简单。<br>命令：<br><code>pgrep ssh</code><br><code>pgrep -l ssh</code><br>输出：</p>
+<p>要找和ssh相关的进程信息:<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-pgrep.png" alt=""><br>为了避免kill掉错误的进程，也可以通过下面命令来匹配进程名称:<br><img src="http://pabfn7ecx.bkt.clouddn.com/ps/ps-pgrep-l.png" alt=""><br>然后用pkill杀掉进程，只需要输入想要杀死的资源名称。</p>
 
       
     </div>
@@ -352,9 +490,9 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/04/linux/daily-command-lsof/">
+      <a class="prev" href="/2018/06/07/linux/daily-command-netstat/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux lsof总结</span>
+        <span class="prev-text nav-default">Linux netstat总结</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>

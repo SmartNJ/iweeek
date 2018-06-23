@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Liunx wc总结"/>
+  <meta name="description" content="Linux mkdir总结"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.iweeek.com/2018/06/20/daily-command-wc/"/>
+<link rel="canonical" href="http://www.iweeek.com/2018/06/22/linux/daily-command-mkdir/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -99,7 +99,7 @@
 
 
 
-    <title> Liunx wc总结 - 毁于随 </title>
+    <title> Linux mkdir总结 - 毁于随 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,7 +215,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Liunx wc总结
+          Linux mkdir总结
         
       </h1>
       
@@ -224,7 +224,7 @@
            作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-20
+           日期: 2018-06-22
         </span>
         
           <div class="post-category">
@@ -235,8 +235,8 @@
         
         
         <div class="post-visits"
-             data-url="/2018/06/20/daily-command-wc/"
-             data-title="Liunx wc总结">
+             data-url="/2018/06/22/linux/daily-command-mkdir/"
+             data-title="Linux mkdir总结">
             阅读次数
           </div>
         
@@ -248,34 +248,48 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打印字节数"><span class="toc-text">打印字节数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印字节数-1"><span class="toc-text">打印字节数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印字符数"><span class="toc-text">打印字符数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印换行数"><span class="toc-text">打印换行数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印单词数"><span class="toc-text">打印单词数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印最长行长度"><span class="toc-text">打印最长行长度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#统计目录中文件或目录的数量"><span class="toc-text">统计目录中文件或目录的数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更多命令信息"><span class="toc-text">更多命令信息</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行mkdir命令"><span class="toc-text">运行mkdir命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建多个目录"><span class="toc-text">创建多个目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归创建目录"><span class="toc-text">递归创建目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置访问权限"><span class="toc-text">设置访问权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#打印创建目录的过程信息"><span class="toc-text">打印创建目录的过程信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建复杂的目录树"><span class="toc-text">创建复杂的目录树</span></a></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>wc命令可以计算文件的新行、字符数、字节数。</p>
+        <p>mkdir命令用来创建目录和子目录。</p>
 <a id="more"></a>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>wc命令可以计算文件的新行、字符数、字节数。如果指定多于一个文件，也列出总的行数。单词是由空格分隔的非零长度的字符序列。如果没有指定文件，或当文件为-，则读取标准输入。</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-man.png" alt=""></p>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p>wc [OPTION]… [FILE]…<br>wc [OPTION]… –files0-from=F</p>
-<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-c或–bytes或——chars：只显示Bytes数；</li>
-<li>-l或——lines：只显示列数；</li>
-<li>-w或——words：只显示字数。</li>
-<li>-m或——chars：只显示字符数。</li>
-<li>-L或–max-line-length：打印最长行的长度。</li>
-<li>–files0-from=F：从文件读取文件名，文件名应该是NUL-terminated空字符结尾。如果是-则从标准输入中读取。</li>
-</ul>
-<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="打印字节数"><a href="#打印字节数" class="headerlink" title="打印字节数"></a><strong>打印字节数</strong></h3><p>描述：打印letter文件的行数，字符数，字节数和文件名。默认没有参数。<br>命令：<code>wc letter</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc.png" alt=""></p>
-<h3 id="打印字节数-1"><a href="#打印字节数-1" class="headerlink" title="打印字节数"></a><strong>打印字节数</strong></h3><p>描述：打印file.txt文件的字节数，包含29个字节。-c选项打印字节数。<br>命令：<code>wc -c file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-c.png" alt=""></p>
-<h3 id="打印字符数"><a href="#打印字符数" class="headerlink" title="打印字符数"></a><strong>打印字符数</strong></h3><p>描述：打印file.txt文件的字符数，包含29个字符。-m选项打印字符数。<br>命令：<code>wc -m file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-m.png" alt=""></p>
-<h3 id="打印换行数"><a href="#打印换行数" class="headerlink" title="打印换行数"></a><strong>打印换行数</strong></h3><p>描述：打印file.txt文件中的新行数，包含4行。-l选项打印新行数。<br>命令：<code>wc -l file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-l.png" alt=""></p>
-<h3 id="打印单词数"><a href="#打印单词数" class="headerlink" title="打印单词数"></a><strong>打印单词数</strong></h3><p>描述：打印file.txt文件中的单词数，包含6个单子。-w选项打印单词数。<br>命令：<code>wc -w file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-w.png" alt=""></p>
-<h3 id="打印最长行长度"><a href="#打印最长行长度" class="headerlink" title="打印最长行长度"></a><strong>打印最长行长度</strong></h3><p>描述：打印file.txt文件中的最长行的长度，最长行长度为11。-L选项打印输入文件中最长行的长度。<br>命令：<code>wc -L file.txt</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-width-L.png" alt=""></p>
-<h3 id="统计目录中文件或目录的数量"><a href="#统计目录中文件或目录的数量" class="headerlink" title="统计目录中文件或目录的数量"></a><strong>统计目录中文件或目录的数量</strong></h3><p>描述：统计目录中文件夹和文件的数量。ls -1将每个文件夹或文件放在新行上，然后通过wc -l来计算换行数。<br>命令：<code>ls -1 | wc -l</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-pipe.png" alt=""></p>
-<h3 id="更多命令信息"><a href="#更多命令信息" class="headerlink" title="更多命令信息"></a><strong>更多命令信息</strong></h3><p><img src="http://pabfn7ecx.bkt.clouddn.com/wc/wc-more-detail.png" alt=""></p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>mkdir命令用来创建目录和子目录，如果目录还不存在，则创建之。<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir-man.png" alt=""></p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>mkdir [OPTION]... DIRECTORY...</code></p>
+<h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">m&lt;目标属性&gt;或–mode&lt;目标属性&gt;</td>
+<td style="text-align:left">建立目录的同时设置目录的权限</td>
+</tr>
+<tr>
+<td style="text-align:left">p或–parents</td>
+<td style="text-align:left">若所要建立目录的上层目录目前尚未建立，则会一并建立上层目录</td>
+</tr>
+<tr>
+<td style="text-align:left">v</td>
+<td style="text-align:left">列出已经被创建的目录</td>
+</tr>
+</tbody>
+</table>
+<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="运行mkdir命令"><a href="#运行mkdir命令" class="headerlink" title="运行mkdir命令"></a><strong>运行mkdir命令</strong></h3><p>描述：在~下创建mk目录，如果目录已存在，会提示无法创建它。<br>命令：<code>mkdir mk</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir.png" alt=""></p>
+<p>描述：创建目录的首要条件是，在创建目录的目标路径下你必须具有访问权限。<br>命令：<code>mkdir mk</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir-permission.png" alt=""></p>
+<h3 id="创建多个目录"><a href="#创建多个目录" class="headerlink" title="创建多个目录"></a><strong>创建多个目录</strong></h3><p>描述：同时创建foo、bar、baz三个目录。<br>命令：<code>mkdir foo bar baz</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir-multiple-file.png" alt=""></p>
+<h3 id="递归创建目录"><a href="#递归创建目录" class="headerlink" title="递归创建目录"></a><strong>递归创建目录</strong></h3><p>描述：创建具有子目录层级的目录，如果父目录找不到，使用-p选项可以递归创建目录，包括父目录。<br>命令：<br><code>mkdir -p word/more</code><br><code>ls -R</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir-R.png" alt=""></p>
+<h3 id="设置访问权限"><a href="#设置访问权限" class="headerlink" title="设置访问权限"></a><strong>设置访问权限</strong></h3><p>描述：创建一个名为foo的目录，同时为目录所有者、用户组和其他用户针对该目录赋予只读权限。-m选项可以设置新目录的权限。<br>命令：<code>mkdir -m=r-- foo</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir-m.png" alt=""></p>
+<h3 id="打印创建目录的过程信息"><a href="#打印创建目录的过程信息" class="headerlink" title="打印创建目录的过程信息"></a><strong>打印创建目录的过程信息</strong></h3><p>描述：-v选项可以查看创建目录的过程。<br>命令：<code>mkdir -v foo bar baz</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir-v.png" alt=""></p>
+<h3 id="创建复杂的目录树"><a href="#创建复杂的目录树" class="headerlink" title="创建复杂的目录树"></a><strong>创建复杂的目录树</strong></h3><p>描述：实现下面的目录树结构，用{}来创建层级目录，只要一行命令来实现。然后使用apt或yum安装tree软件包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># cd /home/#USER/Desktop</span><br><span class="line"># mkdir tecmint</span><br><span class="line"># mkdir tecmint/etc</span><br><span class="line"># mkdir tecmint/lib</span><br><span class="line"># mkdir tecmint/usr</span><br><span class="line"># mkdir tecmint/bin</span><br><span class="line"># mkdir tecmint/tmp</span><br><span class="line"># mkdir tecmint/opt</span><br><span class="line"># mkdir tecmint/var</span><br><span class="line"># mkdir tecmint/etc/x1</span><br><span class="line"># mkdir tecmint/usr/x2</span><br><span class="line"># mkdir tecmint/usr/x3</span><br><span class="line"># mkdir tecmint/tmp/Y1</span><br><span class="line"># mkdir tecmint/tmp/Y2</span><br><span class="line"># mkdir tecmint/tmp/Y3</span><br><span class="line"># mkdir tecmint/tmp/Y3/z</span><br></pre></td></tr></table></figure>
+<p>命令：<code>mkdir -p /home/$USER/iweeek/{etc/x1,lib,usr/{x2,x3},bin,tmp/{Y1,Y2,Y3/z},opt,var}</code><br><code>tree /home/$USER/iweeek</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/mkdir/mkdir-tree.png" alt=""></p>
 
       
     </div>
@@ -297,11 +311,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.iweeek.com/2018/06/20/daily-command-wc/">http://www.iweeek.com/2018/06/20/daily-command-wc/</a>
+      <a href="http://www.iweeek.com/2018/06/22/linux/daily-command-mkdir/">http://www.iweeek.com/2018/06/22/linux/daily-command-mkdir/</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月20日</a>
+      <a href=""> 2018年06月22日</a>
     </p>
   </div>
 
@@ -324,17 +338,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/20/daily-command-stat/">
+      <a class="prev" href="/2018/06/23/daily-command-kill/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux stat总结</span>
+        <span class="prev-text nav-default">Linux kill命令用法详解</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/2018/06/19/daily-command-date/">
+      <a class="next" href="/2018/06/21/linux/daily-command-stat/">
         下一篇：
-        <span class="next-text nav-default">Linux date总结</span>
+        <span class="next-text nav-default">Linux stat总结</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>

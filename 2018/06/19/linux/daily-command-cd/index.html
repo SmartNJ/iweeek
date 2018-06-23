@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="Linux echo总结"/>
+  <meta name="description" content="Linux cd总结"/>
 
 
 
@@ -42,7 +42,7 @@
 
 
 
-<link rel="canonical" href="http://www.iweeek.com/2018/06/03/linux/daily-command-echo/"/>
+<link rel="canonical" href="http://www.iweeek.com/2018/06/19/linux/daily-command-cd/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -99,7 +99,7 @@
 
 
 
-    <title> Linux echo总结 - 毁于随 </title>
+    <title> Linux cd总结 - 毁于随 </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -215,7 +215,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          Linux echo总结
+          Linux cd总结
         
       </h1>
       
@@ -224,13 +224,19 @@
            作者: <a href="https://www.iweeek.com/"> 毁于随 </a>
         </span>
         <span class="post-time">
-           日期: 2018-06-03
+           日期: 2018-06-19
         </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Linux/">Linux</a>
+            
+          </div>
         
         
         <div class="post-visits"
-             data-url="/2018/06/03/linux/daily-command-echo/"
-             data-title="Linux echo总结">
+             data-url="/2018/06/19/linux/daily-command-cd/"
+             data-title="Linux cd总结">
             阅读次数
           </div>
         
@@ -242,99 +248,65 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实用命令"><span class="toc-text">实用命令</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令格式"><span class="toc-text">命令格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令功能"><span class="toc-text">命令功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令参数"><span class="toc-text">命令参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令实例"><span class="toc-text">命令实例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到当前目录的上一级目录"><span class="toc-text">切换到当前目录的上一级目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到当前目录的上上两层目录"><span class="toc-text">切换到当前目录的上上两层目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到当前目录的上一级目录-1"><span class="toc-text">切换到当前目录的上一级目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到根目录"><span class="toc-text">切换到根目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到某个目录"><span class="toc-text">切换到某个目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#返回进入当前目录前所在目录"><span class="toc-text">返回进入当前目录前所在目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#把上个命令的参数用作cd命令的参数"><span class="toc-text">把上个命令的参数用作cd命令的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到名字带有空格的目录"><span class="toc-text">切换到名字带有空格的目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到某个目录并且打印列表"><span class="toc-text">切换到某个目录并且打印列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#保存当前工作目录至内存"><span class="toc-text">保存当前工作目录至内存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换到某个字符串开头的目录"><span class="toc-text">切换到某个字符串开头的目录</span></a></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>echo用来在标准输出或者文件中显示一行文本或者字符串。</p>
+        <p>cd命令用来切换工作目录。</p>
 <a id="more"></a>
-<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>echo [选项] [字符串]</code></p>
-<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>echo命令是内建的shell命令，用于显示变量的值或者打印一行文本。当echo命令不带任何选项或字符串使用时，它会在显示屏上返回一个空白行，后面换一行跟上命令提示符。这是因为按下回车键就是发送一个信号给系统以开始一个新行，而echo重复了该信号。</p>
+<h2 id="命令格式"><a href="#命令格式" class="headerlink" title="命令格式"></a>命令格式</h2><p><code>cd [选项] 目录</code></p>
+<h2 id="命令功能"><a href="#命令功能" class="headerlink" title="命令功能"></a>命令功能</h2><p>cd命令（change directory）用来切换工作目录。其中目录可以表示为绝对路径或相对路径，若目录名称省略，则变换至使用者的home directory（登录时所在的目录）。使用者只能访问自己的目录或者其余指定目录。通常与pwd命令一同使用，pwd命令获取当前目录路径并打印出来。</p>
+<p>表: 特殊目录</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特殊目录</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">.</td>
+<td style="text-align:left">代表此层目录</td>
+</tr>
+<tr>
+<td style="text-align:left">..</td>
+<td style="text-align:left">代表上一层目录</td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">代表前一个工作目录</td>
+</tr>
+<tr>
+<td style="text-align:left">~</td>
+<td style="text-align:left">代表“目前使用者身份”所在的主文件</td>
+</tr>
+<tr>
+<td style="text-align:left">~account</td>
+<td style="text-align:left">代表account这个使用者的主文件夹（account是个账号名称）</td>
+</tr>
+</tbody>
+</table>
 <h2 id="命令参数"><a href="#命令参数" class="headerlink" title="命令参数"></a>命令参数</h2><ul>
-<li>-n 不要在echo命令输出后换行。</li>
-<li>-e 使反斜线转义生效。</li>
-<li>-E 使反斜线转义失效（默认）。</li>
+<li>-p 如果要切换到的目标目录是一个符号连接，直接切换到符号连接指向的目标目录。</li>
+<li>-L 如果要切换的目标目录是一个符号的连接，直接切换到字符连接名代表的目录，而非符号连接所指向的目标目录。</li>
+<li>- 只有 - 一个选项时，当前工作目录将被切换到环境变量”OLDPWD”所表示的目录。</li>
 </ul>
-<p>如果使用-e选项，则可以使用如下转义序列：</p>
-<ul>
-<li>\ 反斜线</li>
-<li>\a 警告（BEL）</li>
-<li>\b 退格</li>
-<li>\c 不产生进一步输出，不换行。</li>
-<li>\e 转义</li>
-<li>\f 换页</li>
-<li>\n 新行</li>
-<li>\r 换行字符</li>
-<li>\t 水平制表</li>
-<li>\v 垂直制表</li>
-<li>\0NNN 八进制值表示的字节NNN（1到3个数字）</li>
-<li>\xHH 十六进制值表示的字节NNN（1到2个数字）</li>
-</ul>
-<h2 id="实用命令"><a href="#实用命令" class="headerlink" title="实用命令"></a>实用命令</h2><p><strong>实例：1. 输入一行文本并显示在标准输出上</strong><br>命令：<code>echo A Linux-based system is a modular Unix-like operating system.</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo.png" alt=""></p>
-<p><strong>实例：2. 输出一个声明的变量值</strong><br>命令：<code>echo The value of variable x = $x</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-variable.png" alt=""></p>
-<p><strong>实例：3. 使用\b选项</strong><br>命令：<code>echo -e &quot;A \bLinux-based \bsystem \bis \ba \bmodular \bUnix-like \boperating \bsystem.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-b.png" alt=""></p>
-<p><strong>实例：4. 显示系统定义的变量的值</strong><br>命令：<code>echo $USER $HOME</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-$.png" alt=""></p>
-<p><strong>实例：5. 使用\n选项</strong><br>命令：<code>echo -e &quot;A \nLinux-based \nsystem \nis \na \nmodular \nUnix-like \noperating \nsystem.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-n.png" alt=""></p>
-<p><strong>实例：6. 使用\t选项</strong><br>命令：<code>echo -e &quot;A \tLinux-based \tsystem \tis \ta \tmodular \tUnix-like \toperating \tsystem.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-t.png" alt=""></p>
-<p><strong>实例：7. 同时使用换行\n与水平制表符\t</strong><br>命令：<code>echo -e &quot;\n\tA \n\tLinux-based \n\tsystem \n\tis \n\ta \n\tmodular \n\tUnix-like \n\toperating \n\tsystem.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-n-t.png" alt=""></p>
-<p><strong>实例：8. 使用\v选项</strong><br>命令：<code>echo -e &quot;A \vLinux-based \vsystem \vis \va \vmodular \vUnix-like \voperating \vsystem.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-v.png" alt=""></p>
-<p><strong>实例：9. 同时使用换行\n与垂直制表符\v</strong><br>命令：<code>echo -e &quot;\n\vA \n\vLinux-based \n\vsystem \n\vis \n\va \n\vmodular \n\vUnix-like \n\voperating \n\vsystem.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-n-v.png" alt=""></p>
-<p><strong>实例：10. 使用\r选项</strong><br>命令：<code>echo -e &quot;A \rLinux-based system is a modular Unix-like operating system.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-r.png" alt=""></p>
-<p><strong>实例 11. 使用\c选项</strong><br>命令：<code>echo -e &quot;A Linux-based system \cis a modular Unix-like operating system.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-c.png" alt=""></p>
-<p><strong>实例：12. -n会在echo完后不会输出新行</strong><br>命令：<code>echo -n &quot;A Linux-based system is a modular Unix-like operating system.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo--n.png" alt=""></p>
-<p><strong>实例：13. 使用\a选项</strong><br>描述：-e后面跟上\a选项会听到声音警告。<br>命令：<code>echo -e &quot;A Linux-based system is a \amodular Unix-like operating system.&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-a.png" alt=""></p>
-<p><strong>实例：14. 使用echo命令打印所有的文件和文件夹（ls命令的替代）</strong><br>命令：<code>echo *</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-*.png" alt=""></p>
-<p><strong>实例：15. 打印制定的文件类型</strong><br>描述：打印所有的以.txt结尾的文件。<br>命令：<code>echo *.txt</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-*-txt.png" alt=""></p>
-<p><strong>实例：16. echo可以使用重定向符来输出到一个文件而不是标准输出</strong><br>命令：<code>echo &quot;A Linux-based system is a modular Unix-like operating system.&quot; &gt; linux.txt</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-redirect.png" alt=""></p>
-<p><strong>实例：17. 设置echo命令彩色输出</strong><br>echo命令可以修改字体类型，字体背景色以及字体颜色，转义序列\033可以用于改变字体属性。要使转义序列生效，必须使用-e选项。下面列出了部分转义代码：</p>
-<ul>
-<li>[0m: 正常</li>
-<li>[1m: 粗体</li>
-<li>[4m: 字体加上下划线</li>
-<li>[7m: 逆转前景和背景色</li>
-<li>[8m: 不可见字符</li>
-<li>[9m: 跨行字体</li>
-<li>[30m: 灰色字体</li>
-<li>[31m: 红色字体</li>
-<li>[32m: 绿色字体</li>
-<li>[33m: 棕色字体</li>
-<li>[34m: 蓝色字体</li>
-<li>[35m: 紫色字体</li>
-<li>[36m: 浅蓝色字体</li>
-<li>[37m: 浅灰字体</li>
-<li>[38m: 黑色字体</li>
-<li>[40m: 黑色背景</li>
-<li>[41m: 红色背景</li>
-<li>[42m: 绿色背景</li>
-<li>[43m: 棕色背景</li>
-<li>[44m: 蓝色背景</li>
-<li>[45m: 紫色背景</li>
-<li>[46m: 浅蓝色背景</li>
-<li>[47m: 浅灰色背景</li>
-</ul>
-<p>描述：Magic of Linux变成粗体，of Linux将逆转前景和背景色，并且底色是绿色的。<br>命令：<code>echo -e &quot;\033[1mMagic \033[32m\033[7mof Linux\033[0m&quot;</code><br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-033.png" alt=""></p>
-<p><strong>实例：17. 在文本中用抑音符来执行命令</strong><br>命令：echo “$LOGNAME carried them out at `date`“<br>输出：</p>
-<p><img src="http://pabfn7ecx.bkt.clouddn.com/echo/echo-date.png" alt=""></p>
+<h2 id="命令实例"><a href="#命令实例" class="headerlink" title="命令实例"></a>命令实例</h2><h3 id="切换到当前目录的上一级目录"><a href="#切换到当前目录的上一级目录" class="headerlink" title="切换到当前目录的上一级目录"></a><strong>切换到当前目录的上一级目录</strong></h3><p>命令：<code>cd ..</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-previous.png" alt=""></p>
+<h3 id="切换到当前目录的上上两层目录"><a href="#切换到当前目录的上上两层目录" class="headerlink" title="切换到当前目录的上上两层目录"></a><strong>切换到当前目录的上上两层目录</strong></h3><p>命令：<code>cd ../..</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-previous-previous.png" alt=""></p>
+<h3 id="切换到当前目录的上一级目录-1"><a href="#切换到当前目录的上一级目录-1" class="headerlink" title="切换到当前目录的上一级目录"></a><strong>切换到当前目录的上一级目录</strong></h3><p>命令：<code>cd ~</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-home.png" alt=""></p>
+<h3 id="切换到根目录"><a href="#切换到根目录" class="headerlink" title="切换到根目录"></a><strong>切换到根目录</strong></h3><p>命令：<code>cd /</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-root.png" alt=""></p>
+<h3 id="切换到某个目录"><a href="#切换到某个目录" class="headerlink" title="切换到某个目录"></a><strong>切换到某个目录</strong></h3><p>命令：<code>cd /etc/security</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-specific.png" alt=""></p>
+<h3 id="返回进入当前目录前所在目录"><a href="#返回进入当前目录前所在目录" class="headerlink" title="返回进入当前目录前所在目录"></a><strong>返回进入当前目录前所在目录</strong></h3><p>命令：<code>cd /etc/security</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-just-now.png" alt=""></p>
+<h3 id="把上个命令的参数用作cd命令的参数"><a href="#把上个命令的参数用作cd命令的参数" class="headerlink" title="把上个命令的参数用作cd命令的参数"></a><strong>把上个命令的参数用作cd命令的参数</strong></h3><p>命令：<code>cd !$</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-last-command.png" alt=""></p>
+<h3 id="切换到名字带有空格的目录"><a href="#切换到名字带有空格的目录" class="headerlink" title="切换到名字带有空格的目录"></a><strong>切换到名字带有空格的目录</strong></h3><p>命令：<code>cd iweeek\ config/</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-space.png" alt=""></p>
+<h3 id="切换到某个目录并且打印列表"><a href="#切换到某个目录并且打印列表" class="headerlink" title="切换到某个目录并且打印列表"></a><strong>切换到某个目录并且打印列表</strong></h3><p>命令：<code>cd /home/nijun/ &amp;&amp; ls;</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-pipe.png" alt=""></p>
+<h3 id="保存当前工作目录至内存"><a href="#保存当前工作目录至内存" class="headerlink" title="保存当前工作目录至内存"></a><strong>保存当前工作目录至内存</strong></h3><p>描述：保存当前目录到内存，然后切换到要求的目录。一旦popd被执行，它会从内存取出保存的目录位置，作为当前目录。<br>命令：<br><code>cd /home/nijun/sed</code><br><code>popd</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-pushd-popd.png" alt=""><br>说明：pushd和popd是Linux bash命令，也是其他几个能够保存当前工作目录位置至内存，并且从内存读取目录作为当前目录的脚本，这些脚本也可以切换目录。</p>
+<h3 id="切换到某个字符串开头的目录"><a href="#切换到某个字符串开头的目录" class="headerlink" title="切换到某个字符串开头的目录"></a><strong>切换到某个字符串开头的目录</strong></h3><p>描述：如果目录中只有一个以s开头的目录，就会直接移动security目录中。如果有很多目录以s开头，而且命令行没有提供更多的标准，这将会移动到第一个以s开头的命令（以标准字典的顺序）。<br>命令：<br><code>cd /etc/s*</code><br><code>cd /etc/securi*</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-asterisk.png" alt=""></p>
+<p>命令：<code>cd /etc/p?</code><br>输出：<br><img src="http://pabfn7ecx.bkt.clouddn.com/cd/cd-question.png" alt=""></p>
 
       
     </div>
@@ -356,11 +328,11 @@
     </p>
     <!-- <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="http://www.iweeek.com/2018/06/03/linux/daily-command-echo/">http://www.iweeek.com/2018/06/03/linux/daily-command-echo/</a>
+      <a href="http://www.iweeek.com/2018/06/19/linux/daily-command-cd/">http://www.iweeek.com/2018/06/19/linux/daily-command-cd/</a>
     </p> -->
     <p class="copyright-item">
       <span>发表日期: </span>
-      <a href=""> 2018年06月03日</a>
+      <a href=""> 2018年06月19日</a>
     </p>
   </div>
 
@@ -383,17 +355,17 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/06/04/linux/daily-command-ps/">
+      <a class="prev" href="/2018/06/19/linux/daily-command-date/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">Linux ps命令用法详解</span>
+        <span class="prev-text nav-default">Linux date总结</span>
         <span class="prev-text nav-mobile">上一篇</span>
         ：上一篇
       </a>
     
     
-      <a class="next" href="/2018/06/02/linux/daily-command-tar/">
+      <a class="next" href="/2018/06/15/linux/daily-command-ls/">
         下一篇：
-        <span class="next-text nav-default">Linux tar总结</span>
+        <span class="next-text nav-default">Linux ls总结</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
