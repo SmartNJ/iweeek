@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.iweeek.com/categories/index.html</loc>
+    
+    <lastmod>2018-06-23T11:24:26.415Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/tags/index.html</loc>
+    
+    <lastmod>2018-06-23T07:24:11.278Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.iweeek.com/photos/index.html</loc>
+    
+    <lastmod>2018-06-23T07:14:09.656Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.iweeek.com/2018/06/23/daily-command-curl/</loc>
     
     <lastmod>2018-06-23T05:18:49.807Z</lastmod>
@@ -219,13 +240,6 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/categories/index.html</loc>
-    
-    <lastmod>2018-06-19T03:47:52.851Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iweeek.com/2017/05/04/java/java-array/</loc>
     
     <lastmod>2018-06-18T13:24:25.857Z</lastmod>
@@ -233,21 +247,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/photos/index.html</loc>
-    
-    <lastmod>2018-06-18T12:41:56.347Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/2018/04/11/other/top-of-the-wave/</loc>
+    <loc>http://www.iweeek.com/2018/04/18/other/understanding-the-domain/</loc>
     
     <lastmod>2018-06-18T12:41:56.346Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/04/18/other/understanding-the-domain/</loc>
+    <loc>http://www.iweeek.com/2018/04/11/other/top-of-the-wave/</loc>
     
     <lastmod>2018-06-18T12:41:56.346Z</lastmod>
     
@@ -380,14 +387,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/05/15/algorithm/quick-sort/</loc>
+    <loc>http://www.iweeek.com/2018/05/04/android/android-processes-and-threads/</loc>
     
     <lastmod>2018-06-18T12:41:56.275Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/2018/05/04/android/android-processes-and-threads/</loc>
+    <loc>http://www.iweeek.com/2018/05/15/algorithm/quick-sort/</loc>
     
     <lastmod>2018-06-18T12:41:56.275Z</lastmod>
     
@@ -429,13 +436,6 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/tags/index.html</loc>
-    
-    <lastmod>2018-06-11T02:58:23.347Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://www.iweeek.com/manifest.json</loc>
     
     <lastmod>2018-06-11T02:58:23.344Z</lastmod>
@@ -450,14 +450,14 @@
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/drafts/configure-multiple-vue-project-with-nginx.html</loc>
+    <loc>http://www.iweeek.com/drafts/iframe.html</loc>
     
     <lastmod>2018-06-11T02:58:23.333Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://www.iweeek.com/drafts/iframe.html</loc>
+    <loc>http://www.iweeek.com/drafts/configure-multiple-vue-project-with-nginx.html</loc>
     
     <lastmod>2018-06-11T02:58:23.333Z</lastmod>
     
@@ -467,13 +467,6 @@
     <loc>http://www.iweeek.com/drafts/record-re-install-mac-os-10-12-6.html</loc>
     
     <lastmod>2018-06-11T02:58:23.333Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.iweeek.com/books/index.html</loc>
-    
-    <lastmod>2018-06-11T02:58:23.332Z</lastmod>
     
   </url>
   

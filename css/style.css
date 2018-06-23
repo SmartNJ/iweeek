@@ -1496,12 +1496,6 @@ h6 {
   width: 560px;
   float: left; }
 
-#posts > article {
-  padding: 20px;
-  background: #f3f3f3;
-  border-radius: 2px;
-  box-shadow: 2px 2px 4px #e2e2e2; }
-
 #main > div.entry-recent-posts {
   float: left;
   margin-bottom: 30px; }
